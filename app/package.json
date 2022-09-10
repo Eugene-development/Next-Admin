@@ -15,7 +15,9 @@
     "next": "^12.0.4",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "swr": "^1.2.2"
+    "swr": "^1.2.2",
+    "deepmerge": "4.2.2",
+    "lodash": "4.17.20"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.12.1",
