@@ -33,7 +33,8 @@ const Register = () => {
                 logo={
                     <Link href="/">
                         <a>
-                            <ApplicationLogo className="w-20 h-20 fill-current text-gray-500" />
+                            {/* <ApplicationLogo className="w-20 h-20 fill-current text-gray-500" /> */}
+                            //Логотип
                         </a>
                     </Link>
                 }>
@@ -41,7 +42,7 @@ const Register = () => {
                 <form onSubmit={submitForm}>
                     {/* Name */}
                     <div>
-                        <Label htmlFor="name">Name</Label>
+                        <Label htmlFor="name">Имя</Label>
 
                         <Input
                             id="name"
@@ -58,7 +59,7 @@ const Register = () => {
 
                     {/* Email Address */}
                     <div className="mt-4">
-                        <Label htmlFor="email">Email</Label>
+                        <Label htmlFor="email">Почта</Label>
 
                         <Input
                             id="email"
@@ -74,7 +75,7 @@ const Register = () => {
 
                     {/* Password */}
                     <div className="mt-4">
-                        <Label htmlFor="password">Password</Label>
+                        <Label htmlFor="password">Пароль</Label>
 
                         <Input
                             id="password"
@@ -91,9 +92,7 @@ const Register = () => {
 
                     {/* Confirm Password */}
                     <div className="mt-4">
-                        <Label htmlFor="passwordConfirmation">
-                            Confirm Password
-                        </Label>
+                        <Label htmlFor="passwordConfirmation">Повторите пароль</Label>
 
                         <Input
                             id="passwordConfirmation"
@@ -112,11 +111,11 @@ const Register = () => {
                     <div className="flex items-center justify-end mt-4">
                         <Link href="/login">
                             <a className="underline text-sm text-gray-600 hover:text-gray-900">
-                                Already registered?
+                                Уже зарегистрированы?
                             </a>
                         </Link>
 
-                        <Button className="ml-4">Register</Button>
+                        <Button className="ml-4">Зарегистрировать</Button>
                     </div>
                 </form>
             </AuthCard>

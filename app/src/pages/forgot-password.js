@@ -29,15 +29,16 @@ const ForgotPassword = () => {
                 logo={
                     <Link href="/">
                         <a>
-                            <ApplicationLogo className="w-20 h-20 fill-current text-gray-500" />
+                            {/* <ApplicationLogo className="w-20 h-20 fill-current text-gray-500" /> */}
+                            //Логотип
                         </a>
                     </Link>
                 }>
 
                 <div className="mb-4 text-sm text-gray-600">
-                    Forgot your password? No problem. Just let us know your
-                    email address and we will email you a password reset link
-                    that will allow you to choose a new one.
+                    Забыли пароль? Не проблема. Просто дайте нам знать ваш
+                    адрес электронной почты, мы отправим вам ссылку для сброса пароля по электронной почте
+                    и вы создадите новый.
                 </div>
 
                 {/* Session Status */}
@@ -46,7 +47,7 @@ const ForgotPassword = () => {
                 <form onSubmit={submitForm}>
                     {/* Email Address */}
                     <div>
-                        <Label htmlFor="email">Email</Label>
+                        <Label htmlFor="email">Почта аккаунта</Label>
                         <Input
                             id="email"
                             type="email"
@@ -62,7 +63,7 @@ const ForgotPassword = () => {
                     </div>
 
                     <div className="flex items-center justify-end mt-4">
-                        <Button>Email Password Reset Link</Button>
+                        <Button>Получить ссылку для сброса пароля</Button>
                     </div>
                 </form>
             </AuthCard>

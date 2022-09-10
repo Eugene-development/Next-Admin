@@ -66,7 +66,7 @@ const Navigation = ({ user }) => {
 
                             {/* Authentication */}
                             <DropdownButton onClick={logout}>
-                                Logout
+                                Выйти
                             </DropdownButton>
                         </Dropdown>
                     </div>
@@ -147,7 +147,7 @@ const Navigation = ({ user }) => {
                         <div className="mt-3 space-y-1">
                             {/* Authentication */}
                             <ResponsiveNavButton onClick={logout}>
-                                Logout
+                                Выйти
                             </ResponsiveNavButton>
                         </div>
                     </div>

@@ -45,7 +45,12 @@ const Login = () => {
                 logo={
                     <Link href="/">
                         <a>
-                            <ApplicationLogo className="w-20 h-20 fill-current text-gray-500" />
+								<img
+									className="h-12 w-auto sm:h-24"
+									src="https://lumen-image-bucket.s3.eu-central-1.amazonaws.com/logo/logo.png"
+									alt="logo"
+								/>
+                            {/* <ApplicationLogo className="w-20 h-20 fill-current text-gray-500" /> */}
                         </a>
                     </Link>
                 }>
@@ -56,7 +61,7 @@ const Login = () => {
                 <form onSubmit={submitForm}>
                     {/* Email Address */}
                     <div>
-                        <Label htmlFor="email">Email</Label>
+                        <Label htmlFor="email">Почта</Label>
 
                         <Input
                             id="email"
@@ -73,7 +78,7 @@ const Login = () => {
 
                     {/* Password */}
                     <div className="mt-4">
-                        <Label htmlFor="password">Password</Label>
+                        <Label htmlFor="password">Пароль</Label>
 
                         <Input
                             id="password"
@@ -102,7 +107,7 @@ const Login = () => {
                             />
 
                             <span className="ml-2 text-sm text-gray-600">
-                                Remember me
+                                Запомнить меня
                             </span>
                         </label>
                     </div>
@@ -110,11 +115,11 @@ const Login = () => {
                     <div className="flex items-center justify-end mt-4">
                         <Link href="/forgot-password">
                             <a className="underline text-sm text-gray-600 hover:text-gray-900">
-                                Forgot your password?
+                                Забыли пароль?
                             </a>
                         </Link>
 
-                        <Button className="ml-3">Login</Button>
+                        <Button className="ml-3">Войти</Button>
                     </div>
                 </form>
             </AuthCard>
