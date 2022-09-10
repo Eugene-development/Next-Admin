@@ -47,6 +47,13 @@ export default function Home() {
                         </svg>
                     </div> */}
 
+                    			<img
+									className="h-12 w-auto sm:h-24"
+									src="https://lumen-image-bucket.s3.eu-central-1.amazonaws.com/logo/logo.png"
+									alt="logo"
+								/>
+
+
                     <div className="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
                         <div className="grid grid-cols-1 md:grid-cols-2">
                             <div className="p-6">

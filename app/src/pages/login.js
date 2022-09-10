@@ -45,12 +45,7 @@ const Login = () => {
                 logo={
                     <Link href="/">
                         <a>
-								<img
-									className="h-12 w-auto sm:h-24"
-									src="https://lumen-image-bucket.s3.eu-central-1.amazonaws.com/logo/logo.png"
-									alt="logo"
-								/>
-                            {/* <ApplicationLogo className="w-20 h-20 fill-current text-gray-500" /> */}
+                            <ApplicationLogo className="w-20 h-20 fill-current" />
                         </a>
                     </Link>
                 }>
