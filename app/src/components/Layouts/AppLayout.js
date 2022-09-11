@@ -59,7 +59,7 @@ const AppLayout = ({ header, children }) =>  {
     const { user } = useAuth({ middleware: 'auth' })
 
     if (!user) {
-        return <h2>Пошёл вон!!!</h2>
+        return <h2>Нет доступа!!!</h2>
     }
 
   const [sidebarOpen, setSidebarOpen] = useState(false)
