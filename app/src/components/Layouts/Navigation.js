@@ -2,7 +2,9 @@ import ApplicationLogo from '@/components/ApplicationLogo'
 import Dropdown from '@/components/Dropdown'
 import Link from 'next/link'
 import NavLink from '@/components/NavLink'
-import ResponsiveNavLink, { ResponsiveNavButton } from '@/components/ResponsiveNavLink'
+import ResponsiveNavLink, {
+    ResponsiveNavButton,
+} from '@/components/ResponsiveNavLink'
 import { DropdownButton } from '@/components/DropdownLink'
 import { useAuth } from '@/hooks/auth'
 import { useRouter } from 'next/router'
@@ -18,7 +20,7 @@ const Navigation = ({ user }) => {
     return (
         <nav className="bg-white border-b border-gray-100">
             {/* Primary Navigation Menu */}
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between h-16">
                     <div className="flex">
                         {/* Logo */}
@@ -31,20 +33,19 @@ const Navigation = ({ user }) => {
                         </div> */}
 
                         {/* Navigation Links */}
-                        <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <div className="hidden space-x-8 sm:-my-px sm:flex">
                             <NavLink
                                 href="/dashboard"
                                 active={router.pathname === '/dashboard'}>
                                 Дашборд1
                             </NavLink>
-                        <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                            <NavLink
-                                href="/test"
-                                active={router.pathname === '/dashboard'}>
-                                Test
-                            </NavLink>
-                        </div>
-
+                            <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <NavLink
+                                    href="/test"
+                                    active={router.pathname === '/test'}>
+                                    Test
+                                </NavLink>
+                            </div>
                         </div>
                     </div>
 
@@ -71,7 +72,6 @@ const Navigation = ({ user }) => {
                                     </div>
                                 </button>
                             }>
-
                             {/* Authentication */}
                             <DropdownButton onClick={logout}>
                                 Выйти
