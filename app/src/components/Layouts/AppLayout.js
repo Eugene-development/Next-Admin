@@ -4,6 +4,7 @@ import { Disclosure } from '@headlessui/react'
 import { Fragment, useState } from 'react'
 import { Dialog, Menu, Transition } from '@headlessui/react'
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
+import ApplicationLogo from '@/components/ApplicationLogo'
 
 import {
     Bars3BottomLeftIcon,
@@ -130,7 +131,7 @@ const AppLayout = ({ header, children }) => {
                                 leave="transition ease-in-out duration-300 transform"
                                 leaveFrom="translate-x-0"
                                 leaveTo="-translate-x-full">
-                                <Dialog.Panel className="relative flex w-full max-w-xs flex-1 flex-col bg-white pt-5 pb-4">
+                                <Dialog.Panel className="relative flex w-full max-w-xs flex-1 flex-col bg-white pb-4 ">
                                     <Transition.Child
                                         as={Fragment}
                                         enter="ease-in-out duration-300"
@@ -159,11 +160,7 @@ const AppLayout = ({ header, children }) => {
 
                                     <div className="flex flex-grow flex-col overflow-y-auto border-r border-gray-200 bg-white pt-5 pb-4">
                                         <div className="flex flex-shrink-0 items-center px-4">
-                                            <img
-                                                className="h-8 w-auto"
-                                                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                                                alt="Your Company"
-                                            />
+                                            <ApplicationLogo className="w-auto h-8 sm:h-12 fill-current" />
                                         </div>
                                         <div className="mt-5 flex flex-grow flex-col">
                                             <nav
@@ -173,18 +170,18 @@ const AppLayout = ({ header, children }) => {
                                                     !item.children ? (
                                                         <div key={item.name}>
                                                             <a
-                                                                href="#"
+                                                                href="/"
                                                                 className={classNames(
                                                                     item.current
                                                                         ? 'bg-gray-100 text-gray-900'
-                                                                        : 'bg-white text-gray-600 hover:bg-gray-50 hover:text-gray-900',
+                                                                        : 'bg-white text-gray-800 hover:bg-gray-50 hover:text-gray-900',
                                                                     'group w-full flex items-center pl-2 py-2 text-sm font-medium rounded-md',
                                                                 )}>
                                                                 <item.icon
                                                                     className={classNames(
                                                                         item.current
-                                                                            ? 'text-gray-500'
-                                                                            : 'text-gray-400 group-hover:text-gray-500',
+                                                                            ? 'text-gray-900'
+                                                                            : 'text-gray-800 group-hover:text-gray-800',
                                                                         'mr-3 flex-shrink-0 h-6 w-6',
                                                                     )}
                                                                     aria-hidden="true"
@@ -203,11 +200,11 @@ const AppLayout = ({ header, children }) => {
                                                                         className={classNames(
                                                                             item.current
                                                                                 ? 'bg-gray-100 text-gray-900'
-                                                                                : 'bg-white text-gray-600 hover:bg-gray-50 hover:text-gray-900',
+                                                                                : 'bg-white text-gray-800 hover:bg-gray-50 hover:text-gray-900',
                                                                             'group w-full flex items-center pl-2 pr-1 py-2 text-left text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500',
                                                                         )}>
                                                                         <item.icon
-                                                                            className="mr-3 h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
+                                                                            className="mr-3 h-6 w-6 flex-shrink-0 text-gray-700 group-hover:text-gray-800"
                                                                             aria-hidden="true"
                                                                         />
                                                                         <span className="flex-1">
@@ -218,9 +215,9 @@ const AppLayout = ({ header, children }) => {
                                                                         <svg
                                                                             className={classNames(
                                                                                 open
-                                                                                    ? 'text-gray-400 rotate-90'
-                                                                                    : 'text-gray-300',
-                                                                                'ml-3 h-5 w-5 flex-shrink-0 transform transition-colors duration-150 ease-in-out group-hover:text-gray-400',
+                                                                                    ? 'text-gray-800 rotate-90'
+                                                                                    : 'text-gray-800',
+                                                                                'ml-3 h-5 w-5 flex-shrink-0 transform transition-colors duration-150 ease-in-out group-hover:text-gray-700',
                                                                             )}
                                                                             viewBox="0 0 20 20"
                                                                             aria-hidden="true">
@@ -290,7 +287,7 @@ const AppLayout = ({ header, children }) => {
                                             className="sr-only">
                                             Search
                                         </label>
-                                        <div className="relative w-full text-gray-400 focus-within:text-gray-600">
+                                        <div className="relative w-full text-gray-700 focus-within:text-gray-600">
                                             <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center">
                                                 <MagnifyingGlassIcon
                                                     className="h-5 w-5"
