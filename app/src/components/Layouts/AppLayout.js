@@ -3,6 +3,8 @@ import { useAuth } from '@/hooks/auth'
 import { Disclosure } from '@headlessui/react'
 import { Fragment, useState } from 'react'
 import { Dialog, Menu, Transition } from '@headlessui/react'
+import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
+
 import {
     Bars3BottomLeftIcon,
     BellIcon,
@@ -14,7 +16,6 @@ import {
     UsersIcon,
     XMarkIcon,
 } from '@heroicons/react/24/outline'
-import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 
 const navigation = [
     { name: 'Dashboard', icon: HomeIcon, current: true, href: '#' },
@@ -107,7 +108,7 @@ const AppLayout = ({ header, children }) => {
                 <Transition.Root show={sidebarOpen} as={Fragment}>
                     <Dialog
                         as="div"
-                        className="relative z-40 md:hidden"
+                        className="relative z-40"
                         onClose={setSidebarOpen}>
                         <Transition.Child
                             as={Fragment}
@@ -265,12 +266,12 @@ const AppLayout = ({ header, children }) => {
                     </Dialog>
                 </Transition.Root>
 
-                <div className="md:pl-64">
-                    <div className="mx-auto flex max-w-4xl flex-col md:px-8 xl:px-0">
+                <div className="mx-4">
+                    <div className="mx-auto flex max-w-full flex-col md:px-8 xl:px-0">
                         <div className="sticky top-0 z-10 flex h-16 flex-shrink-0 border-b border-gray-200 bg-white">
                             <button
                                 type="button"
-                                className="border-r border-gray-200 px-4 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 md:hidden"
+                                className="border-r border-gray-200 px-4 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
                                 onClick={() => setSidebarOpen(true)}>
                                 <span className="sr-only">Open sidebar</span>
                                 <Bars3BottomLeftIcon
@@ -372,7 +373,7 @@ const AppLayout = ({ header, children }) => {
 
                                     {/* Page Heading */}
                                     <header className="bg-white shadow">
-                                        <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                                        <div className="max-w-full mx-auto py-6 px-4 sm:px-6 lg:px-8">
                                             {header}
                                         </div>
                                     </header>
