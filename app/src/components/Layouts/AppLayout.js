@@ -364,7 +364,7 @@ const AppLayout = ({ header, children }) => {
                         </div>
 
                         <main className="flex-1">
-                            <div className="py-6">
+                            <div className="py-0">
                                 <div className="min-h-screen bg-gray-100">
                                     <Navigation user={user} />
 
