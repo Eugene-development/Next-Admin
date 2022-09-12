@@ -19,60 +19,40 @@ import {
 } from '@heroicons/react/24/outline'
 
 const navigation = [
-    { name: 'Dashboard', icon: HomeIcon, current: true, href: '#' },
+    { name: 'Дашборд', icon: HomeIcon, current: true, href: '/dashboard' },
     {
-        name: 'Team',
+        name: 'Контент',
         icon: UsersIcon,
         current: false,
         children: [
-            { name: 'Overview', href: '#' },
-            { name: 'Members', href: '#' },
-            { name: 'Calendar', href: '#' },
-            { name: 'Settings', href: '#' },
+            { name: 'Меню', href: '#' },
+            { name: 'Рубрика', href: '#' },
+            { name: 'Категория', href: '#' },
+            { name: 'Товар', href: '#' },
         ],
     },
     {
-        name: 'Projects',
+        name: 'SEO',
         icon: FolderIcon,
         current: false,
         children: [
-            { name: 'Overview', href: '#' },
-            { name: 'Members', href: '#' },
-            { name: 'Calendar', href: '#' },
-            { name: 'Settings', href: '#' },
+            { name: 'Запросы', href: '#' },
+            { name: 'Конкуренты', href: '#' },
         ],
     },
     {
-        name: 'Calendar',
+        name: 'Продажи',
         icon: CalendarIcon,
         current: false,
-        children: [
-            { name: 'Overview', href: '#' },
-            { name: 'Members', href: '#' },
-            { name: 'Calendar', href: '#' },
-            { name: 'Settings', href: '#' },
-        ],
+        children: [{ name: 'Заказы', href: '#' }],
     },
     {
-        name: 'Documents',
+        name: 'Партнёры',
         icon: InboxIcon,
         current: false,
         children: [
-            { name: 'Overview', href: '#' },
-            { name: 'Members', href: '#' },
-            { name: 'Calendar', href: '#' },
-            { name: 'Settings', href: '#' },
-        ],
-    },
-    {
-        name: 'Reports',
-        icon: ChartBarIcon,
-        current: false,
-        children: [
-            { name: 'Overview', href: '#' },
-            { name: 'Members', href: '#' },
-            { name: 'Calendar', href: '#' },
-            { name: 'Settings', href: '#' },
+            { name: 'Дзержинск', href: '#' },
+            { name: 'Нижний Новгород', href: '#' },
         ],
     },
 ]
@@ -87,13 +67,12 @@ function classNames(...classes) {
 }
 
 const AppLayout = ({ header, children }) => {
+    const [sidebarOpen, setSidebarOpen] = useState(false)
     const { user } = useAuth({ middleware: 'auth' })
 
     if (!user) {
         return <h2>Нет доступа!!!</h2>
     }
-
-    const [sidebarOpen, setSidebarOpen] = useState(false)
 
     return (
         <>

@@ -39,13 +39,27 @@ const Navigation = ({ user }) => {
                                 active={router.pathname === '/dashboard'}>
                                 Дашборд1
                             </NavLink>
-                            <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <NavLink
-                                    href="/test"
-                                    active={router.pathname === '/test'}>
-                                    Тестттт
-                                </NavLink>
-                            </div>
+                        </div>
+                        <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                            <NavLink
+                                href="/test"
+                                active={router.pathname === '/test'}>
+                                Тестттт
+                            </NavLink>
+                        </div>
+                        <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                            <NavLink
+                                href="/test2"
+                                active={router.pathname === '/test2'}>
+                                Тест2
+                            </NavLink>
+                        </div>
+                        <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                            <NavLink
+                                href="/test3"
+                                active={router.pathname === '/test3'}>
+                                Тест3
+                            </NavLink>
                         </div>
                     </div>
 
