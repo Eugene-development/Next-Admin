@@ -267,7 +267,7 @@ const AppLayout = ({ header, children }) => {
                 </Transition.Root>
 
                 <div className="mx-4">
-                    <div className="mx-auto flex max-w-full flex-col md:px-8 xl:px-0">
+                    <div className="mx-auto flex max-w-full flex-col xl:px-0">
                         <div className="sticky top-0 z-10 flex h-16 flex-shrink-0 border-b border-gray-200 bg-white">
                             <button
                                 type="button"
@@ -279,10 +279,10 @@ const AppLayout = ({ header, children }) => {
                                     aria-hidden="true"
                                 />
                             </button>
-                            <div className="flex flex-1 justify-between px-4 md:px-0">
+                            <div className="flex flex-1 justify-between px-4">
                                 <div className="flex flex-1">
                                     <form
-                                        className="flex w-full md:ml-0"
+                                        className="flex w-full"
                                         action="#"
                                         method="GET">
                                         <label
@@ -307,7 +307,7 @@ const AppLayout = ({ header, children }) => {
                                         </div>
                                     </form>
                                 </div>
-                                <div className="ml-4 flex items-center md:ml-6">
+                                <div className="ml-4 flex items-center">
                                     <button
                                         type="button"
                                         className="rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
