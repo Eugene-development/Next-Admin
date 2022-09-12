@@ -43,7 +43,7 @@ const Navigation = ({ user }) => {
                                 <NavLink
                                     href="/test"
                                     active={router.pathname === '/test'}>
-                                    Test
+                                    Тестттт
                                 </NavLink>
                             </div>
                         </div>
