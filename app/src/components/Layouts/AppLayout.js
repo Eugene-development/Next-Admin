@@ -344,15 +344,15 @@ const AppLayout = ({ header, children }) => {
 
                         <main className="flex-1">
                             <div className="py-0">
-                                <div className="min-h-screen bg-gray-100">
+                                <div className="min-h-screen bg-gray-50">
                                     <Navigation user={user} />
 
                                     {/* Page Heading */}
-                                    <header className="bg-white shadow">
-                                        <div className="max-w-full mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                                    {/* <header className="bg-white ">
+                                        <div className="max-w-full mx-auto py-4 px-4 sm:px-6 lg:px-8">
                                             {header}
                                         </div>
-                                    </header>
+                                    </header> */}
 
                                     {/* Page Content */}
                                     <main>{children}</main>
