@@ -57,9 +57,9 @@ const navigation = [
     },
 ]
 const userNavigation = [
-    { name: 'Your Profile', href: '#' },
-    { name: 'Settings', href: '#' },
-    { name: 'Sign out', href: '#' },
+    { name: 'Ваш профиль', href: '#' },
+    { name: 'Документация', href: '#' },
+    { name: 'Настройки', href: '#' },
 ]
 
 function classNames(...classes) {
@@ -69,6 +69,7 @@ function classNames(...classes) {
 const AppLayout = ({ header, children }) => {
     const [sidebarOpen, setSidebarOpen] = useState(false)
     const { user } = useAuth({ middleware: 'auth' })
+    const { logout } = useAuth()
 
     if (!user) {
         return <h2>Нет доступа!!!</h2>
@@ -335,6 +336,11 @@ const AppLayout = ({ header, children }) => {
                                                         )}
                                                     </Menu.Item>
                                                 ))}
+                                                <button
+                                                    className=" w-full text-left block hover:bg-gray-100 py-2 px-4 text-sm text-gray-700"
+                                                    onClick={logout}>
+                                                    Выйти
+                                                </button>
                                             </Menu.Items>
                                         </Transition>
                                     </Menu>
