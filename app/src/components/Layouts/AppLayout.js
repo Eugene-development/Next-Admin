@@ -209,10 +209,11 @@ const AppLayout = ({ header, children }) => {
                                                                             />
                                                                         </svg>
                                                                     </Disclosure.Button>
-                                                                    {/* TODO  */}
+                                                                    {/* FIXME не работает Link */}
                                                                     <Disclosure.Panel className="space-y-1">
                                                                         {item.children.map(
                                                                             subItem => (
+                                                                                // TODO замени а
                                                                                 <Disclosure.Button
                                                                                     key={
                                                                                         subItem.name
