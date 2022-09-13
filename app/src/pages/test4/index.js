@@ -24,7 +24,7 @@ const Example = () => {
     const { loading, error, data } = useQuery(PRODUCT_W)
     // const myData = data.product_w
     // console.log(Object.entries(data))
-    // console.log(data)
+    console.log(data)
 
     if (loading) {
         return <h2>Loading...</h2>
