@@ -55,7 +55,8 @@ const Example = () => {
                                 Продукция
                             </h1>
                             <p className="mt-2 text-sm text-gray-700">
-                                В полученной выборке продукции - Х поз.
+                                В полученной выборке продукции -{' '}
+                                {products.length} поз.
                             </p>
                         </div>
                         <div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
