@@ -5,6 +5,8 @@ import { Fragment, useState } from 'react'
 import { Dialog, Menu, Transition } from '@headlessui/react'
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import ApplicationLogo from '@/components/ApplicationLogo'
+import NavLink from '@/components/NavLink'
+import Link from 'next/link'
 
 import {
     Bars3BottomLeftIcon,
@@ -26,9 +28,9 @@ const navigation = [
         current: false,
         children: [
             { name: 'Меню', href: '#' },
-            { name: 'Рубрика', href: '#' },
+            { name: 'Рубрика', href: '/content/rubrics' },
             { name: 'Категория', href: '#' },
-            { name: 'Товар', href: '#' },
+            { name: 'Продукция', href: '#' },
         ],
     },
     {
@@ -149,7 +151,7 @@ const AppLayout = ({ header, children }) => {
                                                 {navigation.map(item =>
                                                     !item.children ? (
                                                         <div key={item.name}>
-                                                            <a
+                                                            <NavLink
                                                                 href="/"
                                                                 className={classNames(
                                                                     item.current
@@ -167,7 +169,7 @@ const AppLayout = ({ header, children }) => {
                                                                     aria-hidden="true"
                                                                 />
                                                                 {item.name}
-                                                            </a>
+                                                            </NavLink>
                                                         </div>
                                                     ) : (
                                                         <Disclosure
@@ -207,6 +209,7 @@ const AppLayout = ({ header, children }) => {
                                                                             />
                                                                         </svg>
                                                                     </Disclosure.Button>
+                                                                    {/* TODO  */}
                                                                     <Disclosure.Panel className="space-y-1">
                                                                         {item.children.map(
                                                                             subItem => (
@@ -223,6 +226,18 @@ const AppLayout = ({ header, children }) => {
                                                                                         subItem.name
                                                                                     }
                                                                                 </Disclosure.Button>
+                                                                                // <Link
+                                                                                //     className="group flex w-full items-center rounded-md py-2 pl-11 pr-2 text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+                                                                                //     key={
+                                                                                //         subItem.name
+                                                                                //     }
+                                                                                //     href={
+                                                                                //         subItem.href
+                                                                                //     }>
+                                                                                //     {
+                                                                                //         subItem.name
+                                                                                //     }
+                                                                                // </Link>
                                                                             ),
                                                                         )}
                                                                     </Disclosure.Panel>
