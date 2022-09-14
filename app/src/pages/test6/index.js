@@ -1,15 +1,6 @@
 import React from 'react'
-import {
-    Chart as ChartJS,
-    CategoryScale,
-    LinearScale,
-    BarElement,
-    Title,
-    Tooltip,
-    Legend,
-} from 'chart.js'
+import 'chart.js/auto'
 import { Doughnut } from 'react-chartjs-2'
-import Chart from 'chart.js/auto'
 
 const data = {
     labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
@@ -38,6 +29,6 @@ const data = {
     ],
 }
 
-export default function App() {
+export default function App2() {
     return <Doughnut data={data} />
 }
