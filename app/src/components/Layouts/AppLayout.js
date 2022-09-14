@@ -218,14 +218,15 @@ const AppLayout = ({ header, children }) => {
                                                                                     key={
                                                                                         subItem.name
                                                                                     }
-                                                                                    as="a"
-                                                                                    href={
-                                                                                        subItem.href
-                                                                                    }
                                                                                     className="group flex w-full items-center rounded-md py-2 pl-11 pr-2 text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900">
-                                                                                    {
-                                                                                        subItem.name
-                                                                                    }
+                                                                                    <Link
+                                                                                        href={
+                                                                                            subItem.href
+                                                                                        }>
+                                                                                        {
+                                                                                            subItem.name
+                                                                                        }
+                                                                                    </Link>
                                                                                 </Disclosure.Button>
                                                                                 // <Link
                                                                                 //     className="group flex w-full items-center rounded-md py-2 pl-11 pr-2 text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900"
