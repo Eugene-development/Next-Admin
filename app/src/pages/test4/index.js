@@ -1,7 +1,5 @@
 import AppLayout from '@/components/Layouts/AppLayout'
-import Head from 'next/head'
-import { useQuery } from '@apollo/client'
-import { PRODUCT_W } from '../../apollo/query/product.js'
+wimport { PRODUCT_W } from '../../apollo/query/product.js'
 
 const people = [
     {
