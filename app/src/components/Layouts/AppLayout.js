@@ -306,7 +306,7 @@ const AppLayout = ({ header, children }) => {
                                 <div className="ml-4 flex items-center">
                                     <button
                                         type="button"
-                                        className="rounded-full bg-gray-900 p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                                        className="rounded-full bg-gray-100 p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
                                         <span className="sr-only">
                                             View notifications
                                         </span>
@@ -338,7 +338,7 @@ const AppLayout = ({ header, children }) => {
                                             leave="transition ease-in duration-75"
                                             leaveFrom="transform opacity-100 scale-100"
                                             leaveTo="transform opacity-0 scale-95">
-                                            <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-gray-900 py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                            <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-gray-50 py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                                                 {userNavigation.map(item => (
                                                     <Menu.Item key={item.name}>
                                                         {({ active }) => (
