@@ -42,9 +42,9 @@ export default () => (
             <title>Запрос</title>
         </Head>
 
-        <div className="h-64">
+        <div className="">
             <h2>Line Example</h2>
-            <Line data={data} width={400} height={400} />
+            <Line data={data} width={400} height={150} />
         </div>
     </AppLayout>
 )
