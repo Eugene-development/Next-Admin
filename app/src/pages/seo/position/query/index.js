@@ -45,7 +45,7 @@ export default function App() {
             datasets: [
                 {
                     backgroundColor: gradient,
-                    label: 'Позиция',
+                    label: 'Сайт',
                     data: position,
                     fill: true,
                     borderWidth: 2,
@@ -68,9 +68,16 @@ export default function App() {
     })
 
     return (
-        <div className="App">
-            <span>Запрос</span>
-            <canvas id="myChart" ref={canvasEl} height="100" />
-        </div>
+        <>
+            <div className="App">
+                {/* TODO разъединить */}
+                <div className="">
+                    <span>Запрос</span>
+                    <span>Закрыть</span>
+                </div>
+
+                <canvas id="myChart" ref={canvasEl} height="100" />
+            </div>
+        </>
     )
 }
