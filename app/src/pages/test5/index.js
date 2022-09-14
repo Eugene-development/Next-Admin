@@ -1,3 +1,6 @@
+import AppLayout from '@/components/Layouts/AppLayout'
+import Head from 'next/head'
+import { useQuery } from '@apollo/client'
 import React, { useEffect, useRef } from 'react'
 import Chart from 'chart.js/auto'
 
@@ -68,9 +71,19 @@ export default function App() {
     })
 
     return (
-        <div className="App">
-            <span>Chart.js Demo</span>
-            <canvas id="myChart" ref={canvasEl} height="100" />
-        </div>
+        <AppLayout
+            header={
+                <h2 className="font-semibold text-xl text-gray-800 leading-tight">
+                    Тест4
+                </h2>
+            }>
+            <Head>
+                <title>Тест4</title>
+            </Head>
+            <div className="App">
+                <span>Запрос</span>
+                <canvas id="myChart" ref={canvasEl} height="100" />
+            </div>
+        </AppLayout>
     )
 }
