@@ -38,7 +38,7 @@ const navigation = [
         icon: FolderIcon,
         current: false,
         children: [
-            { name: 'Запросы', href: '#' },
+            { name: 'Запросы', href: '/seo/position/query' },
             { name: 'Конкуренты', href: '#' },
         ],
     },
