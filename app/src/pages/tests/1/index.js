@@ -4,7 +4,7 @@ import { useLayoutEffect, useRef, useState } from 'react'
 import { useAuth } from '@/hooks/auth'
 
 import { useQuery } from '@apollo/client'
-import { ALL_TEST } from '../../apollo/test.js'
+import { ALL_TEST } from '../../../apollo/test.js'
 
 const Test = () => {
     const { loading, error, data } = useQuery(ALL_TEST)

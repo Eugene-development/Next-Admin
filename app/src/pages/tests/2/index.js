@@ -1,7 +1,7 @@
 import AppLayout from '@/components/Layouts/AppLayout'
 import Head from 'next/head'
 import { useQuery } from '@apollo/client'
-import { ALL_TEST } from '../../apollo/test.js'
+import { ALL_TEST } from '../../../apollo/test.js'
 
 /*
   This example requires Tailwind CSS v3.0+

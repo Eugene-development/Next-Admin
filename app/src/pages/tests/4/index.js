@@ -1,5 +1,7 @@
 import AppLayout from '@/components/Layouts/AppLayout'
-wimport { PRODUCT_W } from '../../apollo/query/product.js'
+import Head from 'next/head'
+
+import { PRODUCT_W } from '../../../apollo/query/product.js'
 
 const people = [
     {
