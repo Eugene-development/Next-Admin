@@ -16,6 +16,7 @@ import {
     FolderIcon,
     HomeIcon,
     InboxIcon,
+    LinkIcon,
     UsersIcon,
     XMarkIcon,
 } from '@heroicons/react/24/outline'
@@ -101,7 +102,7 @@ const AppLayout = ({ header, children }) => {
                             leave="transition-opacity ease-linear duration-300"
                             leaveFrom="opacity-100"
                             leaveTo="opacity-0">
-                            <div className="fixed inset-0 bg-gray-600 bg-opacity-75" />
+                            <div className="fixed inset-0 bg-gray-00 bg-opacity-75" />
                         </Transition.Child>
 
                         <div className="fixed inset-0 z-40 flex">
@@ -113,7 +114,7 @@ const AppLayout = ({ header, children }) => {
                                 leave="transition ease-in-out duration-300 transform"
                                 leaveFrom="translate-x-0"
                                 leaveTo="-translate-x-full">
-                                <Dialog.Panel className="relative flex w-full max-w-xs flex-1 flex-col bg-white pb-4 ">
+                                <Dialog.Panel className="relative flex w-full max-w-xs flex-1 flex-col bg-gray-900 pb-4 ">
                                     <Transition.Child
                                         as={Fragment}
                                         enter="ease-in-out duration-300"
@@ -125,7 +126,7 @@ const AppLayout = ({ header, children }) => {
                                         <div className="absolute top-0 right-0 -mr-12 pt-2">
                                             <button
                                                 type="button"
-                                                className="ml-1 flex h-10 w-10 items-center justify-center rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+                                                className="ml-1 flex h-10 w-10 items-center justify-center rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-900"
                                                 onClick={() =>
                                                     setSidebarOpen(false)
                                                 }>
@@ -133,43 +134,45 @@ const AppLayout = ({ header, children }) => {
                                                     Close sidebar
                                                 </span>
                                                 <XMarkIcon
-                                                    className="h-6 w-6 text-white"
+                                                    className="h-6 w-6 text-gray-900"
                                                     aria-hidden="true"
                                                 />
                                             </button>
                                         </div>
                                     </Transition.Child>
 
-                                    <div className="flex flex-grow flex-col overflow-y-auto border-r border-gray-200 bg-white pt-5 pb-4">
+                                    <div className="flex flex-grow flex-col overflow-y-auto border-r border-gray-200 bg-gray-900 pt-5 pb-4">
                                         <div className="flex flex-shrink-0 items-center px-4">
                                             <ApplicationLogo className="w-auto h-8 sm:h-12 fill-current" />
                                         </div>
                                         <div className="mt-5 flex flex-grow flex-col">
                                             <nav
-                                                className="flex-1 space-y-1 bg-white px-2"
+                                                className="flex-1 space-y-1 bg-gray-900 px-2"
                                                 aria-label="Sidebar">
                                                 {navigation.map(item =>
                                                     !item.children ? (
-                                                        <div key={item.name}>
-                                                            <NavLink
+                                                        <div
+                                                            key={item.name}
+                                                            className="flex">
+                                                            <a
                                                                 href="/"
                                                                 className={classNames(
                                                                     item.current
-                                                                        ? 'bg-gray-100 text-gray-900'
-                                                                        : 'bg-white text-gray-800 hover:bg-gray-50 hover:text-gray-900',
+                                                                        ? 'bg-gray-900 text-gray-100 hover:bg-gray-100 hover:text-gray-900'
+                                                                        : 'bg-gray-100 text-gray-900 hover:bg-gray-900 hover:text-gray-900',
                                                                     'group w-full flex items-center pl-2 py-2 text-sm font-medium rounded-md',
                                                                 )}>
                                                                 <item.icon
                                                                     className={classNames(
                                                                         item.current
-                                                                            ? 'text-gray-900'
-                                                                            : 'text-gray-800 group-hover:text-gray-800',
+                                                                            ? 'text-gray-100 group-hover:text-gray-900'
+                                                                            : 'text-gray-900 group-hover:text-gray-100',
                                                                         'mr-3 flex-shrink-0 h-6 w-6',
                                                                     )}
                                                                     aria-hidden="true"
                                                                 />
                                                                 {item.name}
-                                                            </NavLink>
+                                                            </a>
                                                         </div>
                                                     ) : (
                                                         <Disclosure
@@ -182,11 +185,11 @@ const AppLayout = ({ header, children }) => {
                                                                         className={classNames(
                                                                             item.current
                                                                                 ? 'bg-gray-100 text-gray-900'
-                                                                                : 'bg-white text-gray-800 hover:bg-gray-50 hover:text-gray-900',
+                                                                                : 'bg-gray-900 text-gray-100 hover:bg-gray-50 hover:text-gray-900',
                                                                             'group w-full flex items-center pl-2 pr-1 py-2 text-left text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500',
                                                                         )}>
                                                                         <item.icon
-                                                                            className="mr-3 h-6 w-6 flex-shrink-0 text-gray-700 group-hover:text-gray-800"
+                                                                            className="mr-3 h-6 w-6 flex-shrink-0 text-gray-100 group-hover:text-gray-900"
                                                                             aria-hidden="true"
                                                                         />
                                                                         <span className="flex-1">
@@ -197,9 +200,9 @@ const AppLayout = ({ header, children }) => {
                                                                         <svg
                                                                             className={classNames(
                                                                                 open
-                                                                                    ? 'text-gray-800 rotate-90'
-                                                                                    : 'text-gray-800',
-                                                                                'ml-3 h-5 w-5 flex-shrink-0 transform transition-colors duration-150 ease-in-out group-hover:text-gray-700',
+                                                                                    ? 'text-gray-100 rotate-90'
+                                                                                    : 'text-gray-900',
+                                                                                'ml-3 h-5 w-5 flex-shrink-0 transform transition-colors duration-150 ease-in-out group-hover:text-gray-900',
                                                                             )}
                                                                             viewBox="0 0 20 20"
                                                                             aria-hidden="true">
@@ -209,16 +212,15 @@ const AppLayout = ({ header, children }) => {
                                                                             />
                                                                         </svg>
                                                                     </Disclosure.Button>
-                                                                    {/* FIXME не работает Link */}
+
                                                                     <Disclosure.Panel className="space-y-1">
                                                                         {item.children.map(
                                                                             subItem => (
-                                                                                // TODO замени а
                                                                                 <Disclosure.Button
                                                                                     key={
                                                                                         subItem.name
                                                                                     }
-                                                                                    className="group flex w-full items-center rounded-md py-2 pl-11 pr-2 text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900">
+                                                                                    className="group flex w-full items-center rounded-md py-2 pl-11 pr-2 text-sm font-medium text-gray-100 hover:bg-gray-50 hover:text-gray-900">
                                                                                     <Link
                                                                                         href={
                                                                                             subItem.href
@@ -304,7 +306,7 @@ const AppLayout = ({ header, children }) => {
                                 <div className="ml-4 flex items-center">
                                     <button
                                         type="button"
-                                        className="rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                                        className="rounded-full bg-gray-900 p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
                                         <span className="sr-only">
                                             View notifications
                                         </span>
@@ -336,7 +338,7 @@ const AppLayout = ({ header, children }) => {
                                             leave="transition ease-in duration-75"
                                             leaveFrom="transform opacity-100 scale-100"
                                             leaveTo="transform opacity-0 scale-95">
-                                            <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                            <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-gray-900 py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                                                 {userNavigation.map(item => (
                                                     <Menu.Item key={item.name}>
                                                         {({ active }) => (
@@ -371,7 +373,7 @@ const AppLayout = ({ header, children }) => {
                                     <Navigation user={user} />
 
                                     {/* Page Heading */}
-                                    {/* <header className="bg-white ">
+                                    {/* <header className="bg-gray-900 ">
                                         <div className="max-w-full mx-auto py-4 px-4 sm:px-6 lg:px-8">
                                             {header}
                                         </div>
