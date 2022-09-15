@@ -58,6 +58,7 @@ export default function Example() {
             <Head>
                 <title>Запросы</title>
             </Head>
+
             <div className="p-4 sm:p-6 lg:p-8">
                 <div className="sm:flex sm:items-center">
                     <div className="sm:flex-auto">
@@ -69,6 +70,7 @@ export default function Example() {
                         </p>
                     </div>
 
+
                     <div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
                         <button
                             type="button"
@@ -77,6 +79,7 @@ export default function Example() {
                         </button>
                     </div>
                 </div>
+
                 <div className="mt-8 flex flex-col">
                     <div className="-my-2 -mx-4 sm:-mx-6 lg:-mx-8">
                         <div className="inline-block min-w-full py-2 align-middle">

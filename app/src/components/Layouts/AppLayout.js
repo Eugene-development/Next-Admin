@@ -145,6 +145,7 @@ const AppLayout = ({ header, children }) => {
                                         <div className="flex flex-shrink-0 items-center px-4">
                                             <ApplicationLogo className="w-auto h-8 sm:h-12 fill-current" />
                                         </div>
+
                                         <div className="mt-5 flex flex-grow flex-col">
                                             <nav
                                                 className="flex-1 space-y-1 bg-gray-900 px-2"
@@ -366,6 +367,7 @@ const AppLayout = ({ header, children }) => {
                                 </div>
                             </div>
                         </div>
+
                         <main className="flex-1">
                             <div className="py-0">
                                 <div className="min-h-screen">
