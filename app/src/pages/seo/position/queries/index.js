@@ -112,7 +112,7 @@ export default function Example() {
                                             <th
                                                 scope="col"
                                                 className="sticky top-0 z-10 border-b border-gray-300 bg-gray-50 bg-opacity-75 px-3 py-3.5 text-left text-sm font-bold text-gray-900 backdrop-blur backdrop-filter">
-                                                Частотность
+                                                Частотностьjj
                                             </th>
                                             <th
                                                 scope="col"
