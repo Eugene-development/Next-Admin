@@ -45,14 +45,15 @@ export default function App() {
             datasets: [
                 {
                     backgroundColor: gradient,
-                    label: 'Сайт',
+                    label: 'орбита-строй.рф',
                     data: position,
                     fill: true,
-                    borderWidth: 2,
+                    borderWidth: 3,
                     borderColor: colors.purple.default,
                     lineTension: 0.2,
                     pointBackgroundColor: colors.purple.default,
                     pointRadius: 3,
+                    padding: 800,
                 },
             ],
         }
@@ -67,17 +68,20 @@ export default function App() {
         }
     })
 
+    function classNames(...classes) {
+        return classes.filter(Boolean).join(' ')
+    }
     return (
-        <>
-            <div className="App">
-                {/* TODO разъединить */}
-                <div className="">
-                    <span>Запрос</span>
-                    <span>Закрыть</span>
-                </div>
-
-                <canvas id="myChart" ref={canvasEl} height="100" />
+        <div className="m-8">
+            {/* TODO разъединить */}
+            <div className="mx-auto flex items-center justify-between px-8">
+                <span>Запрос</span>
+                <button type="button" className="text-red-800">
+                    Закрыть
+                </button>
             </div>
-        </>
+
+            <canvas id="myChart" ref={canvasEl} height="100" />
+        </div>
     )
 }

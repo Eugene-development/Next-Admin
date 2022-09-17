@@ -48,6 +48,15 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
+// export const getStaticProps = async () => {
+//     const { data } = useQuery(QUERIES)
+//     console.log(data)
+//     const { seoquery } = data
+//     return {
+//         props: { data },
+//     }
+// }
+
 export default function Example() {
     const { loading, error, data } = useQuery(QUERIES)
     if (loading) {
@@ -208,7 +217,7 @@ export default function Example() {
                                                                 'relative whitespace-nowrap py-4 pr-4 pl-3 text-right text-sm font-medium sm:pr-6 lg:pr-8',
                                                             )}>
                                                             <Link
-                                                                href="/seo/position/query/1"
+                                                                href={`/seo/position/query/${query.id}`}
                                                                 // disabled={
                                                                 //     plan.isCurrent
                                                                 // }
