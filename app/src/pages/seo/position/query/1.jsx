@@ -74,11 +74,11 @@ export default function App() {
     }
     return (
         <div className="m-8">
-            
+
             <div className="mx-auto flex items-center justify-between px-8">
                 <span>Запрос</span>
                 <Link href="/seo/position/queries">
-                    <a className="text-red-800 text-lg">Закрыть</a>
+                    <a className="text-red-800">Закрыть</a>
                 </Link>
             </div>
 
