@@ -69,8 +69,8 @@ export default function Example() {
 
     if (data) {
         console.log(data)
-        const { seoquery } = data
-        console.log(seoquery)
+        // const { seoquery } = data
+        // console.log(seoquery)
 
         return (
             <AppLayout
@@ -148,7 +148,7 @@ export default function Example() {
                                         </thead>
 
                                         <tbody className="bg-white">
-                                            {seoquery.map(
+                                            {data.seoquery.map(
                                                 (query, personIdx) => (
                                                     <tr key={query.id}>
                                                         <td
@@ -182,7 +182,7 @@ export default function Example() {
                                                                     : '',
                                                                 'whitespace-nowrap px-3 py-4 text-sm text-gray-500 hidden lg:table-cell',
                                                             )}>
-                                                            {/* {query.position} */}
+                                                            {query.position[0].value}
                                                         </td>
 
                                                         <td
