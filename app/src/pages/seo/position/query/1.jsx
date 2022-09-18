@@ -30,7 +30,7 @@ export default function App() {
         gradient.addColorStop(0.65, colors.purple.quarter)
         gradient.addColorStop(1, colors.purple.zero)
 
-        const position = [5, 8, 3, 77, 24, 12, 15]
+        const position = [-5, 8, 3, 77, -24, 12, 15]
 
         const labels = [
             'Сегодня',
@@ -49,7 +49,7 @@ export default function App() {
                     label: 'орбита-строй.рф',
                     data: position,
                     fill: true,
-                    borderWidth: 3,
+                    borderWidth: 2,
                     borderColor: colors.purple.default,
                     lineTension: 0.2,
                     pointBackgroundColor: colors.purple.default,
@@ -74,11 +74,11 @@ export default function App() {
     }
     return (
         <div className="m-8">
-            {/* TODO разъединить */}
+            
             <div className="mx-auto flex items-center justify-between px-8">
                 <span>Запрос</span>
                 <Link href="/seo/position/queries">
-                    <a className="text-red-800">Закрыть</a>
+                    <a className="text-red-800 text-lg">Закрыть</a>
                 </Link>
             </div>
 
