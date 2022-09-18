@@ -3,6 +3,7 @@ import Head from 'next/head'
 import { useQuery } from '@apollo/client'
 import React, { useEffect, useRef } from 'react'
 import Chart from 'chart.js/auto'
+import Link from 'next/link'
 
 export default function App() {
     const canvasEl = useRef(null)
@@ -76,9 +77,9 @@ export default function App() {
             {/* TODO разъединить */}
             <div className="mx-auto flex items-center justify-between px-8">
                 <span>Запрос</span>
-                <button type="button" className="text-red-800">
-                    Закрыть
-                </button>
+                <Link href="/seo/position/queries">
+                    <a className="text-red-800">Закрыть</a>
+                </Link>
             </div>
 
             <canvas id="myChart" ref={canvasEl} height="100" />
