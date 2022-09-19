@@ -30,7 +30,7 @@ export default function App() {
         gradient.addColorStop(0.65, colors.purple.quarter)
         gradient.addColorStop(1, colors.purple.zero)
 
-        const position = [-5, 8, 3, 77, -24, 12, 15]
+        const position = [5, 8, 3, 77, 24, 12, 15]
 
         const labels = [
             'Сегодня',
