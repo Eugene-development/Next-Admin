@@ -83,7 +83,7 @@ export default function Example() {
                     <title>Запросы</title>
                 </Head>
 
-                <div className="p-4 sm:p-6 lg:p-8">
+                <div className="mt-4 p-4 sm:p-6 lg:p-8">
                     <div className="sm:flex sm:items-center">
                         <div className="sm:flex-auto">
                             <h1 className="text-xl font-semibold text-gray-900">
@@ -103,8 +103,8 @@ export default function Example() {
                         </div>
                     </div>
 
-                    <div className="mt-8 flex flex-col">
-                        <div className="-my-2 -mx-4 sm:-mx-6 lg:-mx-8">
+                    <div className="mt-12 flex flex-col">
+                        <div className=" -mx-4 sm:-mx-6 lg:-mx-8">
                             <div className="inline-block min-w-full py-2 align-middle">
                                 <div className="shadow-sm ring-1 ring-black ring-opacity-5">
                                     <table
