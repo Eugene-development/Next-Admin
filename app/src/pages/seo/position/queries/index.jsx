@@ -178,17 +178,12 @@ export default function Example() {
                                                         {query.resource.map((item, i) => (
                                                         <td
                                                         key={i}
-                                                            className={classNames(
-                                                                i !==
-                                                                    queries.length -
-                                                                        1
+                                                            className={classNames( i !== queries.length - 1
                                                                     ? 'border-b border-gray-200'
                                                                     : '',
                                                                 'whitespace-nowrap px-3 py-4 text-sm text-gray-500 hidden lg:table-cell',
                                                             )}>
-
-                                                                    {item.position[0].value}
-
+                                                                {item.position[item.position.length - 1].value}
                                                         </td>
                                                         ))}
 
