@@ -149,22 +149,22 @@ export default function Example() {
 
                                         <tbody className="bg-white">
                                             {data.seoquery.map(
-                                                (query, personIdx) => (
-                                                    <tr key={query.id}>
+                                                (query, i) => (
+                                                    <tr key={i}>
                                                         <td
                                                             className={classNames(
-                                                                personIdx !==
+                                                                i !==
                                                                     queries.length -
                                                                         1
                                                                     ? 'border-b border-gray-200'
                                                                     : '',
                                                                 'whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8',
                                                             )}>
-                                                            {query.id}
+                                                            {i+1}
                                                         </td>
                                                         <td
                                                             className={classNames(
-                                                                personIdx !==
+                                                                i !==
                                                                     queries.length -
                                                                         1
                                                                     ? 'border-b border-gray-200'
@@ -175,19 +175,19 @@ export default function Example() {
                                                         </td>
                                                         <td
                                                             className={classNames(
-                                                                personIdx !==
+                                                                i !==
                                                                     queries.length -
                                                                         1
                                                                     ? 'border-b border-gray-200'
                                                                     : '',
                                                                 'whitespace-nowrap px-3 py-4 text-sm text-gray-500 hidden lg:table-cell',
                                                             )}>
-                                                            {query.position[0].value}
+                                                            {/* {query.resource.position[0].value} */}
                                                         </td>
 
                                                         <td
                                                             className={classNames(
-                                                                personIdx !==
+                                                                isNaN !==
                                                                     queries.length -
                                                                         1
                                                                     ? 'border-b border-gray-200'
@@ -195,10 +195,11 @@ export default function Example() {
                                                                 'whitespace-nowrap px-3 py-4 text-sm text-gray-500 hidden lg:table-cell',
                                                             )}>
                                                             {/* {query.position} */}
+                                                            
                                                         </td>
                                                         <td
                                                             className={classNames(
-                                                                personIdx !==
+                                                                i !==
                                                                     queries.length -
                                                                         1
                                                                     ? 'border-b border-gray-200'
@@ -209,7 +210,7 @@ export default function Example() {
                                                         </td>
                                                         <td
                                                             className={classNames(
-                                                                personIdx !==
+                                                                i !==
                                                                     queries.length -
                                                                         1
                                                                     ? 'border-b border-gray-200'

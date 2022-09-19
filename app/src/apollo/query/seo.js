@@ -3,15 +3,12 @@ import { gql } from '@apollo/client'
 export const QUERIES = gql`
     query seo {
         seoquery {
-            id
-            key
             value
-            position {
+            resource {
                 value
-            }
-            parentable {
-                ... on Resource {
-                    resource: value
+                position {
+                    value
+                    created_at
                 }
             }
         }
