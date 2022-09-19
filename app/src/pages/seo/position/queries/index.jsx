@@ -182,7 +182,9 @@ export default function Example() {
                                                                     : '',
                                                                 'whitespace-nowrap px-3 py-4 text-sm text-gray-500 hidden lg:table-cell',
                                                             )}>
-                                                            {/* {query.resource.position[0].value} */}
+                                                            {query.resource.map((item, i) => (
+                                                                    <li key={i}>{item.position[0].value}</li>
+                                                                ))}
                                                         </td>
 
                                                         <td
@@ -195,7 +197,9 @@ export default function Example() {
                                                                 'whitespace-nowrap px-3 py-4 text-sm text-gray-500 hidden lg:table-cell',
                                                             )}>
                                                             {/* {query.position} */}
-                                                            
+                                                            {query.resource.map((item, i) => (
+                                                                    <li key={i}>{item.value}</li>
+                                                                ))}
                                                         </td>
                                                         <td
                                                             className={classNames(
