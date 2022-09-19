@@ -148,13 +148,12 @@ const AppLayout = ({ header, children }) => {
 
                                         <div className="mt-5 flex flex-grow flex-col">
                                             <nav
-                                                className="flex-1 space-y-1 bg-gray-900 px-2"
-                                                aria-label="Sidebar">
+                                                className="flex-1 space-y-1 bg-gray-900 px-2" aria-label="Sidebar">
                                                 {navigation.map(item =>
                                                     !item.children ? (
                                                         <div
                                                             key={item.name}
-                                                            className="flex">
+                                                            className="flex my-1">
                                                             <a
                                                                 href="/"
                                                                 className={classNames(
@@ -221,7 +220,7 @@ const AppLayout = ({ header, children }) => {
                                                                                     key={
                                                                                         subItem.name
                                                                                     }
-                                                                                    className="group flex w-full items-center rounded-md py-2 pl-11 pr-2 text-sm font-medium text-gray-100 hover:bg-gray-50 hover:text-gray-900">
+                                                                                    className="my-1 group flex w-full items-center rounded-md py-2 pl-11 pr-2 text-sm font-medium text-gray-100 hover:bg-gray-50 hover:text-gray-900">
                                                                                     <Link
                                                                                         href={
                                                                                             subItem.href
@@ -371,7 +370,7 @@ const AppLayout = ({ header, children }) => {
                         <main className="flex-1">
                             <div className="py-0">
                                 <div className="min-h-screen">
-                                    <Navigation user={user} />
+                                    {/* <Navigation user={user} /> */}
 
                                     {/* Page Heading */}
                                     {/* <header className="bg-gray-900 ">
