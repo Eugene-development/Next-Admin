@@ -22,7 +22,7 @@ export const getServerSideProps = async ({params}) => {
 
 
 
-export default function App({id}) {
+export const App = ({id}) => {
 
     console.log(id);
 
@@ -106,3 +106,5 @@ export default function App({id}) {
         </div>
     )
 }
+
+export default App
