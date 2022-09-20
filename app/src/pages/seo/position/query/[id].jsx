@@ -5,7 +5,27 @@ import React, { useEffect, useRef } from 'react'
 import Chart from 'chart.js/auto'
 import Link from 'next/link'
 
-export default function App() {
+
+
+
+
+export async function getServerSideProps(context) {
+    const id = context.params.id
+  return {
+    props: {id}
+  }
+}
+
+
+
+
+
+
+
+export default function App({id}) {
+
+    console.log(id);
+
     const canvasEl = useRef(null)
 
     const colors = {

@@ -69,7 +69,7 @@ export default function Example() {
 
     if (data) {
         console.log(data)
-        // const { seoquery } = data
+        // const { seoquery } = data || {}
         // console.log(seoquery)
 
         return (
