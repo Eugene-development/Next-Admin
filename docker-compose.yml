@@ -1,0 +1,23 @@
+version: "3"
+
+services:
+  svelte:
+    build:
+      context: .
+      dockerfile: ./docker/node/Dockerfile
+    container_name: "${COMPOSE_PROJECT_NAME}_PROJECT"
+    restart: always
+    command:
+      "npm run start"
+
+
+  nginx:
+    image: nginx:1.13
+    container_name: "${COMPOSE_PROJECT_NAME}_NGINX"
+    ports:
+      - "7788:80"
+    volumes:
+      - ./:/var/www
+      - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
+    depends_on:
+      - svelte
