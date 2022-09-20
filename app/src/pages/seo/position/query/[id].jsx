@@ -22,9 +22,9 @@ export const getServerSideProps = async ({params}) => {
 
 
 
-export default function App({id}) {
+export const App = ({id}) => {
 
-    console.log(id);
+    // console.log(id);
 
     const canvasEl = useRef(null)
 
@@ -96,7 +96,7 @@ export default function App({id}) {
         <div className="m-8">
 
             <div className="mx-auto flex items-center justify-between px-8">
-                <span>Запрос</span>
+                <span>{id}</span>
                 <Link href="/seo/position/queries">
                     <a className="text-red-800">Закрыть</a>
                 </Link>
@@ -106,3 +106,5 @@ export default function App({id}) {
         </div>
     )
 }
+
+export default App
