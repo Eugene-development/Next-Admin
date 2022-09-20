@@ -92,7 +92,6 @@ export const App = ({id}) => {
     function classNames(...classes) {
         return classes.filter(Boolean).join(' ')
     }
-    //asas
     return (
         <div className="m-8">
 
