@@ -9,8 +9,8 @@ import Link from 'next/link'
 
 
 
-export async function getServerSideProps(context) {
-    const id = context.params.id
+export const getServerSideProps = async ({params}) => {
+    const id = params.id
   return {
     props: {id}
   }
