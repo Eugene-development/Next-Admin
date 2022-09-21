@@ -5,16 +5,35 @@ export const QUERIES = gql`
         seoquery {
             id
             value
-            resource {
-                value
-                position {
+            parentable {
+                ... on Resource {
                     value
-                    created_at
+                    position {
+                        value
+                        created_at
+                    }
                 }
             }
         }
     }
 `
+
+// export const QUERIES = gql`
+//     query seo {
+//         seoquery {
+//             id
+//             value
+//             resource {
+//                 value
+//                 position {
+//                     value
+//                     created_at
+//                 }
+//             }
+//         }
+//     }
+// `
+
 // export const QUERIES = gql`
 //     query seo {
 //         position {

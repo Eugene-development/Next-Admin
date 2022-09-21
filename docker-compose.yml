@@ -1,7 +1,7 @@
 version: "3"
 
 services:
-  svelte:
+  next:
     build:
       context: .
       dockerfile: ./docker/node/Dockerfile
@@ -20,4 +20,4 @@ services:
       - ./:/var/www
       - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
     depends_on:
-      - svelte
+      - next
