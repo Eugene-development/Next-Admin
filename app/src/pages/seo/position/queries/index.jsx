@@ -4,45 +4,6 @@ import { useQuery } from '@apollo/client'
 import { QUERIES } from '@/apollo/query/seo'
 import Link from 'next/link'
 
-const queries = [
-    {
-        id: 1,
-        value: 'купить что-то',
-        position: 8,
-        frequency: 160,
-    },
-    {
-        id: 1,
-        value: 'купить что-то',
-        position: 8,
-        frequency: 160,
-    },
-    {
-        id: 1,
-        value: 'купить что-то',
-        position: 8,
-        frequency: 160,
-    },
-    {
-        id: 1,
-        value: 'купить что-то',
-        position: 8,
-        frequency: 160,
-    },
-    {
-        id: 1,
-        value: 'купить что-то',
-        position: 8,
-        frequency: 160,
-    },
-    {
-        id: 1,
-        value: 'купить что-то',
-        position: 8,
-        frequency: 160,
-    },
-    // More queries...
-]
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -68,8 +29,7 @@ export default function Example() {
     }
 
     if (data) {
-        console.log(data)
-        // const { seoquery } = data || {}
+        const { seoquery } = data || {}
         // console.log(seoquery)
 
         return (
@@ -148,13 +108,13 @@ export default function Example() {
                                         </thead>
 
                                         <tbody className="bg-white">
-                                            {data.seoquery.map(
+                                            {seoquery?.map(
                                                 (query, i) => (
                                                     <tr key={i}>
                                                         <td
                                                             className={classNames(
                                                                 i !==
-                                                                    queries.length -
+                                                                    query.length -
                                                                         1
                                                                     ? 'border-b border-gray-200'
                                                                     : '',
@@ -165,20 +125,20 @@ export default function Example() {
                                                         <td
                                                             className={classNames(
                                                                 i !==
-                                                                    queries.length -
+                                                                    query.length -
                                                                         1
                                                                     ? 'border-b border-gray-200'
                                                                     : '',
                                                                 'whitespace-nowrap px-3 py-4 text-sm text-gray-500 hidden sm:table-cell',
                                                             )}>
-                                                            {query.value}
+                                                            {query?.value}
                                                         </td>
 
 
 
                                                         <td
                                                         key={i}
-                                                            className={classNames( i !== queries.length - 1
+                                                            className={classNames( i !== query.length - 1
                                                                     ? 'border-b border-gray-200'
                                                                     : '',
                                                                 'whitespace-nowrap px-3 py-4 text-sm text-gray-500 hidden lg:table-cell',
@@ -186,7 +146,7 @@ export default function Example() {
                                                                 {/* {query.position.map((item, i) => (
                                                                     <span key={i}>{item.value}</span>
                                                                 ))} */}
-                                                                {query.position.at(-1).value}
+                                                                {query?.position.at(-1).value}
                                                                 {/* {query.position[query.position.length - 1].value} */}
 
 
@@ -196,7 +156,7 @@ export default function Example() {
                                                         <td
                                                             className={classNames(
                                                                 i !==
-                                                                    queries.length -
+                                                                    query.length -
                                                                         1
                                                                     ? 'border-b border-gray-200'
                                                                     : '',
@@ -207,7 +167,7 @@ export default function Example() {
                                                         <td
                                                             className={classNames(
                                                                 i !==
-                                                                    queries.length -
+                                                                    query.length -
                                                                         1
                                                                     ? 'border-b border-gray-200'
                                                                     : '',
@@ -218,7 +178,7 @@ export default function Example() {
                                                         <td
                                                             className={classNames(
                                                                 i !==
-                                                                    queries.length -
+                                                                    query.length -
                                                                         1
                                                                     ? 'border-b border-gray-200'
                                                                     : '',
