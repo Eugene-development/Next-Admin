@@ -58,7 +58,7 @@ function classNames(...classes) {
 // }
 
 export default function Example() {
-    const { loading, error, data } = useQuery(QUERIES)
+    const { loading, error, data } = useQuery(QUERIES, {fetchPolicy: 'network-only'})
     if (loading) {
         return <h2>Loading...</h2>
     }
@@ -175,7 +175,7 @@ export default function Example() {
                                                         </td>
 
 
-                                                        {query.resource.map((item, i) => (
+
                                                         <td
                                                         key={i}
                                                             className={classNames( i !== queries.length - 1
@@ -183,9 +183,15 @@ export default function Example() {
                                                                     : '',
                                                                 'whitespace-nowrap px-3 py-4 text-sm text-gray-500 hidden lg:table-cell',
                                                             )}>
-                                                                {item.position[item.position.length - 1].value}
+                                                                {/* {query.position.map((item, i) => (
+                                                                    <span key={i}>{item.value}</span>
+                                                                ))} */}
+                                                                {query.position.at(-1).value}
+                                                                {/* {query.position[query.position.length - 1].value} */}
+
+
                                                         </td>
-                                                        ))}
+
 
                                                         <td
                                                             className={classNames(
@@ -195,8 +201,19 @@ export default function Example() {
                                                                     ? 'border-b border-gray-200'
                                                                     : '',
                                                                 'whitespace-nowrap px-3 py-4 text-sm text-gray-500',
-                                                            )}>
-                                                            {/* {query.frequency} */}
+                                                            )}> -
+
+                                                        </td>
+                                                        <td
+                                                            className={classNames(
+                                                                i !==
+                                                                    queries.length -
+                                                                        1
+                                                                    ? 'border-b border-gray-200'
+                                                                    : '',
+                                                                'whitespace-nowrap px-3 py-4 text-sm text-gray-500',
+                                                            )}> -
+
                                                         </td>
                                                         <td
                                                             className={classNames(
@@ -222,6 +239,80 @@ export default function Example() {
                                                 ),
                                             )}
                                         </tbody>
+                                        {/* <tbody className="bg-white">
+                                            {data.seoquery.map(
+                                                (query, i) => (
+                                                    <tr key={i}>
+                                                        <td
+                                                            className={classNames(
+                                                                i !==
+                                                                    queries.length -
+                                                                        1
+                                                                    ? 'border-b border-gray-200'
+                                                                    : '',
+                                                                'whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8',
+                                                            )}>
+                                                            {i+1}
+                                                        </td>
+                                                        <td
+                                                            className={classNames(
+                                                                i !==
+                                                                    queries.length -
+                                                                        1
+                                                                    ? 'border-b border-gray-200'
+                                                                    : '',
+                                                                'whitespace-nowrap px-3 py-4 text-sm text-gray-500 hidden sm:table-cell',
+                                                            )}>
+                                                            {query.value}
+                                                        </td>
+
+
+                                                        {query.resource.map((item, i) => (
+                                                        <td
+                                                        key={i}
+                                                            className={classNames( i !== queries.length - 1
+                                                                    ? 'border-b border-gray-200'
+                                                                    : '',
+                                                                'whitespace-nowrap px-3 py-4 text-sm text-gray-500 hidden lg:table-cell',
+                                                            )}>
+                                                                {item.position[item.position.length - 1].value}
+                                                        </td>
+                                                        ))}
+
+                                                        <td
+                                                            className={classNames(
+                                                                i !==
+                                                                    queries.length -
+                                                                        1
+                                                                    ? 'border-b border-gray-200'
+                                                                    : '',
+                                                                'whitespace-nowrap px-3 py-4 text-sm text-gray-500',
+                                                            )}>
+                                                        </td>
+                                                        <td
+                                                            className={classNames(
+                                                                i !==
+                                                                    queries.length -
+                                                                        1
+                                                                    ? 'border-b border-gray-200'
+                                                                    : '',
+                                                                'relative whitespace-nowrap py-4 pr-4 pl-3 text-right text-sm font-medium sm:pr-6 lg:pr-8',
+                                                            )}>
+                                                            <Link
+                                                                href={`/seo/position/query/${query.id}`}
+                                                                // disabled={
+                                                                //     plan.isCurrent
+                                                                // }
+                                                            >
+                                                                <a className="inline-flex items-center rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30">
+                                                                    Подробно
+                                                                </a>
+                                                            </Link>
+                                                        </td>
+                                                    </tr>
+                                                ),
+                                            )}
+                                        </tbody> */}
                                     </table>
                                 </div>
                             </div>

@@ -8,15 +8,32 @@ export const QUERIES = gql`
             parentable {
                 ... on Resource {
                     value
-                    position {
-                        value
-                        created_at
-                    }
                 }
+            }
+            position {
+                value
+                created_at
             }
         }
     }
 `
+// export const QUERIES = gql`
+//     query seo {
+//         seoquery {
+//             id
+//             value
+//             parentable {
+//                 ... on Resource {
+//                     value
+//                     position {
+//                         value
+//                         created_at
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// `
 
 // export const QUERIES = gql`
 //     query seo {
