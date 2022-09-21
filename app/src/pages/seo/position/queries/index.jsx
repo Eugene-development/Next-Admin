@@ -143,13 +143,7 @@ export default function Example() {
                                                                     : '',
                                                                 'whitespace-nowrap px-3 py-4 text-sm text-gray-500 hidden lg:table-cell',
                                                             )}>
-                                                                {/* {query.position.map((item, i) => (
-                                                                    <span key={i}>{item.value}</span>
-                                                                ))} */}
                                                                 {query?.position.at(-1).value}
-                                                                {/* {query.position[query.position.length - 1].value} */}
-
-
                                                         </td>
 
 
@@ -162,7 +156,6 @@ export default function Example() {
                                                                     : '',
                                                                 'whitespace-nowrap px-3 py-4 text-sm text-gray-500',
                                                             )}> -
-
                                                         </td>
                                                         <td
                                                             className={classNames(
@@ -173,7 +166,6 @@ export default function Example() {
                                                                     : '',
                                                                 'whitespace-nowrap px-3 py-4 text-sm text-gray-500',
                                                             )}> -
-
                                                         </td>
                                                         <td
                                                             className={classNames(
