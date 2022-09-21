@@ -18,7 +18,7 @@ function classNames(...classes) {
 //     }
 // }
 
-export default function Example() {
+export const Queries = () => {
     const { loading, error, data } = useQuery(QUERIES, {fetchPolicy: 'network-only'})
     if (loading) {
         return <h2>Loading...</h2>
@@ -275,3 +275,5 @@ export default function Example() {
         )
     }
 }
+
+export default Queries;

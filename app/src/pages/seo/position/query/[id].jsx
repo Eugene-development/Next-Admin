@@ -9,7 +9,7 @@ export const getServerSideProps = async ({params}) => {
 }
 
 
-export const App = ({id}) => {
+export const Chart = ({id}) => {
 
     function classNames(...classes) {
         return classes.filter(Boolean).join(' ')
@@ -20,4 +20,4 @@ export const App = ({id}) => {
     )
 }
 
-export default App
+export default Chart
