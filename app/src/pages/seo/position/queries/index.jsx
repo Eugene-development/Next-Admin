@@ -19,7 +19,7 @@ function classNames(...classes) {
 // }
 
 export const Queries = () => {
-    const { loading, error, data } = useQuery(QUERIES, {fetchPolicy: 'network-only'})
+    const { loading, error, data } = useQuery(QUERIES)
     if (loading) {
         return <h2>Loading...</h2>
     }
@@ -29,7 +29,7 @@ export const Queries = () => {
     }
 
     if (data) {
-        const { seoquery } = data || {}
+        const { project } = data || {}
         // console.log(seoquery)
 
         return (
@@ -50,7 +50,7 @@ export const Queries = () => {
                                 SEO
                             </h1>
                             <p className="mt-2 text-sm text-gray-700">
-                                Сайт орбита-строй.рф
+                                Сайт {project[0].value}
                             </p>
                         </div>
 
@@ -108,7 +108,7 @@ export const Queries = () => {
                                         </thead>
 
                                         <tbody className="bg-white">
-                                            {seoquery?.map(
+                                            {project[0].seoquery?.map(
                                                 (query, i) => (
                                                     <tr key={i}>
                                                         <td
@@ -122,6 +122,23 @@ export const Queries = () => {
                                                             )}>
                                                             {i+1}
                                                         </td>
+
+
+
+
+                                                            <td key={i}
+                                                                className={classNames(
+                                                                    i !== query.length - 1
+                                                                        ? 'border-b border-gray-200'
+                                                                        : '',
+                                                                    'whitespace-nowrap px-3 py-4 text-sm text-gray-500 hidden lg:table-cell',
+                                                                )}>
+                                                                    {query?.value}
+                                                            </td>
+
+
+
+                                                        {/* TODO: для гугла через цикл td */}
                                                         <td
                                                             className={classNames(
                                                                 i !==
@@ -131,20 +148,12 @@ export const Queries = () => {
                                                                     : '',
                                                                 'whitespace-nowrap px-3 py-4 text-sm text-gray-500 hidden sm:table-cell',
                                                             )}>
-                                                            {query?.value}
+                                                                {query?.resource[0].position.at(-1).value}
                                                         </td>
 
 
 
-                                                        <td
-                                                        key={i}
-                                                            className={classNames( i !== query.length - 1
-                                                                    ? 'border-b border-gray-200'
-                                                                    : '',
-                                                                'whitespace-nowrap px-3 py-4 text-sm text-gray-500 hidden lg:table-cell',
-                                                            )}>
-                                                                {query?.position.at(-1).value}
-                                                        </td>
+
 
 
                                                         <td

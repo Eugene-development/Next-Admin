@@ -4,9 +4,9 @@ import Chart from 'chart.js/auto'
 import Link from 'next/link'
 
 
-export const ChartQuery = ({id}) => {
+export const ChartQuery = ({d}) => {
 
-    // console.log(id);
+    // console.log(d);
 
     const canvasEl = useRef(null)
 
@@ -78,7 +78,7 @@ export const ChartQuery = ({id}) => {
         <div className="m-8">
 
             <div className="mx-auto flex items-center justify-between px-8">
-                <span>{id}</span>
+                <span>{d.id}</span>
                 <Link href="/seo/position/queries">
                     <a className="text-red-800">Закрыть</a>
                 </Link>

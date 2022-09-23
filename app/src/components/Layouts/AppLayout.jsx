@@ -155,7 +155,7 @@ const AppLayout = ({ header, children }) => {
                                                             key={item.name}
                                                             className="flex my-1">
                                                             <a
-                                                                href="/"
+                                                                href={item.href}
                                                                 className={classNames(
                                                                     item.current
                                                                         ? 'bg-gray-900 text-gray-100 hover:bg-gray-100 hover:text-gray-900'
@@ -171,7 +171,7 @@ const AppLayout = ({ header, children }) => {
                                                                     )}
                                                                     aria-hidden="true"
                                                                 />
-                                                                {item.name}
+                                                                {item.name} - ⛄
                                                             </a>
                                                         </div>
                                                     ) : (
