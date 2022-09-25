@@ -44,6 +44,15 @@ const navigation = [
         ],
     },
     {
+        name: 'Реклама',
+        icon: FolderIcon,
+        current: false,
+        children: [
+            { name: 'Запросы', href: '/seo/position/queries' },
+            { name: 'Конкуренты', href: '#' },
+        ],
+    },
+    {
         name: 'Продажи',
         icon: CalendarIcon,
         current: false,

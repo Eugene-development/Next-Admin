@@ -32,7 +32,7 @@ export const ChartQuery = ({d}) => {
         gradient.addColorStop(0.65, colors.purple.quarter)
         gradient.addColorStop(1, colors.purple.zero)
 
-        const position = [5, 8, 3, 77, 24, 12, 15]
+        const position = [5, 8, 3, 77, 24, 46, 35]
 
         const labels = [
             'Сегодня',

@@ -32,7 +32,7 @@ export const Queries = () => {
         const { project } = data || {}
         // console.log(seoquery)
 
-        return (
+      return (
             <AppLayout
                 header={
                     <h2 className="font-semibold text-xl text-gray-800 leading-tight">
@@ -138,7 +138,7 @@ export const Queries = () => {
 
 
 
-                                                        {/* TODO: для гугла через цикл td */}
+                                                        {/* TODO: для гугла через цикл td с условием если яндекс или гугл */}
                                                         <td
                                                             className={classNames(
                                                                 i !==
