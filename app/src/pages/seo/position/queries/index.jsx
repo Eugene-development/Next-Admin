@@ -143,7 +143,7 @@ export const Queries = () => {
                                                         {query.resource.map(
                                                             (item, j) => (
 
-                                                        <td
+                                                        <td key={j}
                                                             className={classNames(
                                                                 i !==
                                                                     query.length -
@@ -152,7 +152,9 @@ export const Queries = () => {
                                                                     : '',
                                                                 'whitespace-nowrap px-3 py-4 text-sm text-gray-500 hidden sm:table-cell',
                                                             )}>
-                                                                {item.position.at(-1).value}
+
+                                                                {item.position.at(-1).value == 0 ? "-" : item.position.at(-1).value }
+                                                               {/* ({item.position.at(0).value == 0 || 'undefined' ?  "-" : item.position.at(0).value }) */}
                                                         </td>
 
 
@@ -180,16 +182,6 @@ export const Queries = () => {
 
 
 
-                                                        {/* <td
-                                                            className={classNames(
-                                                                i !==
-                                                                    query.length -
-                                                                        1
-                                                                    ? 'border-b border-gray-200'
-                                                                    : '',
-                                                                'whitespace-nowrap px-3 py-4 text-sm text-gray-500',
-                                                            )}> -
-                                                        </td> */}
                                                         <td
                                                             className={classNames(
                                                                 i !==
@@ -200,6 +192,7 @@ export const Queries = () => {
                                                                 'whitespace-nowrap px-3 py-4 text-sm text-gray-500',
                                                             )}> -
                                                         </td>
+
                                                         <td
                                                             className={classNames(
                                                                 i !==
