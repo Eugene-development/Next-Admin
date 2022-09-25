@@ -139,6 +139,10 @@ export const Queries = () => {
 
 
                                                         {/* TODO: для гугла через цикл td с условием если яндекс или гугл */}
+
+                                                        {query.resource.map(
+                                                            (item, j) => (
+
                                                         <td
                                                             className={classNames(
                                                                 i !==
@@ -148,15 +152,35 @@ export const Queries = () => {
                                                                     : '',
                                                                 'whitespace-nowrap px-3 py-4 text-sm text-gray-500 hidden sm:table-cell',
                                                             )}>
-                                                                {query?.resource[0].position.at(-1).value}
+                                                                {item.position.at(-1).value}
                                                         </td>
 
 
+                                                            )
+                                                        )}
 
 
 
 
-                                                        <td
+
+                                                        {/* <td
+                                                            className={classNames(
+                                                                i !==
+                                                                    query.length -
+                                                                        1
+                                                                    ? 'border-b border-gray-200'
+                                                                    : '',
+                                                                'whitespace-nowrap px-3 py-4 text-sm text-gray-500 hidden sm:table-cell',
+                                                            )}>
+                                                                {query?.resource[0].position.at(-1).value}
+                                                        </td> */}
+
+
+
+
+
+
+                                                        {/* <td
                                                             className={classNames(
                                                                 i !==
                                                                     query.length -
@@ -165,7 +189,7 @@ export const Queries = () => {
                                                                     : '',
                                                                 'whitespace-nowrap px-3 py-4 text-sm text-gray-500',
                                                             )}> -
-                                                        </td>
+                                                        </td> */}
                                                         <td
                                                             className={classNames(
                                                                 i !==
