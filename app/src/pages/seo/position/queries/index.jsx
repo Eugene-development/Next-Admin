@@ -20,6 +20,7 @@ function classNames(...classes) {
 
 export const Queries = () => {
     const { loading, error, data } = useQuery(QUERIES)
+
     if (loading) {
         return <h2>Loading...</h2>
     }
@@ -30,7 +31,7 @@ export const Queries = () => {
 
     if (data) {
         const { project } = data || {}
-        // console.log(seoquery)
+        // console.log(project)
 
       return (
             <AppLayout
