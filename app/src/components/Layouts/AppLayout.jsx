@@ -83,12 +83,13 @@ const AppLayout = ({ header, children }) => {
     const { user } = useAuth({ middleware: 'auth' })
     const { logout } = useAuth()
 
-    if (!user) {
-        return <h2>Нет доступа!!!</h2>
-    }
+    // if (!user) {
+    //     return <h2>Нет доступа!!!</h2>
+    // }
 
     return (
         <>
+
             {/*
         This example requires updating your template:
 
@@ -97,6 +98,10 @@ const AppLayout = ({ header, children }) => {
         <body class="h-full">
         ```
       */}
+
+
+      { user &&
+
             <div>
                 <Transition.Root show={sidebarOpen} as={Fragment}>
                     <Dialog
@@ -375,7 +380,6 @@ const AppLayout = ({ header, children }) => {
                                 </div>
                             </div>
                         </div>
-
                         <main className="flex-1">
                             <div className="py-0">
                                 <div className="min-h-screen">
@@ -389,14 +393,25 @@ const AppLayout = ({ header, children }) => {
                                     </header> */}
 
                                     {/* Page Content */}
+
+
+
                                     <main>{children}</main>
+
                                 </div>
                             </div>
                         </main>
+
+
                     </div>
                 </div>
             </div>
+
+        }
+
         </>
+
+
     )
 }
 
