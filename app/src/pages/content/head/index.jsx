@@ -58,7 +58,7 @@ export default function MainHead() {
                     <title>Заголовки</title>
                 </Head>
 
-                <div className="px-4 sm:px-6 lg:px-8">
+                <div className="mt-4 p-4 sm:p-6 lg:p-8">
                 <div className="sm:flex sm:items-center">
                     <div className="sm:flex-auto">
                     <h1 className="text-xl font-semibold text-gray-900">Users</h1>
@@ -107,7 +107,7 @@ export default function MainHead() {
                                     onChange={toggleAll}
                                 />
                                 </th>
-                                <th scope="col" className="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
+                                <th scope="col" className="min-w-[1rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
                                 №
                                 </th>
                                 <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
