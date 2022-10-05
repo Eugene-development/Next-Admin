@@ -4,16 +4,6 @@ import { useQuery } from '@apollo/client'
 import { ALL_HEADS } from '@/apollo/query/head'
 import { useLayoutEffect, useRef, useState } from 'react'
 
-const people = [
-  {
-    name: 'Lindsay Walton',
-    title: 'Front-end Developer',
-    email: 'lindsay.walton@example.com',
-    role: 'Member',
-  },
-  // More people...
-]
-
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
@@ -23,20 +13,20 @@ export default function MainHead() {
   const checkbox = useRef()
   const [checked, setChecked] = useState(false)
   const [indeterminate, setIndeterminate] = useState(false)
-  const [selectedPeople, setSelectedPeople] = useState([])
+  const [selectedHead, setSelectedHead] = useState([])
 
   useLayoutEffect(() => {
     if (data){
-    const isIndeterminate = selectedPeople.length > 0 && selectedPeople.length < data?.head.length
-    setChecked(selectedPeople.length === data?.head.length)
+    const isIndeterminate = selectedHead.length > 0 && selectedHead.length < data?.head.length
+    setChecked(selectedHead.length === data?.head.length)
 
     setIndeterminate(isIndeterminate)
     checkbox.current.indeterminate = isIndeterminate
     }
-  }, [selectedPeople])
+  }, [selectedHead])
 
   function toggleAll() {
-    setSelectedPeople(checked || indeterminate ? [] : data?.head)
+    setSelectedHead(checked || indeterminate ? [] : data?.head)
     setChecked(!checked && !indeterminate)
     setIndeterminate(false)
   }
@@ -82,7 +72,7 @@ export default function MainHead() {
                     <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                         <div className="relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-                        {selectedPeople.length > 0 && (
+                        {selectedHead.length > 0 && (
                             <div className="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
                             <button
                                 type="button"
@@ -126,21 +116,21 @@ export default function MainHead() {
                             </thead>
                             <tbody className="divide-y divide-gray-200 bg-white">
                             {data?.head.map((person, i) => (
-                                <tr key={i} className={selectedPeople.includes(person) ? 'bg-gray-50' : undefined}>
+                                <tr key={i} className={selectedHead.includes(person) ? 'bg-gray-50' : undefined}>
                                 <td className="relative w-12 px-6 sm:w-16 sm:px-8">
-                                    {selectedPeople.includes(person) && (
+                                    {selectedHead.includes(person) && (
                                     <div className="absolute inset-y-0 left-0 w-0.5 bg-indigo-600" />
                                     )}
                                     <input
                                     type="checkbox"
                                     className="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6"
                                     value={person.email}
-                                    checked={selectedPeople.includes(person)}
+                                    checked={selectedHead.includes(person)}
                                     onChange={(e) =>
-                                        setSelectedPeople(
+                                        setSelectedHead(
                                         e.target.checked
-                                            ? [...selectedPeople, person]
-                                            : selectedPeople.filter((p) => p !== person)
+                                            ? [...selectedHead, person]
+                                            : selectedHead.filter((p) => p !== person)
                                         )
                                     }
                                     />
@@ -148,7 +138,7 @@ export default function MainHead() {
                                 <td
                                     className={classNames(
                                     'whitespace-nowrap py-4 pr-3 text-sm font-medium',
-                                    selectedPeople.includes(person) ? 'text-indigo-600' : 'text-gray-900'
+                                    selectedHead.includes(person) ? 'text-indigo-600' : 'text-gray-900'
                                     )}
                                 >
                                     {i+1}
