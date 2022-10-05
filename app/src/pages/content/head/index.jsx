@@ -25,15 +25,15 @@ export default function MainHead() {
   const [indeterminate, setIndeterminate] = useState(false)
   const [selectedPeople, setSelectedPeople] = useState([])
 
-//   useLayoutEffect(() => {
-//     const isIndeterminate = selectedPeople.length > 0 && selectedPeople.length < people.length
-//     setChecked(selectedPeople.length === people.length)
-//     setIndeterminate(isIndeterminate)
-//     checkbox.current.indeterminate = isIndeterminate
-//   }, [selectedPeople])
+  useLayoutEffect(() => {
+    const isIndeterminate = selectedPeople.length > 0 && selectedPeople.length < data?.head.length
+    setChecked(selectedPeople.length === data?.head.length)
+    setIndeterminate(isIndeterminate)
+    checkbox.current.indeterminate = isIndeterminate
+  }, [selectedPeople])
 
   function toggleAll() {
-    setSelectedPeople(checked || indeterminate ? [] : people)
+    setSelectedPeople(checked || indeterminate ? [] : data?.head)
     setChecked(!checked && !indeterminate)
     setIndeterminate(false)
   }
@@ -69,7 +69,7 @@ export default function MainHead() {
                     <div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
                     <button
                         type="button"
-                        className="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
+                        className="inline-flex items-center justify-center rounded-md border border-transparent bg-green-600 px-8 py-2 text-sm font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 sm:w-auto"
                     >
                         Добавить
                     </button>
@@ -85,13 +85,13 @@ export default function MainHead() {
                                 type="button"
                                 className="inline-flex items-center rounded border border-gray-300 bg-white px-2.5 py-1.5 text-xs font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30"
                             >
-                                Bulk edit
+                                Изменить
                             </button>
                             <button
                                 type="button"
                                 className="inline-flex items-center rounded border border-gray-300 bg-white px-2.5 py-1.5 text-xs font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30"
                             >
-                                Delete all
+                                Удалить
                             </button>
                             </div>
                         )}
@@ -153,9 +153,7 @@ export default function MainHead() {
                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.value}</td>
                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.email}</td>
                                 <td className="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                                    <a href="#" className="text-indigo-600 hover:text-indigo-900">
-                                    Edit<span className="sr-only">, {person.name}</span>
-                                    </a>
+
                                     <button
                                         type="button" class="inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md text-purple-500 bg-purple-50 hover:bg-purple-200 focus:outline-none focus:border-purple-300 focus:shadow-outline-purple active:bg-purple-200 transition ease-in-out duration-150 sm:text-sm sm:leading-5">
                                         <svg
@@ -167,7 +165,7 @@ export default function MainHead() {
                                     </button>
                                     <button
                                         type="button"
-                                        class="inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md text-blue-500 bg-blue-50 hover:bg-blue-200 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-blue-200 transition ease-in-out duration-150 sm:text-sm sm:leading-5">
+                                        class="mx-2 inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md text-blue-500 bg-blue-50 hover:bg-blue-200 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-blue-200 transition ease-in-out duration-150 sm:text-sm sm:leading-5">
                                         <svg
                                         class=" h-4 w-4  duration-150"
                                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
