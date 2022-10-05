@@ -15,7 +15,7 @@ export default function MainHead() {
   const [checked, setChecked] = useState(false)
   const [indeterminate, setIndeterminate] = useState(false)
   const [selectedHead, setSelectedHead] = useState([])
-  const [enabled, setEnabled] = useState(false)
+//   const [enabled, setEnabled] = useState(false)
 
   useEffect(() => {
     if (data){
@@ -151,23 +151,23 @@ export default function MainHead() {
                                         <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
 
         <Switch
-            checked={enabled}
-            onChange={setEnabled}
+            // checked={enabled}
+            // onChange={setEnabled}
             className={classNames(
-                enabled ? 'bg-green-600' : 'bg-gray-200',
-                'relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2'
+                person.is_active ? 'bg-indigo-600' : 'bg-gray-200',
+                'relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
             )}
             >
             <span className="sr-only">Use setting</span>
             <span
                 className={classNames(
-                enabled ? 'translate-x-5' : 'translate-x-0',
+                person.is_active ? 'translate-x-5' : 'translate-x-0',
                 'pointer-events-none relative inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out'
                 )}
             >
                 <span
                 className={classNames(
-                    enabled ? 'opacity-0 ease-out duration-100' : 'opacity-100 ease-in duration-200',
+                    person.is_active ? 'opacity-0 ease-out duration-100' : 'opacity-100 ease-in duration-200',
                     'absolute inset-0 flex h-full w-full items-center justify-center transition-opacity'
                 )}
                 aria-hidden="true"
@@ -184,7 +184,7 @@ export default function MainHead() {
                 </span>
                 <span
                 className={classNames(
-                    enabled ? 'opacity-100 ease-in duration-200' : 'opacity-0 ease-out duration-100',
+                    person.is_active ? 'opacity-100 ease-in duration-200' : 'opacity-0 ease-out duration-100',
                     'absolute inset-0 flex h-full w-full items-center justify-center transition-opacity'
                 )}
                 aria-hidden="true"
