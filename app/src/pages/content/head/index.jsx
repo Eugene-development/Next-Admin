@@ -40,6 +40,7 @@ export default function MainHead() {
     }
 
     if (data) {
+      const {head} = data
   return (
     <AppLayout
                 header={
@@ -115,7 +116,7 @@ export default function MainHead() {
                             </tr>
                             </thead>
                             <tbody className="divide-y divide-gray-200 bg-white">
-                            {data?.head.map((person, i) => (
+                            {head?.map((person, i) => (
                                 <tr key={i} className={selectedHead.includes(person) ? 'bg-gray-50' : undefined}>
                                 <td className="relative w-12 px-6 sm:w-16 sm:px-8">
                                     {selectedHead.includes(person) && (
