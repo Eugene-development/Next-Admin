@@ -99,8 +99,9 @@ const AppLayout = ({ header, children }) => {
         ```
       */}
 
+      {user && user.is_active === 0 && <p>У вас нет прав доступа</p>}
 
-      { user &&
+      { user && user.is_active === 1 &&
 
             <div>
                 <Transition.Root show={sidebarOpen} as={Fragment}>
