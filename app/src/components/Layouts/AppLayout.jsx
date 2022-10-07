@@ -29,7 +29,7 @@ const navigation = [
         current: false,
         children: [
             { name: 'Меню', href: '#' },
-            { name: 'Каталог', href: '#' },
+            { name: 'Каталог', href: '/content/catalog' },
             { name: 'Рубрика', href: '/content/rubrics' },
             { name: 'Категория', href: '#' },
             { name: 'Продукция', href: '#' },
