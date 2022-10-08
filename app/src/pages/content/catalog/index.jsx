@@ -1,6 +1,6 @@
 import AppLayout from '@/components/Layouts/AppLayout'
 import Head from 'next/head'
-import { useQuery } from '@apollo/client'
+import { useQuery,  useReactiveVar } from '@apollo/client'
 import { ALL_CATALOG } from '@/apollo/query/catalog'
 import { useEffect, useRef, useState } from 'react'
 import { Switch } from '@headlessui/react'
@@ -11,7 +11,18 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
+// const cartItemsVar = makeVar([]);
+// cartItemsVar([100, 101, 102]);
+// console.log(cartItemsVar());
+
+// cartItemsVar([456]);
+// console.log(cartItemsVar());
+
+// const test = makeVar([]);
+
 export default function MainCatalog() {
+
+    // const bool = useReactiveVar(is_visible_delete);
   const { loading, error, data } = useQuery(ALL_CATALOG)
   const checkbox = useRef()
   const [checked, setChecked] = useState(false)
@@ -202,6 +213,7 @@ export default function MainCatalog() {
                                         <td className="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
 
                                             <button
+
                                                 type="button" className="inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md text-purple-500 bg-purple-50 hover:bg-purple-200 focus:outline-none focus:border-purple-300 focus:shadow-outline-purple active:bg-purple-200 transition ease-in-out duration-150 sm:text-sm sm:leading-5">
                                                 <svg
                                                 className=" h-4 w-4  duration-150"
@@ -220,6 +232,7 @@ export default function MainCatalog() {
                                                 </svg>
                                             </button>
                                             <button
+
                                                 type="button"
                                                 className="inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md text-red-500 bg-red-50 hover:bg-red-200 focus:outline-none focus:border-red-300 focus:shadow-outline-red active:bg-red-200 transition ease-in-out duration-150 sm:text-sm sm:leading-5">
                                                 <svg
@@ -241,7 +254,7 @@ export default function MainCatalog() {
                         </div>
             </AppLayout>
             }
-<DeleteCatalog id={8}/>
+<DeleteCatalog id={9} />
             </>
         )
     }

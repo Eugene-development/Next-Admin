@@ -1,20 +1,21 @@
-import { useQuery } from '@apollo/client'
+import { useQuery, useReactiveVar } from '@apollo/client'
 import { ALL_CATALOG } from '@/apollo/query/catalog'
 import { useEffect, useRef, useState, Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
-
+import {is_visible_delete} from '@/apollo/client'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
 const DeleteCatalog = ({id}) => {
+    const test = useReactiveVar(is_visible_delete)
     const [open, setOpen] = useState(true)
     const cancelButtonRef = useRef(null)
 
     return (
-    <Transition.Root show={open} as={Fragment}>
+    <Transition.Root show={test} as={Fragment}>
       <Dialog as="div" className="relative z-10" initialFocus={cancelButtonRef} onClose={setOpen}>
         <Transition.Child
           as={Fragment}
@@ -70,7 +71,7 @@ const DeleteCatalog = ({id}) => {
                     onClick={() => setOpen(false)}
                     ref={cancelButtonRef}
                   >
-                    Отменить
+                    Отменить - {test}
                   </button>
                 </div>
               </Dialog.Panel>
