@@ -121,22 +121,22 @@ export default function MainCatalog() {
                                     </tr>
                                     </thead>
                                     <tbody className="divide-y divide-gray-200 bg-white">
-                                    {catalog?.map((person, i) => (
-                                        <tr key={i} className={selectedCatalog.includes(person) ? 'bg-gray-50' : undefined}>
+                                    {catalog?.map((item, i) => (
+                                        <tr key={i} className={selectedCatalog.includes(item) ? 'bg-gray-50' : undefined}>
                                         <td className="relative w-12 px-6 sm:w-16 sm:px-8">
-                                            {selectedCatalog.includes(person) && (
+                                            {selectedCatalog.includes(item) && (
                                             <div className="absolute inset-y-0 left-0 w-0.5 bg-indigo-600" />
                                             )}
                                             <input
                                             type="checkbox"
                                             className="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6"
-                                            value={person.email}
-                                            checked={selectedCatalog.includes(person)}
+                                            value={item.email}
+                                            checked={selectedCatalog.includes(item)}
                                             onChange={(e) =>
                                                 setSelectedCatalog(
                                                 e.target.checked
-                                                    ? [...selectedCatalog, person]
-                                                    : selectedCatalog.filter((p) => p !== person)
+                                                    ? [...selectedCatalog, item]
+                                                    : selectedCatalog.filter((p) => p !== item)
                                                 )
                                             }
                                             />
@@ -144,32 +144,32 @@ export default function MainCatalog() {
                                         <td
                                             className={classNames(
                                             'whitespace-nowrap py-4 pr-3 text-sm font-medium',
-                                            selectedCatalog.includes(person) ? 'text-indigo-600' : 'text-gray-900'
+                                            selectedCatalog.includes(item) ? 'text-indigo-600' : 'text-gray-900'
                                             )}
                                         >
                                             {i+1}
                                         </td>
-                                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.value}</td>
+                                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.value}</td>
                                         <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
 
         <Switch
             // checked={enabled}
             // onChange={setEnabled}
             className={classNames(
-                person.is_active ? 'bg-indigo-600' : 'bg-gray-200',
+                item.is_active ? 'bg-indigo-600' : 'bg-gray-200',
                 'relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
             )}
             >
             <span className="sr-only">Use setting</span>
             <span
                 className={classNames(
-                person.is_active ? 'translate-x-5' : 'translate-x-0',
+                item.is_active ? 'translate-x-5' : 'translate-x-0',
                 'pointer-events-none relative inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out'
                 )}
             >
                 <span
                 className={classNames(
-                    person.is_active ? 'opacity-0 ease-out duration-100' : 'opacity-100 ease-in duration-200',
+                    item.is_active ? 'opacity-0 ease-out duration-100' : 'opacity-100 ease-in duration-200',
                     'absolute inset-0 flex h-full w-full items-center justify-center transition-opacity'
                 )}
                 aria-hidden="true"
@@ -186,7 +186,7 @@ export default function MainCatalog() {
                 </span>
                 <span
                 className={classNames(
-                    person.is_active ? 'opacity-100 ease-in duration-200' : 'opacity-0 ease-out duration-100',
+                    item.is_active ? 'opacity-100 ease-in duration-200' : 'opacity-0 ease-out duration-100',
                     'absolute inset-0 flex h-full w-full items-center justify-center transition-opacity'
                 )}
                 aria-hidden="true"
