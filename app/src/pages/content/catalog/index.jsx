@@ -62,7 +62,7 @@ export default function MainCatalog() {
                             <div className="sm:flex-auto">
                             <h1 className="text-xl font-semibold text-gray-900">Заголовки каталога</h1>
                             <p className="mt-2 text-sm text-gray-700">
-                                A list of all the users in your account including their name, title, email and role.
+                                При изменении статуса элемента в неактивное положение, данные не будут отображаться на сайте.
                             </p>
                             </div>
                             <div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
