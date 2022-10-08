@@ -2,9 +2,8 @@ import AppLayout from '@/components/Layouts/AppLayout'
 import Head from 'next/head'
 import { useQuery } from '@apollo/client'
 import { ALL_CATALOG } from '@/apollo/query/catalog'
-import { useEffect, useRef, useState, Fragment } from 'react'
-import { Switch, Dialog, Transition } from '@headlessui/react'
-import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
+import { useEffect, useRef, useState } from 'react'
+import { Switch } from '@headlessui/react'
 
 import  DeleteCatalog  from '@/components/CRUD/content/catalog/delete/DeleteCatalog'
 

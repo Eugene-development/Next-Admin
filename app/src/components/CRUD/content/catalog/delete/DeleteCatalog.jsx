@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client'
 import { ALL_CATALOG } from '@/apollo/query/catalog'
 import { useEffect, useRef, useState, Fragment } from 'react'
-import { Switch, Dialog, Transition } from '@headlessui/react'
+import { Dialog, Transition } from '@headlessui/react'
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 
 
@@ -11,7 +11,7 @@ function classNames(...classes) {
 
 const DeleteCatalog = () => {
     const [open, setOpen] = useState(true)
-const cancelButtonRef = useRef(null)
+    const cancelButtonRef = useRef(null)
 
     return (
     <Transition.Root show={open} as={Fragment}>
