@@ -241,7 +241,7 @@ export default function MainCatalog() {
                         </div>
             </AppLayout>
             }
-<DeleteCatalog/>
+<DeleteCatalog id={8}/>
             </>
         )
     }
