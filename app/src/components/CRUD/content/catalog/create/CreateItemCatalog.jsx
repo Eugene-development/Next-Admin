@@ -1,5 +1,5 @@
 import { useQuery, useReactiveVar, useMutation } from '@apollo/client'
-import { ALL_CATALOG, DELETE_CATALOG } from '@/apollo/query/catalog'
+import { ALL_CATALOG, CREATE_CATALOG } from '@/apollo/query/catalog'
 import { is_visible_create } from '@/apollo/stores/visible'
 
 import { Fragment, useRef, useState } from 'react'
@@ -7,10 +7,40 @@ import { Dialog, Transition } from '@headlessui/react'
 import { CheckIcon } from '@heroicons/react/24/outline'
 
 export default function CreateItemCatalog() {
-const visibleForm = useReactiveVar(is_visible_create)
+  const visibleForm = useReactiveVar(is_visible_create)
+  const [text, setText] = useState('');
+  const [addCatalog, {error}] = useMutation(CREATE_CATALOG, {
+    refetchQueries: [
+      { query: ALL_CATALOG }
+    ],
+    // update(cache, { data: { newTodo } }) {
+    //   const { todos } = cache.readQuery({ query: ALL_TODO });
 
-//   const [open, setOpen] = useState(true)
+    //   cache.writeQuery({
+    //     query: ALL_TODO,
+    //     data: {
+    //       todos: [newTodo, ...todos]
+    //     }
+    //   })
+    // }
+  });
 
+const handleAddCatalog = (e) => {
+    e.preventDefault();
+    if (text.trim().length) {
+      addCatalog({
+        variables: {
+          key: '1',
+          is_active: true,
+          value: text,
+          slug: 'ggg',
+          parentable_type: 'menu',
+          parentable_id: 2,
+        },
+      });
+      setText('');
+    }
+  }
   const cancelButtonRef = useRef(null)
 
   return (
@@ -56,65 +86,66 @@ const visibleForm = useReactiveVar(is_visible_create)
                     </div>
                   </div>
                 </div>
-    <form className="space-y-8 divide-y divide-gray-200">
+                <form onSubmit={handleAddCatalog} className="space-y-8 divide-y divide-gray-200">
 
-        <div className="py-2">
-          <div className="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-            <div className="sm:col-span-3">
-              <label htmlFor="parent" className="block text-sm font-medium text-gray-700">
-                Принадлежит
-              </label>
-              <div className="mt-1">
-                <select
-                  id="parent"
-                  name="parent"
-                  autoComplete="parent-name"
-                  className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                >
-                  <option>Меню</option>
-                </select>
-              </div>
-            </div>
+                    <div className="py-2">
+                    <div className="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+                        <div className="sm:col-span-3">
+                        <label htmlFor="parent" className="block text-sm font-medium text-gray-700">
+                            Принадлежит
+                        </label>
+                        <div className="mt-1">
+                            <select
+                            id="parent"
+                            name="parent"
+                            autoComplete="parent-name"
+                            className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                            >
+                            <option>Меню</option>
+                            </select>
+                        </div>
+                        </div>
 
-            <div className="sm:col-span-6">
-              <label htmlFor="value" className="block text-sm font-medium text-gray-700">
-                Значение
-              </label>
-              <div className="mt-1">
-                <input
-                  type="text"
-                  name="value"
-                  id="value"
-                  autoComplete="value"
-                  className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                />
-              </div>
-            </div>
-
-
-
-          </div>
-        </div>
+                        <div className="sm:col-span-6">
+                        <label htmlFor="value" className="block text-sm font-medium text-gray-700">
+                            Значение
+                        </label>
+                        <div className="mt-1">
+                            <input
+                            onChange={(e) => setText(e.target.value)}
+                            type="text"
+                            name="value"
+                            id="value"
+                            autoComplete="value"
+                            className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                            />
+                        </div>
+                        </div>
 
 
-    </form>
-                <div className="mt-5 sm:mt-6 sm:grid sm:grid-flow-row-dense sm:grid-cols-2 sm:gap-3">
-                  <button
-                    type="button"
-                    className="inline-flex w-full justify-center rounded-md border border-transparent bg-green-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 sm:col-start-2 sm:text-sm"
-                    onClick={() => is_visible_create(false)}
-                  >
-                    Добавить
-                  </button>
-                  <button
-                    type="button"
-                    className="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 sm:col-start-1 sm:mt-0 sm:text-sm"
-                    onClick={() => is_visible_create(false)}
-                    ref={cancelButtonRef}
-                  >
-                    Отменить
-                  </button>
-                </div>
+
+                    </div>
+                    </div>
+
+                    <div className="mt-8 sm:mt-10 sm:grid sm:grid-flow-row-dense sm:grid-cols-2 sm:gap-3">
+                        <button
+                        type="submit"
+                        className="inline-flex w-full justify-center rounded-md border border-transparent bg-green-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 sm:col-start-2 sm:text-sm"
+                        onClick={() => is_visible_create(false)}
+                        >
+                        Добавить
+                        </button>
+                        <button
+                        type="button"
+                        className="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 sm:col-start-1 sm:mt-0 sm:text-sm"
+                        onClick={() => is_visible_create(false)}
+                        ref={cancelButtonRef}
+                        >
+                        Отменить
+                        </button>
+                    </div>
+
+                </form>
               </Dialog.Panel>
             </Transition.Child>
           </div>
