@@ -1,6 +1,6 @@
 import AppLayout from '@/components/Layouts/AppLayout'
 import Head from 'next/head'
-import { useQuery,  useReactiveVar } from '@apollo/client'
+import { useMutation, useQuery,  useReactiveVar } from '@apollo/client'
 import { ALL_CATALOG } from '@/apollo/query/catalog'
 import { useEffect, useRef, useState } from 'react'
 import { Switch } from '@headlessui/react'
@@ -8,7 +8,7 @@ import { is_visible_delete } from '@/apollo/stores/visible'
 import { current_catalog } from '@/apollo/stores/current'
 
 
-import  DeleteCatalog  from '@/components/CRUD/content/catalog/delete/DeleteCatalog'
+import  DeleteItemCatalog  from '@/components/CRUD/content/catalog/delete/DeleteItemCatalog'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -156,51 +156,51 @@ export default function MainCatalog() {
                                         <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.value}</td>
                                         <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
 
-        <Switch
-            // checked={enabled}
-            // onChange={setEnabled}
-            className={classNames(
-                item.is_active ? 'bg-indigo-600' : 'bg-gray-200',
-                'relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
-            )}
-            >
-            <span className="sr-only">Use setting</span>
-            <span
+            <Switch
+                // checked={enabled}
+                // onChange={setEnabled}
                 className={classNames(
-                item.is_active ? 'translate-x-5' : 'translate-x-0',
-                'pointer-events-none relative inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out'
+                    item.is_active ? 'bg-indigo-600' : 'bg-gray-200',
+                    'relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
                 )}
-            >
-                <span
-                className={classNames(
-                    item.is_active ? 'opacity-0 ease-out duration-100' : 'opacity-100 ease-in duration-200',
-                    'absolute inset-0 flex h-full w-full items-center justify-center transition-opacity'
-                )}
-                aria-hidden="true"
                 >
-                <svg className="h-3 w-3 text-gray-400" fill="none" viewBox="0 0 12 12">
-                    <path
-                    d="M4 8l2-2m0 0l2-2M6 6L4 4m2 2l2 2"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    />
-                </svg>
-                </span>
+                <span className="sr-only">Use setting</span>
                 <span
-                className={classNames(
-                    item.is_active ? 'opacity-100 ease-in duration-200' : 'opacity-0 ease-out duration-100',
-                    'absolute inset-0 flex h-full w-full items-center justify-center transition-opacity'
-                )}
-                aria-hidden="true"
+                    className={classNames(
+                    item.is_active ? 'translate-x-5' : 'translate-x-0',
+                    'pointer-events-none relative inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out'
+                    )}
                 >
-                <svg className="h-3 w-3 text-indigo-600" fill="currentColor" viewBox="0 0 12 12">
-                    <path d="M3.707 5.293a1 1 0 00-1.414 1.414l1.414-1.414zM5 8l-.707.707a1 1 0 001.414 0L5 8zm4.707-3.293a1 1 0 00-1.414-1.414l1.414 1.414zm-7.414 2l2 2 1.414-1.414-2-2-1.414 1.414zm3.414 2l4-4-1.414-1.414-4 4 1.414 1.414z" />
-                </svg>
+                    <span
+                    className={classNames(
+                        item.is_active ? 'opacity-0 ease-out duration-100' : 'opacity-100 ease-in duration-200',
+                        'absolute inset-0 flex h-full w-full items-center justify-center transition-opacity'
+                    )}
+                    aria-hidden="true"
+                    >
+                    <svg className="h-3 w-3 text-gray-400" fill="none" viewBox="0 0 12 12">
+                        <path
+                        d="M4 8l2-2m0 0l2-2M6 6L4 4m2 2l2 2"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        />
+                    </svg>
+                    </span>
+                    <span
+                    className={classNames(
+                        item.is_active ? 'opacity-100 ease-in duration-200' : 'opacity-0 ease-out duration-100',
+                        'absolute inset-0 flex h-full w-full items-center justify-center transition-opacity'
+                    )}
+                    aria-hidden="true"
+                    >
+                    <svg className="h-3 w-3 text-indigo-600" fill="currentColor" viewBox="0 0 12 12">
+                        <path d="M3.707 5.293a1 1 0 00-1.414 1.414l1.414-1.414zM5 8l-.707.707a1 1 0 001.414 0L5 8zm4.707-3.293a1 1 0 00-1.414-1.414l1.414 1.414zm-7.414 2l2 2 1.414-1.414-2-2-1.414 1.414zm3.414 2l4-4-1.414-1.414-4 4 1.414 1.414z" />
+                    </svg>
+                    </span>
                 </span>
-            </span>
-            </Switch>
+                </Switch>
 
                                         </td>
                                         <td className="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
@@ -252,7 +252,7 @@ export default function MainCatalog() {
                         </div>
             </AppLayout>
             }
-<DeleteCatalog />
+<DeleteItemCatalog/>
             </>
         )
     }

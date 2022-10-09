@@ -1,4 +1,4 @@
-import { useQuery, useReactiveVar } from '@apollo/client'
+import { useQuery, useReactiveVar, useMutation } from '@apollo/client'
 import { DELETE_CATALOG } from '@/apollo/query/catalog'
 import { useEffect, useRef, useState, Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
@@ -11,14 +11,14 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-const DeleteCatalog = () => {
+const DeleteItemCatalog = () => {
       const [removeCatalog, {error: removeError}] = useMutation(DELETE_CATALOG)
 
     const visibleForm = useReactiveVar(is_visible_delete)
     const currentCatalog = useReactiveVar(current_catalog)
     const cancelButtonRef = useRef(null)
 
-    if {error ||}
+    const id = 7;
 
     return (
     <Transition.Root show={visibleForm} as={Fragment}>
@@ -66,7 +66,10 @@ const DeleteCatalog = () => {
                   <button
                     type="button"
                     className="inline-flex w-full justify-center rounded-md border border-transparent bg-red-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm"
-                    onClick={() => is_visible_delete(false)}
+                    onClick={() => {
+                        removeCatalog({variables: { id }}),
+                        is_visible_delete(false)
+                    }}
                   >
                     Удалить
                   </button>
@@ -88,4 +91,4 @@ const DeleteCatalog = () => {
     )
 }
 
-export default DeleteCatalog
+export default DeleteItemCatalog
