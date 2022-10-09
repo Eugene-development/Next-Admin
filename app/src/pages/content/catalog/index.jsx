@@ -5,7 +5,7 @@ import { ALL_CATALOG } from '@/apollo/query/catalog'
 import { useEffect, useRef, useState } from 'react'
 import { Switch } from '@headlessui/react'
 import { is_visible_delete } from '@/apollo/stores/visible'
-import { current_catalog, current_id_catalog } from '@/apollo/stores/current'
+import { current_value_catalog, current_id_catalog } from '@/apollo/stores/current'
 
 
 import  DeleteItemCatalog  from '@/components/CRUD/content/catalog/delete/DeleteItemCatalog'
@@ -228,7 +228,7 @@ export default function MainCatalog() {
                                             <button
                                             onClick={() => {
                                                 is_visible_delete(true)
-                                                current_catalog(item.value)
+                                                current_value_catalog(item.value)
                                                 current_id_catalog(item.id)
                                             } }
 

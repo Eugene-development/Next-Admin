@@ -4,7 +4,7 @@ import { useEffect, useRef, useState, Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 import { is_visible_delete } from '@/apollo/stores/visible'
-import { current_catalog, current_id_catalog } from '@/apollo/stores/current'
+import { current_value_catalog, current_id_catalog } from '@/apollo/stores/current'
 
 
 function classNames(...classes) {
@@ -15,7 +15,7 @@ const DeleteItemCatalog = () => {
       const [removeCatalog, {error: removeError}] = useMutation(DELETE_CATALOG)
 
     const visibleForm = useReactiveVar(is_visible_delete)
-    const currentCatalog = useReactiveVar(current_catalog)
+    const currentValueCatalog = useReactiveVar(current_value_catalog)
     const currentIDCatalog = useReactiveVar(current_id_catalog)
     const cancelButtonRef = useRef(null)
 
@@ -58,7 +58,7 @@ const DeleteItemCatalog = () => {
                     </Dialog.Title>
                     <div className="mt-2">
                       <p className="text-sm text-gray-500">
-                        Элемент каталога "{currentCatalog}" будет удалён из базы данных. Если не уверены просто поменяйте переключателем статус элемента в таблице.
+                        Элемент каталога "{currentValueCatalog}" будет удалён из базы данных. Если не уверены просто поменяйте переключателем статус элемента в таблице.
                       </p>
                     </div>
                   </div>
