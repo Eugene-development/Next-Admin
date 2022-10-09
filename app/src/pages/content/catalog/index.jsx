@@ -56,11 +56,11 @@ export default function MainCatalog() {
             { catalog && <AppLayout
                         header={
                             <h2 className="font-semibold text-xl text-gray-800 leading-tight">
-                                Заголовки
+                                Каталог
                             </h2>
                         }>
                         <Head>
-                            <title>Заголовки</title>
+                            <title>Каталог</title>
                         </Head>
 
                         <div className="mt-4 p-4 sm:p-6 lg:p-8">

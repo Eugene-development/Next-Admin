@@ -56,6 +56,48 @@ const visibleForm = useReactiveVar(is_visible_create)
                     </div>
                   </div>
                 </div>
+    <form className="space-y-8 divide-y divide-gray-200">
+
+        <div className="py-2">
+          <div className="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+            <div className="sm:col-span-3">
+              <label htmlFor="parent" className="block text-sm font-medium text-gray-700">
+                Принадлежит
+              </label>
+              <div className="mt-1">
+                <select
+                  id="parent"
+                  name="parent"
+                  autoComplete="parent-name"
+                  className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                >
+                  <option>Меню</option>
+                </select>
+              </div>
+            </div>
+
+            <div className="sm:col-span-6">
+              <label htmlFor="value" className="block text-sm font-medium text-gray-700">
+                Значение
+              </label>
+              <div className="mt-1">
+                <input
+                  type="text"
+                  name="value"
+                  id="value"
+                  autoComplete="value"
+                  className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                />
+              </div>
+            </div>
+
+
+
+          </div>
+        </div>
+
+
+    </form>
                 <div className="mt-5 sm:mt-6 sm:grid sm:grid-flow-row-dense sm:grid-cols-2 sm:gap-3">
                   <button
                     type="button"
