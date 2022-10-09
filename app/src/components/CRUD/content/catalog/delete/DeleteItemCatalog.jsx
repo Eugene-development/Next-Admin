@@ -4,7 +4,7 @@ import { useEffect, useRef, useState, Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 import { is_visible_delete } from '@/apollo/stores/visible'
-import { current_catalog } from '@/apollo/stores/current'
+import { current_catalog, current_id_catalog } from '@/apollo/stores/current'
 
 
 function classNames(...classes) {
@@ -16,6 +16,7 @@ const DeleteItemCatalog = () => {
 
     const visibleForm = useReactiveVar(is_visible_delete)
     const currentCatalog = useReactiveVar(current_catalog)
+    const currentIDCatalog = useReactiveVar(current_id_catalog)
     const cancelButtonRef = useRef(null)
 
     const id = 7;
@@ -67,7 +68,7 @@ const DeleteItemCatalog = () => {
                     type="button"
                     className="inline-flex w-full justify-center rounded-md border border-transparent bg-red-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm"
                     onClick={() => {
-                        removeCatalog({variables: { id }}),
+                        removeCatalog({variables: { id: currentIDCatalog }}),
                         is_visible_delete(false)
                     }}
                   >

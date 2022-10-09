@@ -3,6 +3,7 @@ import { gql } from '@apollo/client'
 export const ALL_CATALOG = gql`
     query all_catalog {
         catalog {
+            id
             value
             is_active
         }
