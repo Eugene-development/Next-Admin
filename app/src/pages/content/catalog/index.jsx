@@ -4,7 +4,8 @@ import { useQuery,  useReactiveVar } from '@apollo/client'
 import { ALL_CATALOG } from '@/apollo/query/catalog'
 import { useEffect, useRef, useState } from 'react'
 import { Switch } from '@headlessui/react'
-import {is_visible_delete} from '@/apollo/stores/visible'
+import { is_visible_delete } from '@/apollo/stores/visible'
+import { current_catalog } from '@/apollo/stores/current'
 
 
 import  DeleteCatalog  from '@/components/CRUD/content/catalog/delete/DeleteCatalog'
@@ -13,18 +14,8 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-// const cartItemsVar = makeVar([]);
-// cartItemsVar([100, 101, 102]);
-// console.log(cartItemsVar());
-
-// cartItemsVar([456]);
-// console.log(cartItemsVar());
-
-// const test = makeVar([]);
-
 export default function MainCatalog() {
 
-    // const bool = useReactiveVar(is_visible_delete);
   const { loading, error, data } = useQuery(ALL_CATALOG)
   const checkbox = useRef()
   const [checked, setChecked] = useState(false)
@@ -235,7 +226,10 @@ export default function MainCatalog() {
                                                 </svg>
                                             </button>
                                             <button
-                                            onClick={() => is_visible_delete(true)}
+                                            onClick={() => {
+                                                is_visible_delete(true)
+                                                current_catalog(item.value)
+                                            } }
 
                                                 type="button"
                                                 className="inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md text-red-500 bg-red-50 hover:bg-red-200 focus:outline-none focus:border-red-300 focus:shadow-outline-red active:bg-red-200 transition ease-in-out duration-150 sm:text-sm sm:leading-5">
@@ -258,7 +252,7 @@ export default function MainCatalog() {
                         </div>
             </AppLayout>
             }
-<DeleteCatalog id={9} />
+<DeleteCatalog />
             </>
         )
     }
