@@ -58,6 +58,7 @@ export const UPDATE_CATALOG = gql`
 export const DELETE_CATALOG = gql`
     mutation delete_catalog($id: ID!) {
         deleteCatalog(id: $id) {
+            id
             value
         }
     }

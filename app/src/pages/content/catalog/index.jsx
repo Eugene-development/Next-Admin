@@ -8,7 +8,9 @@ import { is_visible_delete } from '@/apollo/stores/visible'
 import { current_value_catalog, current_id_catalog } from '@/apollo/stores/current'
 
 
-import  DeleteItemCatalog  from '@/components/CRUD/content/catalog/delete/DeleteItemCatalog'
+import CreateItemCatalog from '@/components/CRUD/content/catalog/create/CreateItemCatalog'
+import DeleteItemCatalog from '@/components/CRUD/content/catalog/delete/DeleteItemCatalog'
+
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -253,7 +255,8 @@ export default function MainCatalog() {
                         </div>
             </AppLayout>
             }
-<DeleteItemCatalog/>
+            <CreateItemCatalog/>
+            <DeleteItemCatalog/>
             </>
         )
     }

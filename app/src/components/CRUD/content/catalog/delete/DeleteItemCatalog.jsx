@@ -13,9 +13,16 @@ function classNames(...classes) {
 
 const DeleteItemCatalog = () => {
       const [removeCatalog, {error: removeError}] = useMutation(DELETE_CATALOG, {
-            refetchQueries: [
-      { query: ALL_CATALOG }
-    ],
+            refetchQueries: [{ query: ALL_CATALOG }],
+    // update(cache, { data: { deleteCatalog } }) {
+    //   cache.modify({
+    //     fields: {
+    //       catalog(currentCatalog = []) {
+    //         return currentCatalog.filter(catalog => catalog.__ref !== `Catalog:${removeCatalog.id}`)
+    //       }
+    //     }
+    //   })
+    // }
 
       })
 
@@ -24,7 +31,6 @@ const DeleteItemCatalog = () => {
     const currentIDCatalog = useReactiveVar(current_id_catalog)
     const cancelButtonRef = useRef(null)
 
-    const id = 7;
 
     return (
     <Transition.Root show={visibleForm} as={Fragment}>
