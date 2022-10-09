@@ -1,5 +1,5 @@
 import { useQuery, useReactiveVar } from '@apollo/client'
-import { ALL_CATALOG } from '@/apollo/query/catalog'
+import { DELETE_CATALOG } from '@/apollo/query/catalog'
 import { useEffect, useRef, useState, Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
@@ -12,9 +12,13 @@ function classNames(...classes) {
 }
 
 const DeleteCatalog = () => {
+      const [removeCatalog, {error: removeError}] = useMutation(DELETE_CATALOG)
+
     const visibleForm = useReactiveVar(is_visible_delete)
     const currentCatalog = useReactiveVar(current_catalog)
     const cancelButtonRef = useRef(null)
+
+    if {error ||}
 
     return (
     <Transition.Root show={visibleForm} as={Fragment}>
