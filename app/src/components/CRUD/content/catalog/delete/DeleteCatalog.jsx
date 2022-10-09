@@ -3,7 +3,7 @@ import { ALL_CATALOG } from '@/apollo/query/catalog'
 import { useEffect, useRef, useState, Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
-import {is_visible_delete} from '@/apollo/stores/crud'
+import {is_visible_delete} from '@/apollo/stores/visible'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')

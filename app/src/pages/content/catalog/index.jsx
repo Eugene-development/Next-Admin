@@ -4,7 +4,7 @@ import { useQuery,  useReactiveVar } from '@apollo/client'
 import { ALL_CATALOG } from '@/apollo/query/catalog'
 import { useEffect, useRef, useState } from 'react'
 import { Switch } from '@headlessui/react'
-import {is_visible_delete} from '@/apollo/stores/crud'
+import {is_visible_delete} from '@/apollo/stores/visible'
 
 
 import  DeleteCatalog  from '@/components/CRUD/content/catalog/delete/DeleteCatalog'
