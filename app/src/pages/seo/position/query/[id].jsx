@@ -14,7 +14,8 @@ export const getServerSideProps = async ({params}) => {
 export const Chart = ({id}) => {
 
     //TODO: получить данные одного запроса по id
-        const { loading, error, data } = useQuery(QUERIES, {fetchPolicy: 'network-only'})
+        const { loading, error, data } = useQuery(QUERIES)
+        // const { loading, error, data } = useQuery(QUERIES, {fetchPolicy: 'network-only'})
         // console.log(data)
         if (loading) {
         return <h2>Loading...</h2>
