@@ -4,7 +4,7 @@ import { useMutation, useQuery,  useReactiveVar } from '@apollo/client'
 import { ALL_CATALOG } from '@/apollo/query/catalog'
 import { useEffect, useRef, useState } from 'react'
 import { Switch } from '@headlessui/react'
-import { is_visible_delete } from '@/apollo/stores/visible'
+import { is_visible_delete, is_visible_create } from '@/apollo/stores/visible'
 import { current_value_catalog, current_id_catalog } from '@/apollo/stores/current'
 
 
@@ -73,6 +73,7 @@ export default function MainCatalog() {
                             </div>
                             <div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
                             <button
+                            onClick={() => {is_visible_create(true)} }
                                 type="button"
                                 className="inline-flex items-center justify-center rounded-md border border-transparent bg-green-600 px-8 py-2 text-sm font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 sm:w-auto"
                             >
