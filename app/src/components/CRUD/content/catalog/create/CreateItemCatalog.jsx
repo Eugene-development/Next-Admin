@@ -9,6 +9,7 @@ import { CheckIcon } from '@heroicons/react/24/outline'
 export default function CreateItemCatalog() {
   const visibleForm = useReactiveVar(is_visible_create)
   const [text, setText] = useState('');
+  const [selected, setSelected] = useState('');
   const [addCatalog, {error}] = useMutation(CREATE_CATALOG, {
     refetchQueries: [
       { query: ALL_CATALOG }
@@ -34,7 +35,7 @@ const handleAddCatalog = (e) => {
           is_active: true,
           value: text,
           slug: 'ggg',
-          parentableType: 'menu',
+          parentableType: selected,
           parentableId: 2,
         },
       });
@@ -101,7 +102,8 @@ const handleAddCatalog = (e) => {
                             autoComplete="parent-name"
                             className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                             >
-                            <option>Меню</option>
+                            <option value="menu2">Меню2</option>
+
                             </select>
                         </div>
                         </div>
