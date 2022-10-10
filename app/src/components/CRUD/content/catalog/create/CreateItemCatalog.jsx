@@ -12,7 +12,7 @@ import { sum, filter, map } from "lodash";
 
 export default function CreateItemCatalog() {
   const { loading, error, data } = useQuery(ALL_MENU)
-  const categories = map(data?.menu, v => v.value)
+  const menu = map(data?.menu, v => v.value)
   const visibleForm = useReactiveVar(is_visible_create)
   const [text, setText] = useState('');
 //   const [parent, setParent] = useState(categories);
@@ -52,6 +52,7 @@ const handleAddCatalog = (e) => {
     }
   }
   const cancelButtonRef = useRef(null)
+
 
   return (
     <Transition.Root show={visibleForm} as={Fragment}>
@@ -112,7 +113,7 @@ const handleAddCatalog = (e) => {
                             autoComplete="parent-name"
                             className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                             >
-                                {categories.map((value, key) => <option key={key} value={key}>{value}</option>)}
+                                {menu.map((value, key) => <option key={key} value={key}>{value}</option>)}
                             </select>
                         </div>
                         </div>
@@ -164,4 +165,6 @@ const handleAddCatalog = (e) => {
       </Dialog>
     </Transition.Root>
   )
+    
+
 }
