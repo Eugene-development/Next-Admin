@@ -1,19 +1,28 @@
 import { useQuery, useReactiveVar, useMutation } from '@apollo/client'
 import { ALL_CATALOG, CREATE_CATALOG } from '@/apollo/query/catalog'
+import { ALL_MENU } from '@/apollo/query/menu'
 import { is_visible_create } from '@/apollo/stores/visible'
+
 
 import { Fragment, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { CheckIcon } from '@heroicons/react/24/outline'
 
+import { sum, filter, map } from "lodash";
+
 export default function CreateItemCatalog() {
+      const { loading, error, data } = useQuery(ALL_MENU)
+    //   console.log(data);
+    //   console.log(map(data.menu, v => v.value));
+        const categories = map(data?.menu, v => v.value)
+// console.log(values(data.menu));
   const visibleForm = useReactiveVar(is_visible_create)
   const [text, setText] = useState('');
-  const [parent, setParent] = useState(['menu111', 'menu222']);
+  const [parent, setParent] = useState(categories);
   const [selectedParent, setSelectedParent] = useState([]);
   const Add = parent.map(Add => Add);
   const handleParentChange = (e) => setSelectedParent((parent[e.target.value]));
-  const [addCatalog, {error}] = useMutation(CREATE_CATALOG, {
+  const [addCatalog] = useMutation(CREATE_CATALOG, {
     refetchQueries: [
       { query: ALL_CATALOG }
     ],
@@ -96,7 +105,7 @@ const handleAddCatalog = (e) => {
                     <div className="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
                         <div className="sm:col-span-3">
                         <label htmlFor="parent" className="block text-sm font-medium text-gray-700">
-                            Принадлежит
+                            Принадлежит категории
                         </label>
                         <div className="mt-1">
                             <select
