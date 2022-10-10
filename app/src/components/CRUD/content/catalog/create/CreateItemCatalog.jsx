@@ -34,8 +34,8 @@ const handleAddCatalog = (e) => {
           is_active: true,
           value: text,
           slug: 'ggg',
-          parentable_type: 'menu',
-          parentable_id: 2,
+          parentableType: 'menu',
+          parentableId: 2,
         },
       });
       setText('');
