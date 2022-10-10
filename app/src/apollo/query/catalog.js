@@ -17,7 +17,7 @@ export const CREATE_CATALOG = gql`
         $value: String!
         $slug: String!
         $parentableType: String
-        $parentableId: Int
+        $parentableId: String
     ) {
         createCatalog(
             input: {

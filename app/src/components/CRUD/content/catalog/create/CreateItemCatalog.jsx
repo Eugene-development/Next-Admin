@@ -12,13 +12,15 @@ import { sum, filter, map } from "lodash";
 
 export default function CreateItemCatalog() {
   const { loading, error, data } = useQuery(ALL_MENU)
-const categories = map(data?.menu, v => v.value)
+const menu = map(data?.menu, v => v.id)
+// console.log(menu);
   const visibleForm = useReactiveVar(is_visible_create)
   const [text, setText] = useState('');
-  const [parent, setParent] = useState(categories);
+//   const [parent, setParent] = useState(menu);
   const [selectedParent, setSelectedParent] = useState([]);
-  const Add = parent.map(Add => Add);
-  const handleParentChange = (e) => setSelectedParent((parent[e.target.value]));
+//   const Add = parent.map(Add => Add);
+
+  const handleParentChange = (e) => setSelectedParent((menu[e.target.value]));
   const [addCatalog] = useMutation(CREATE_CATALOG, {
     refetchQueries: [
       { query: ALL_CATALOG }
@@ -44,8 +46,8 @@ const handleAddCatalog = (e) => {
           is_active: true,
           value: text,
           slug: 'ggg',
-          parentableType: selectedParent,
-          parentableId: 2,
+          parentableType: 'menu',
+          parentableId: selectedParent,
         },
       });
       setText('');
@@ -112,7 +114,7 @@ const handleAddCatalog = (e) => {
                             autoComplete="parent-name"
                             className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                             >
-                                {Add.map((value, key) => <option key={key} value={key}>{value}</option>)}
+                                {menu.map((value, key) => <option key={key} value={key}>{value}</option>)}
                             </select>
                         </div>
                         </div>
