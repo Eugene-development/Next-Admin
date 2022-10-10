@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client'
 
 export const ALL_CATALOG = gql`
-    query all_catalog {
-        catalog {
+    query all_catalog($key: Int) {
+        catalog(key: $key) {
             id
             value
             is_active
