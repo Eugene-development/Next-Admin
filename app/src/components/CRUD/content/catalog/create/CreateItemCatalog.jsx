@@ -15,7 +15,7 @@ import { useSlug } from "@/hooks/slug";
 export default function CreateItemCatalog() {
 
 
-  const { loading, error, data } = useQuery(ALL_MENU, {variables: { key: 1 }})
+  const { loading, error, data } = useQuery(ALL_MENU, {variables: { key: '1' }})
 
   const menu = map(data?.menu, v => v.id)
   const visibleForm = useReactiveVar(is_visible_create)
@@ -26,7 +26,7 @@ export default function CreateItemCatalog() {
   const [addCatalog] = useMutation(CREATE_CATALOG, {
     refetchQueries: [
       { query: ALL_CATALOG,
-        variables: { key: 1 }}
+        variables: { key: '1' }}
     ],
     // update(cache, { data: { newTodo } }) {
     //   const { catalog } = cache.readQuery({ query: ALL_CATALOG });

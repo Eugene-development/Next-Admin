@@ -16,7 +16,7 @@ const DeleteItemCatalog = () => {
             refetchQueries: [
                 {
                     query: ALL_CATALOG,
-                    variables: { key: 1 }
+                    variables: { key: '1' }
                 }
             ],
     // update(cache, { data: { deleteCatalog } }) {

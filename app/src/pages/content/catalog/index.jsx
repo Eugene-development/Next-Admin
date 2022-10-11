@@ -18,7 +18,7 @@ function classNames(...classes) {
 
 export default function MainCatalog() {
 
-  const { loading, error, data } = useQuery(ALL_CATALOG, {variables: { key: 1 }})
+  const { loading, error, data } = useQuery(ALL_CATALOG, {variables: { key: '1' }})
   const checkbox = useRef()
   const [checked, setChecked] = useState(false)
   const [indeterminate, setIndeterminate] = useState(false)

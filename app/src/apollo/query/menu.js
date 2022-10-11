@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client'
 
 export const ALL_MENU = gql`
-    query all_menu($key: Int) {
+    query all_menu($key: String) {
         menu(key: $key) {
             id
             value
