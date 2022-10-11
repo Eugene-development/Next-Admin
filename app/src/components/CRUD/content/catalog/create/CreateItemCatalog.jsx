@@ -18,6 +18,7 @@ export default function CreateItemCatalog() {
   const { loading, error, data } = useQuery(ALL_MENU, {variables: { key: '1' }})
 
   const menu = map(data?.menu, v => v.id)
+// console.log(menu);
   const visibleForm = useReactiveVar(is_visible_create)
   const [text, setText] = useState('');
   const [selectedParent, setSelectedParent] = useState([]);
@@ -52,7 +53,7 @@ const handleAddCatalog = (e) => {
           value: text,
           slug: slugify(text.translit()),
           parentableType: 'menu',
-          parentableId: selectedParent,
+          parentableId: Number(selectedParent),
         },
       });
       setText('');
@@ -111,16 +112,18 @@ const handleAddCatalog = (e) => {
                             <div className="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
                                 <div className="sm:col-span-3">
                                 <label htmlFor="parent" className="block text-sm font-medium text-gray-700">
-                                    Принадлежит категории
+                                    Принадлежит элементу меню
                                 </label>
                                 <div className="mt-1">
                                     <select
                                     onChange={e => handleParentChange(e)}
+                                    defaultValue={'DEFAULT'}
                                     id="parent"
                                     name="parent"
                                     autoComplete="parent-name"
                                     className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                     >
+                                        <option value="DEFAULT" disabled hidden>Выбрать</option>
                                         {data.menu.map((item, key) => <option key={key} value={key}>{item.value}</option>)}
                                     </select>
                                 </div>

@@ -15,10 +15,11 @@ import DeleteItemCatalog from '@/components/CRUD/content/catalog/delete/DeleteIt
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
+const key = process.env.NEXT_KEY_PROJECT
 
-export default function MainCatalog() {
+export default function MainCatalog({key}) {
 
-  const { loading, error, data } = useQuery(ALL_CATALOG, {variables: { key: '1' }})
+  const { loading, error, data } = useQuery(ALL_CATALOG, {variables: { key: '1' }, fetchPolicy: 'network-only'})
   const checkbox = useRef()
   const [checked, setChecked] = useState(false)
   const [indeterminate, setIndeterminate] = useState(false)
