@@ -13,7 +13,12 @@ function classNames(...classes) {
 
 const DeleteItemCatalog = () => {
       const [removeCatalog, {error: removeError}] = useMutation(DELETE_CATALOG, {
-            refetchQueries: [{ query: ALL_CATALOG }],
+            refetchQueries: [
+                {
+                    query: ALL_CATALOG,
+                    variables: { key: 1 }
+                }
+            ],
     // update(cache, { data: { deleteCatalog } }) {
     //   cache.modify({
     //     fields: {

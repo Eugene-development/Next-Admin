@@ -25,15 +25,16 @@ export default function CreateItemCatalog() {
   const handleParentChange = (e) => setSelectedParent((menu[e.target.value]));
   const [addCatalog] = useMutation(CREATE_CATALOG, {
     refetchQueries: [
-      { query: ALL_CATALOG }
+      { query: ALL_CATALOG,
+        variables: { key: 1 }}
     ],
     // update(cache, { data: { newTodo } }) {
-    //   const { todos } = cache.readQuery({ query: ALL_TODO });
+    //   const { catalog } = cache.readQuery({ query: ALL_CATALOG });
 
     //   cache.writeQuery({
-    //     query: ALL_TODO,
+    //     query: ALL_CATALOG,
     //     data: {
-    //       todos: [newTodo, ...todos]
+    //       catalog: [newTodo, ...catalog]
     //     }
     //   })
     // }
