@@ -4,18 +4,20 @@ import { useMutation, useQuery,  useReactiveVar } from '@apollo/client'
 import { ALL_CATALOG } from '@/apollo/query/catalog'
 import { useEffect, useRef, useState } from 'react'
 import { Switch } from '@headlessui/react'
-import { is_visible_delete, is_visible_create } from '@/apollo/stores/visible'
+import { is_visible_create, is_visible_read, is_visible_update, is_visible_delete } from '@/apollo/stores/visible'
 import { current_value_catalog, current_id_catalog } from '@/apollo/stores/current'
 
 
 import CreateItemCatalog from '@/components/CRUD/content/catalog/create/CreateItemCatalog'
+import ReadItemCatalog from '@/components/CRUD/content/catalog/read/ReadItemCatalog'
+import UpdateItemCatalog from '@/components/CRUD/content/catalog/update/UpdateItemCatalog'
 import DeleteItemCatalog from '@/components/CRUD/content/catalog/delete/DeleteItemCatalog'
 
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
-const key = process.env.NEXT_KEY_PROJECT
+// const key = process.env.NEXT_KEY_PROJECT
 
 export default function MainCatalog({key}) {
 
@@ -210,8 +212,12 @@ export default function MainCatalog({key}) {
                                             <td className="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
 
                                                 <button
-
-
+                                                    onClick={() => {
+                                                        is_visible_read(true)
+                                                        current_value_catalog(item.value)
+                                                        current_id_catalog(item.id)
+                                                        }
+                                                    }
                                                     type="button" className="inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md text-purple-500 bg-purple-50 hover:bg-purple-200 focus:outline-none focus:border-purple-300 focus:shadow-outline-purple active:bg-purple-200 transition ease-in-out duration-150 sm:text-sm sm:leading-5">
                                                     <svg
                                                     className=" h-4 w-4  duration-150"
@@ -221,6 +227,12 @@ export default function MainCatalog({key}) {
                                                     </svg>
                                                 </button>
                                                 <button
+                                                    onClick={() => {
+                                                        is_visible_update(true)
+                                                        current_value_catalog(item.value)
+                                                        current_id_catalog(item.id)
+                                                        }
+                                                    }
                                                     type="button"
                                                     className="mx-2 inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md text-blue-500 bg-blue-50 hover:bg-blue-200 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-blue-200 transition ease-in-out duration-150 sm:text-sm sm:leading-5">
                                                     <svg
@@ -230,12 +242,12 @@ export default function MainCatalog({key}) {
                                                     </svg>
                                                 </button>
                                                 <button
-                                                onClick={() => {
-                                                    is_visible_delete(true)
-                                                    current_value_catalog(item.value)
-                                                    current_id_catalog(item.id)
-                                                } }
-
+                                                    onClick={() => {
+                                                        is_visible_delete(true)
+                                                        current_value_catalog(item.value)
+                                                        current_id_catalog(item.id)
+                                                        }
+                                                    }
                                                     type="button"
                                                     className="inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md text-red-500 bg-red-50 hover:bg-red-200 focus:outline-none focus:border-red-300 focus:shadow-outline-red active:bg-red-200 transition ease-in-out duration-150 sm:text-sm sm:leading-5">
                                                     <svg
@@ -258,6 +270,8 @@ export default function MainCatalog({key}) {
                 </AppLayout>
                 }
                 <CreateItemCatalog/>
+                <ReadItemCatalog/>
+                <UpdateItemCatalog/>
                 <DeleteItemCatalog/>
             </>
         )
