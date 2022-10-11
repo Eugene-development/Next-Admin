@@ -8,7 +8,7 @@ import { Fragment, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { CheckIcon } from '@heroicons/react/24/outline'
 
-import { sum, filter, map } from "lodash";
+import { map } from "lodash";
 
 String.prototype.translit = String.prototype.translit || function () {
     let Chars = {
@@ -28,15 +28,12 @@ const slugify = str =>
 
 
 export default function CreateItemCatalog() {
-  const { loading, error, data } = useQuery(ALL_MENU)
+  const { loading, error, data } = useQuery(ALL_MENU, {variables: { key: 1 }})
 
-const menu = map(data?.menu, v => v.id)
-// console.log(menu);
+  const menu = map(data?.menu, v => v.id)
   const visibleForm = useReactiveVar(is_visible_create)
   const [text, setText] = useState('');
-//   const [parent, setParent] = useState(menu);
   const [selectedParent, setSelectedParent] = useState([]);
-//   const Add = parent.map(Add => Add);
 
   const handleParentChange = (e) => setSelectedParent((menu[e.target.value]));
   const [addCatalog] = useMutation(CREATE_CATALOG, {
