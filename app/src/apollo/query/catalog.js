@@ -10,6 +10,20 @@ export const ALL_CATALOG = gql`
     }
 `
 
+export const ONE_CATALOG = gql`
+    query catalog_one($id: ID!) {
+        catalog_one(id: $id) {
+            key
+            value
+            parent: parentable {
+                ... on Menu {
+                    value
+                }
+            }
+        }
+    }
+`
+
 export const CREATE_CATALOG = gql`
     mutation create_catalog(
         $key: String!
