@@ -2,6 +2,8 @@ import { useQuery, useReactiveVar, useMutation } from '@apollo/client'
 import { ALL_CATALOG, CREATE_CATALOG } from '@/apollo/query/catalog'
 import { ALL_MENU } from '@/apollo/query/menu'
 import { is_visible_update } from '@/apollo/stores/visible'
+import { current_value_catalog, current_id_catalog } from '@/apollo/stores/current'
+
 
 
 import { Fragment, useRef, useState } from 'react'
@@ -14,6 +16,7 @@ import { useSlug } from "@/hooks/slug";
 
 export default function UpdateItemCatalog() {
 
+const currentValueCatalog = useReactiveVar(current_value_catalog)
 
   const { loading, error, data } = useQuery(ALL_MENU, {variables: { key: '1' }})
 
@@ -22,7 +25,7 @@ export default function UpdateItemCatalog() {
   const visibleForm = useReactiveVar(is_visible_update)
   const [text, setText] = useState('');
   const [selectedParent, setSelectedParent] = useState([]);
-
+console.log(text);
   const handleParentChange = (e) => setSelectedParent((menu[e.target.value]));
   const [addCatalog] = useMutation(CREATE_CATALOG, {
     refetchQueries: [
@@ -135,7 +138,7 @@ const handleAddCatalog = (e) => {
                                 </label>
                                 <div className="mt-1">
                                     <input
-                                    // value="jdiwedfnwifn"
+                                    defaultValue={currentValueCatalog}
                                     onChange={(e) => setText(e.target.value)}
                                     type="text"
                                     name="value"
