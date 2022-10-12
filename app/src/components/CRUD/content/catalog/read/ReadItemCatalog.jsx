@@ -1,22 +1,29 @@
-import { useQuery, useReactiveVar } from '@apollo/client'
-import { ONE_CATALOG } from '@/apollo/query/catalog'
-import { is_visible_read } from '@/apollo/stores/visible'
 import { Fragment, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { CheckIcon } from '@heroicons/react/24/outline'
-
+import { useQuery, useReactiveVar } from '@apollo/client'
+import { ONE_CATALOG } from '@/apollo/query/catalog'
+import { is_visible_read } from '@/apollo/stores/visible'
 import { current_value_catalog, current_id_catalog } from '@/apollo/stores/current'
-
-
-
-
 
 const ReadItemCatalog = () => {
     const visibleForm = useReactiveVar(is_visible_read)
     const currentIdCatalog = useReactiveVar(current_id_catalog)
-    const { loading, error, data } = useQuery(ONE_CATALOG, {variables: { id: currentIdCatalog }, fetchPolicy: 'network-only'});
+    const { loading, error, data } = useQuery(ONE_CATALOG,
+        {
+            variables: { id: currentIdCatalog },
+            fetchPolicy: 'network-only'
+        });
     const cancelButtonRef = useRef(null)
     const currentValueCatalog = useReactiveVar(current_value_catalog)
+
+    if (loading) {
+        return <h2>Loading...</h2>
+    }
+
+    if (error) {
+        return <h2>Error...</h2>
+    }
 
         // const created = new Date(data.catalog_one.created_at).toLocaleDateString("ru");
         // const updated = new Date(data.catalog_one.updated_at).toLocaleDateString("ru");

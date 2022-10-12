@@ -49,7 +49,7 @@ export default function MainCatalog({key}) {
         return <h2>Loading...</h2>
     }
 
-    if (error) {
+  if (error) {
         return <h2>Error...</h2>
     }
 
