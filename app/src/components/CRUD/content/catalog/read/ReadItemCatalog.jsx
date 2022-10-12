@@ -5,7 +5,7 @@ import { Fragment, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { CheckIcon } from '@heroicons/react/24/outline'
 
-import { current_value_catalog } from '@/apollo/stores/current'
+import { current_value_catalog, current_id_catalog } from '@/apollo/stores/current'
 
 
 
@@ -13,13 +13,13 @@ import { current_value_catalog } from '@/apollo/stores/current'
 
 const ReadItemCatalog = () => {
     const visibleForm = useReactiveVar(is_visible_read)
-    const { loading, error, data } = useQuery(ONE_CATALOG, {variables: { id: '1' }});
+    const currentIdCatalog = useReactiveVar(current_id_catalog)
+    const { loading, error, data } = useQuery(ONE_CATALOG, {variables: { id: currentIdCatalog }, fetchPolicy: 'network-only'});
     const cancelButtonRef = useRef(null)
     const currentValueCatalog = useReactiveVar(current_value_catalog)
 
-    if (data){
-        const created = new Date(data.catalog_one.created_at);
-        const updated = new Date(data.catalog_one.updated_at);
+        // const created = new Date(data.catalog_one.created_at).toLocaleDateString("ru");
+        // const updated = new Date(data.catalog_one.updated_at).toLocaleDateString("ru");
     return (
     <>
         { data &&
@@ -65,7 +65,6 @@ const ReadItemCatalog = () => {
                             </div>
                         </div>
                         </div>
-
                             <div className="py-2">
                             <div className="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
                                 <div className="sm:col-span-6">
@@ -76,23 +75,20 @@ const ReadItemCatalog = () => {
 
                                 <div className="sm:col-span-3">
                                     <span  className="block text-sm font-medium text-gray-700">
-                                        Принадлежит элементу меню - "{data.catalog_one.parent.value}"
+                                        Принадлежит элементу меню - "{data.catalog_one?.parent.value}"
                                     </span>
                                 </div>
 
                                 <div className="sm:col-span-6">
                                     <span className="block text-sm font-medium text-gray-700">
-                                        Запись создана - {created.toLocaleDateString("ru")}
+                                        Запись создана - {new Date(data.catalog_one?.created_at).toLocaleDateString("ru")}
                                     </span>
                                 </div>
                                 <div className="sm:col-span-6">
                                     <span className="block text-sm font-medium text-gray-700">
-                                        Последнее изменение - {updated.toLocaleDateString("ru")}
+                                        Последнее изменение - {new Date(data.catalog_one?.updated_at).toLocaleDateString("ru")}
                                     </span>
                                 </div>
-
-
-
                             </div>
                             </div>
 
@@ -117,6 +113,5 @@ const ReadItemCatalog = () => {
     </>
       )
 
-}
 }
 export default ReadItemCatalog
