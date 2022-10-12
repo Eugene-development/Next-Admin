@@ -57,9 +57,20 @@ export const UPDATE_CATALOG = gql`
         $key: String!
         $is_active: Boolean
         $value: String!
+        $slug: String
+        $parentableType: String
+        $parentableId: Int
     ) {
         updateCatalog(
-            input: { id: $id, key: $key, is_active: $is_active, value: $value }
+            input: {
+                id: $id
+                key: $key
+                is_active: $is_active
+                value: $value
+                slug: $slug
+                parentable_type: $parentableType
+                parentable_id: $parentableId
+            }
         ) {
             id
             is_active

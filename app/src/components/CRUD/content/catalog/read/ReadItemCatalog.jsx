@@ -9,13 +9,14 @@ import { current_value_catalog, current_id_catalog } from '@/apollo/stores/curre
 const ReadItemCatalog = () => {
     const visibleForm = useReactiveVar(is_visible_read)
     const currentIdCatalog = useReactiveVar(current_id_catalog)
+    const currentValueCatalog = useReactiveVar(current_value_catalog)
+
     const { loading, error, data } = useQuery(ONE_CATALOG,
         {
             variables: { id: currentIdCatalog },
             fetchPolicy: 'network-only'
         });
     const cancelButtonRef = useRef(null)
-    const currentValueCatalog = useReactiveVar(current_value_catalog)
 
     if (loading) {
         return <h2>Loading...</h2>
