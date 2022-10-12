@@ -13,8 +13,9 @@ export const ALL_CATALOG = gql`
 export const ONE_CATALOG = gql`
     query catalog_one($id: ID!) {
         catalog_one(id: $id) {
-            key
             value
+            created_at
+            updated_at
             parent: parentable {
                 ... on Menu {
                     value
@@ -44,7 +45,6 @@ export const CREATE_CATALOG = gql`
             }
         ) {
             id
-            key
             is_active
             value
             slug
@@ -62,7 +62,6 @@ export const UPDATE_CATALOG = gql`
             input: { id: $id, key: $key, is_active: $is_active, value: $value }
         ) {
             id
-            key
             is_active
             value
             slug

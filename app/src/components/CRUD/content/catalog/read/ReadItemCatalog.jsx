@@ -17,8 +17,9 @@ const ReadItemCatalog = () => {
     const cancelButtonRef = useRef(null)
     const currentValueCatalog = useReactiveVar(current_value_catalog)
 
-
-
+    if (data){
+        const created = new Date(data.catalog_one.created_at);
+        const updated = new Date(data.catalog_one.updated_at);
     return (
     <>
         { data &&
@@ -54,7 +55,7 @@ const ReadItemCatalog = () => {
                         </div>
                         <div className="mt-3 text-center sm:mt-5">
                             <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
-                            Элемент каталога "{currentValueCatalog}"
+                            Данные элемента каталога
                             </Dialog.Title>
                             <div className="mt-2">
                             <p className="text-sm text-gray-500">
@@ -67,16 +68,27 @@ const ReadItemCatalog = () => {
 
                             <div className="py-2">
                             <div className="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+                                <div className="sm:col-span-6">
+                                    <span className="block text-sm font-medium text-gray-700">
+                                        Значение - "{currentValueCatalog}"
+                                    </span>
+                                </div>
+
                                 <div className="sm:col-span-3">
-                                <label htmlFor="parent" className="block text-sm font-medium text-gray-700">
-                                    Принадлежит элементу меню
-                                </label>
+                                    <span  className="block text-sm font-medium text-gray-700">
+                                        Принадлежит элементу меню - "{data.catalog_one.parent.value}"
+                                    </span>
                                 </div>
 
                                 <div className="sm:col-span-6">
-                                <label htmlFor="value" className="block text-sm font-medium text-gray-700">
-                                    Значение
-                                </label>
+                                    <span className="block text-sm font-medium text-gray-700">
+                                        Запись создана - {created.toLocaleDateString("ru")}
+                                    </span>
+                                </div>
+                                <div className="sm:col-span-6">
+                                    <span className="block text-sm font-medium text-gray-700">
+                                        Последнее изменение - {updated.toLocaleDateString("ru")}
+                                    </span>
                                 </div>
 
 
@@ -104,5 +116,7 @@ const ReadItemCatalog = () => {
         }
     </>
       )
+
+}
 }
 export default ReadItemCatalog
