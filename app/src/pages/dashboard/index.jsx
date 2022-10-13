@@ -2,16 +2,12 @@ import AppLayout from '@/components/Layouts/AppLayout'
 import Head from 'next/head'
 import { useAuth } from '@/hooks/auth'
 import Greetings from '@/components/dashboard/greetings'
-import { useReactiveVar } from '@apollo/client'
 import { key_project } from '@/apollo/stores/auth'
 
 
 const Dashboard = () => {
     const { user } = useAuth({ middleware: 'auth' })
     key_project(user?.key)
-    const keyProject = useReactiveVar(key_project)
-    console.log(keyProject);
-
 
     return (
         <AppLayout
