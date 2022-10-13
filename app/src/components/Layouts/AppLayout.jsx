@@ -28,11 +28,11 @@ const navigation = [
         icon: UsersIcon,
         current: false,
         children: [
-            { name: 'Меню', href: '#' },
+            { name: 'Меню', href: '/content/menu' },
             { name: 'Каталог', href: '/content/catalog' },
-            { name: 'Рубрика', href: '/content/rubrics' },
-            { name: 'Категория', href: '#' },
-            { name: 'Продукция', href: '#' },
+            { name: 'Рубрика', href: '/content/rubric' },
+            { name: 'Категория', href: '/content/category' },
+            { name: 'Продукция', href: '/content/product' },
         ],
     },
     {

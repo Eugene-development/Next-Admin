@@ -1,17 +1,17 @@
 import { key_project } from '@/apollo/stores/auth'
+import { useEffect, useRef, useState } from 'react'
 import AppLayout from '@/components/Layouts/AppLayout'
 import Head from 'next/head'
-import { useMutation, useQuery,  useReactiveVar } from '@apollo/client'
+import { useQuery,  useReactiveVar } from '@apollo/client'
 import { ALL_CATALOG } from '@/apollo/query/catalog'
-import { useEffect, useRef, useState } from 'react'
-// import { Switch } from '@headlessui/react'
-import  Switch  from '@/components/UI/buttons/Switch'
 import { is_visible_create, is_visible_read, is_visible_update, is_visible_delete } from '@/apollo/stores/visible'
 import { current_value_catalog, current_id_catalog, current_parent_id_catalog, current_parent_value_catalog, current_created_catalog, current_updated_catalog } from '@/apollo/stores/current'
 import CreateItemCatalog from '@/components/CRUD/content/catalog/create/CreateItemCatalog'
 import ReadItemCatalog from '@/components/CRUD/content/catalog/read/ReadItemCatalog'
 import UpdateItemCatalog from '@/components/CRUD/content/catalog/update/UpdateItemCatalog'
 import DeleteItemCatalog from '@/components/CRUD/content/catalog/delete/DeleteItemCatalog'
+import  Switch  from '@/components/UI/buttons/Switch'
+
 
 
 function classNames(...classes) {
@@ -19,7 +19,7 @@ function classNames(...classes) {
 }
 // const key = process.env.NEXT_KEY_PROJECT
 
-export default function MainCatalog() {
+export default function Catalog() {
     const key = useReactiveVar(key_project)
 
   const { loading, error, data } = useQuery(ALL_CATALOG, {variables: { key }, fetchPolicy: 'network-only'})
