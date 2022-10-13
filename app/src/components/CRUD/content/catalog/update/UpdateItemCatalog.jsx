@@ -1,17 +1,11 @@
-import { useQuery, useReactiveVar, useMutation } from '@apollo/client'
-import { ALL_CATALOG, ONE_CATALOG, UPDATE_CATALOG } from '@/apollo/query/catalog'
-import { ALL_MENU } from '@/apollo/query/menu'
-import { is_visible_update } from '@/apollo/stores/visible'
-import { current_id_catalog, current_value_catalog, current_parent_id_catalog, current_parent_value_catalog } from '@/apollo/stores/current'
-
-
-
 import { Fragment, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { CheckIcon } from '@heroicons/react/24/outline'
-
-import { map } from "lodash";
-
+import { useQuery, useReactiveVar, useMutation } from '@apollo/client'
+import { ALL_CATALOG, UPDATE_CATALOG } from '@/apollo/query/catalog'
+import { ALL_MENU } from '@/apollo/query/menu'
+import { is_visible_update } from '@/apollo/stores/visible'
+import { current_id_catalog, current_value_catalog, current_parent_id_catalog, current_parent_value_catalog } from '@/apollo/stores/current'
 import { useSlug } from "@/hooks/slug";
 
 export default function UpdateItemCatalog() {
