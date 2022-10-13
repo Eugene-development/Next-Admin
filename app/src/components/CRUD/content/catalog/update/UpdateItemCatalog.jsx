@@ -119,7 +119,7 @@ export default function UpdateItemCatalog() {
                                     <select
 
                                         onChange={e => handleParentChange(e)}
-                                        defaultValue={currentParentValueCatalog}
+                                        defaultValue={currentParentIdCatalog}
                                         id="parent"
                                         name="parent"
                                         autoComplete="parent-name"
