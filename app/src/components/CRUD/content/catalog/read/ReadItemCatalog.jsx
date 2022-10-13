@@ -1,8 +1,7 @@
 import { Fragment, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { CheckIcon } from '@heroicons/react/24/outline'
-import { useQuery, useReactiveVar } from '@apollo/client'
-import { ONE_CATALOG } from '@/apollo/query/catalog'
+import { useReactiveVar } from '@apollo/client'
 import { is_visible_read } from '@/apollo/stores/visible'
 import { current_value_catalog, current_parent_value_catalog, current_created_catalog, current_updated_catalog } from '@/apollo/stores/current'
 
