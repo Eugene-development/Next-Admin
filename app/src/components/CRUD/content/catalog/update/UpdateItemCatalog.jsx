@@ -2,7 +2,7 @@ import { useQuery, useReactiveVar, useMutation } from '@apollo/client'
 import { ALL_CATALOG, ONE_CATALOG, UPDATE_CATALOG } from '@/apollo/query/catalog'
 import { ALL_MENU } from '@/apollo/query/menu'
 import { is_visible_update } from '@/apollo/stores/visible'
-import { current_id_catalog, current_value_catalog, current_parent_value_catalog } from '@/apollo/stores/current'
+import { current_id_catalog, current_value_catalog, current_parent_id_catalog, current_parent_value_catalog } from '@/apollo/stores/current'
 
 
 
@@ -20,42 +20,45 @@ export default function UpdateItemCatalog() {
 
     const currentIdCatalog = useReactiveVar(current_id_catalog)
     const currentValueCatalog = useReactiveVar(current_value_catalog)
+    const currentParentIdCatalog = useReactiveVar(current_parent_id_catalog)
     const currentParentValueCatalog = useReactiveVar(current_parent_value_catalog)
 
 
     const { data } = useQuery(ALL_MENU, {variables: { key: '1' }})
-    const menu = map(data?.menu, v => v.id)
+    // const menu = map(data?.menu, v => v.id)
+    // console.log(menu);
 
-  const [text, setText] = useState((currentValueCatalog));
-  const [selectedParent, setSelectedParent] = useState((currentParentValueCatalog));
-  const handleParentChange = (e) => setSelectedParent((menu[e.target.value]));
-  const [addCatalog] = useMutation(UPDATE_CATALOG, {
-    refetchQueries: [
-      { query: ALL_CATALOG,
-        variables: { key: '1' }}
-    ],
-  });
+    const [text, setText] = useState(([currentValueCatalog]));
+    console.log(text);
+    const [selectedParent, setSelectedParent] = useState(([currentParentIdCatalog]));
+    console.log(selectedParent);
+    const handleParentChange = (e) => setSelectedParent(([e.target.value]));
+    const [addCatalog] = useMutation(UPDATE_CATALOG, {
+        refetchQueries: [
+        { query: ALL_CATALOG,
+            variables: { key: '1' }}
+        ],
+    });
 
-  const { slugify } = useSlug();
-
-const handleAddCatalog = (e) => {
-    e.preventDefault();
-    if (text.trim().length) {
-      addCatalog({
-        variables: {
-          id: currentIdCatalog,
-          key: '1',
-          is_active: true,
-          value: text,
-          slug: slugify(text.translit()),
-          parentableType: 'menu',
-          parentableId: Number(selectedParent),
-        },
-      });
-      setText('');
+    const { slugify } = useSlug();
+    const handleAddCatalog = (e) => {
+        e.preventDefault();
+        if (text.trim().length) {
+        addCatalog({
+            variables: {
+            id: currentIdCatalog,
+            key: '1',
+            is_active: true,
+            value: text,
+            slug: slugify(text.translit()),
+            parentableType: 'menu',
+            parentableId: Number(selectedParent),
+            },
+        });
+        setText('');
+        }
     }
-  }
-  const cancelButtonRef = useRef(null)
+    const cancelButtonRef = useRef(null)
 
   return (
     <>
@@ -122,9 +125,9 @@ const handleAddCatalog = (e) => {
                                         >
                                             {data.menu.map((item, key) => {
                                                 return item.value == currentParentValueCatalog ?
-                                                    <option key={key} value={item.value}>{currentParentValueCatalog}</option>
+                                                    <option key={key} value={item.id}>{currentParentValueCatalog}</option>
                                                     :
-                                                    <option key={key} value={key}>{item.value}</option>
+                                                    <option key={key} value={item.id}>{item.value}</option>
                                             }
                                                 )}
 
