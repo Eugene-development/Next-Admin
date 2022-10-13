@@ -23,6 +23,8 @@ export default function UpdateItemCatalog() {
     const currentParentValueCatalog = useReactiveVar(current_parent_value_catalog)
 
 
+    current_parent_id_catalog(currentParentIdCatalog)
+
     const { data } = useQuery(ALL_MENU, {variables: { key: '1' }})
     // const menu = map(data?.menu, v => v.id)
     // console.log(menu);
@@ -31,10 +33,13 @@ export default function UpdateItemCatalog() {
     const [text, setText] = useState((currentValueCatalog));
     // console.log(currentValueCatalog);
     // console.log(text);
-    const [selectedParent, setSelectedParent] = useState((currentParentIdCatalog));
-    // console.log(currentParentIdCatalog);
+    const [selectedParent, setSelectedParent] = useState();
+
+    console.log(selectedParent);
     // console.log(selectedParent);
-    const handleParentChange = (e) => setSelectedParent((e.target.value));
+    const handleParentChange = (e) => {
+        setSelectedParent((e.target.value))
+    } ;
     const [addCatalog] = useMutation(UPDATE_CATALOG, {
         refetchQueries: [
         { query: ALL_CATALOG,
@@ -126,10 +131,10 @@ export default function UpdateItemCatalog() {
                                         className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                         >
                                             {data.menu.map((item, key) => {
-                                                return item.id == currentParentIdCatalog ?
+                                                return item?.id == currentParentIdCatalog ?
                                                     <option key={key} value={currentParentIdCatalog}>{currentParentValueCatalog}</option>
                                                     :
-                                                    <option key={key} value={item.id}>{item.value}</option>
+                                                    <option key={key} value={item?.id}>{item?.value}</option>
                                             }
                                                 )}
 
