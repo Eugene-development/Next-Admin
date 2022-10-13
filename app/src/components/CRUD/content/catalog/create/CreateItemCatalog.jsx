@@ -1,3 +1,4 @@
+import { key_project } from '@/apollo/stores/auth'
 import { useQuery, useReactiveVar, useMutation } from '@apollo/client'
 import { ALL_CATALOG, CREATE_CATALOG } from '@/apollo/query/catalog'
 import { ALL_MENU } from '@/apollo/query/menu'
@@ -9,8 +10,9 @@ import { map } from "lodash";
 import { useSlug } from "@/hooks/slug";
 
 const CreateItemCatalog = () => {
+    const key = useReactiveVar(key_project)
     const visibleForm = useReactiveVar(is_visible_create)
-    const { data } = useQuery(ALL_MENU, {variables: { key: '1' }})
+    const { data } = useQuery(ALL_MENU, {variables: { key }})
     const menu = map(data?.menu, v => v.id)
     const [selectedParent, setSelectedParent] = useState([]);
     const handleParentChange = (e) => setSelectedParent((menu[e.target.value]));
@@ -21,7 +23,7 @@ const CreateItemCatalog = () => {
         if (text.trim().length) {
         addCatalog({
             variables: {
-            key: '1',
+            key,
             is_active: true,
             value: text,
             slug: slugify(text.translit()),
@@ -35,7 +37,7 @@ const CreateItemCatalog = () => {
     const [addCatalog] = useMutation(CREATE_CATALOG, {
         refetchQueries: [
         { query: ALL_CATALOG,
-            variables: { key: '1' }}
+            variables: { key }}
         ],
     });
     const cancelButtonRef = useRef(null)

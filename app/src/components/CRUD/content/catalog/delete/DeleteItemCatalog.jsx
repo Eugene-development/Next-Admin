@@ -1,3 +1,4 @@
+import { key_project } from '@/apollo/stores/auth'
 import { useReactiveVar, useMutation } from '@apollo/client'
 import { ALL_CATALOG, DELETE_CATALOG } from '@/apollo/query/catalog'
 import { useRef, Fragment } from 'react'
@@ -5,7 +6,6 @@ import { Dialog, Transition } from '@headlessui/react'
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 import { is_visible_delete } from '@/apollo/stores/visible'
 import { current_value_catalog, current_id_catalog } from '@/apollo/stores/current'
-import { key_project } from '@/apollo/stores/auth'
 
 
 const DeleteItemCatalog = () => {

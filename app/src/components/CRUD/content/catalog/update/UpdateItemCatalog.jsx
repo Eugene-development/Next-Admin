@@ -1,3 +1,4 @@
+import { key_project } from '@/apollo/stores/auth'
 import { Fragment, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { CheckIcon } from '@heroicons/react/24/outline'
@@ -9,12 +10,13 @@ import { current_id_catalog, current_value_catalog, current_parent_id_catalog, c
 import { useSlug } from "@/hooks/slug";
 
 const UpdateItemCatalog = () => {
+    const key = useReactiveVar(key_project)
     const visibleForm = useReactiveVar(is_visible_update)
     const currentIdCatalog = useReactiveVar(current_id_catalog)
     const currentValueCatalog = useReactiveVar(current_value_catalog)
     const currentParentIdCatalog = useReactiveVar(current_parent_id_catalog)
     const currentParentValueCatalog = useReactiveVar(current_parent_value_catalog)
-    const { data } = useQuery(ALL_MENU, {variables: { key: '1' }})
+    const { data } = useQuery(ALL_MENU, {variables: { key }})
     const [changedText, setText] = useState();
     const [selectedParent, setSelectedParent] = useState();
     const parent = selectedParent ?  selectedParent : currentParentIdCatalog;
@@ -27,7 +29,7 @@ const UpdateItemCatalog = () => {
         updateCatalog({
             variables: {
             id: currentIdCatalog,
-            key: '1',
+            key,
             is_active: true,
             value: text,
             slug: slugify(text.translit()),
@@ -41,7 +43,7 @@ const UpdateItemCatalog = () => {
         const [updateCatalog] = useMutation(UPDATE_CATALOG, {
         refetchQueries: [
         { query: ALL_CATALOG,
-            variables: { key: '1' }}
+            variables: { key }}
         ],
     });
 
