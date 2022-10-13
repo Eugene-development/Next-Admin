@@ -28,7 +28,8 @@ export default function UpdateItemCatalog() {
 // console.log(data_one_catalog.catalog_one?.parent.value);
   const menu = map(data?.menu, v => v.id)
   const visibleForm = useReactiveVar(is_visible_update)
-  const [text, setText] = useState('');
+  const [text, setText] = useState((currentValueCatalog));
+  console.log(text);
   const [selectedParent, setSelectedParent] = useState((data_one_catalog?.catalog_one?.parent.value));
   const handleParentChange = (e) => setSelectedParent((menu[e.target.value]));
   const [addCatalog] = useMutation(UPDATE_CATALOG, {
@@ -114,6 +115,7 @@ const handleAddCatalog = (e) => {
                                 </label>
                                 <div className="mt-1">
                                     <select
+
                                         onChange={e => handleParentChange(e)}
                                         defaultValue={data_one_catalog.catalog_one?.parent.value}
                                         id="parent"

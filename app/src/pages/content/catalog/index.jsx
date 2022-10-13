@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from 'react'
 // import { Switch } from '@headlessui/react'
 import  Switch  from '@/components/UI/buttons/Switch'
 import { is_visible_create, is_visible_read, is_visible_update, is_visible_delete } from '@/apollo/stores/visible'
-import { current_value_catalog, current_id_catalog } from '@/apollo/stores/current'
+import { current_value_catalog, current_id_catalog, current_parent_value_catalog, current_created_catalog, current_updated_catalog } from '@/apollo/stores/current'
 
 
 import CreateItemCatalog from '@/components/CRUD/content/catalog/create/CreateItemCatalog'
@@ -172,7 +172,9 @@ export default function MainCatalog({key}) {
                                                     onClick={() => {
                                                         is_visible_read(true)
                                                         current_value_catalog(item.value)
-                                                        current_id_catalog(item.id)
+                                                        current_parent_value_catalog(item.parent.value)
+                                                        current_created_catalog(item.created_at)
+                                                        current_updated_catalog(item.updated_at)
                                                         }
                                                     }
                                                     type="button" className="inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md text-purple-500 bg-purple-50 hover:bg-purple-200 focus:outline-none focus:border-purple-300 focus:shadow-outline-purple active:bg-purple-200 transition ease-in-out duration-150 sm:text-sm sm:leading-5">

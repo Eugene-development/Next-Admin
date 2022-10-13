@@ -4,33 +4,19 @@ import { CheckIcon } from '@heroicons/react/24/outline'
 import { useQuery, useReactiveVar } from '@apollo/client'
 import { ONE_CATALOG } from '@/apollo/query/catalog'
 import { is_visible_read } from '@/apollo/stores/visible'
-import { current_value_catalog, current_id_catalog } from '@/apollo/stores/current'
+import { current_value_catalog, current_parent_value_catalog, current_created_catalog, current_updated_catalog } from '@/apollo/stores/current'
 
 const ReadItemCatalog = () => {
     const visibleForm = useReactiveVar(is_visible_read)
-    const currentIdCatalog = useReactiveVar(current_id_catalog)
     const currentValueCatalog = useReactiveVar(current_value_catalog)
+    const currentParentValueCatalog = useReactiveVar(current_parent_value_catalog)
+    const currentCreatedCatalog = useReactiveVar(current_created_catalog)
+    const currentUpdatedCatalog = useReactiveVar(current_updated_catalog)
 
-    const { loading, error, data } = useQuery(ONE_CATALOG,
-        {
-            variables: { id: currentIdCatalog },
-            fetchPolicy: 'network-only'
-        });
     const cancelButtonRef = useRef(null)
 
-    if (loading) {
-        return <h2>Loading...</h2>
-    }
-
-    if (error) {
-        return <h2>Error...</h2>
-    }
-
-        // const created = new Date(data.catalog_one.created_at).toLocaleDateString("ru");
-        // const updated = new Date(data.catalog_one.updated_at).toLocaleDateString("ru");
     return (
-    <>
-        { data &&
+        <>
             <Transition.Root show={visibleForm} as={Fragment}>
             <Dialog as="div" className="relative z-10" initialFocus={cancelButtonRef} onClose={() => is_visible_read(false)}>
                 <Transition.Child
@@ -83,18 +69,18 @@ const ReadItemCatalog = () => {
 
                                 <div className="sm:col-span-3">
                                     <span  className="block text-sm font-medium text-gray-700">
-                                        Принадлежит элементу меню - "{data.catalog_one?.parent.value}"
+                                        Принадлежит элементу меню - "{currentParentValueCatalog}"
                                     </span>
                                 </div>
 
                                 <div className="sm:col-span-6">
                                     <span className="block text-sm font-medium text-gray-700">
-                                        Запись создана - {new Date(data.catalog_one?.created_at).toLocaleDateString("ru")}
+                                        Запись создана - {new Date(currentCreatedCatalog).toLocaleDateString("ru")}
                                     </span>
                                 </div>
                                 <div className="sm:col-span-6">
                                     <span className="block text-sm font-medium text-gray-700">
-                                        Последнее изменение - {new Date(data.catalog_one?.updated_at).toLocaleDateString("ru")}
+                                        Последнее изменение - {new Date(currentUpdatedCatalog).toLocaleDateString("ru")}
                                     </span>
                                 </div>
                             </div>
@@ -117,8 +103,7 @@ const ReadItemCatalog = () => {
                 </div>
             </Dialog>
             </Transition.Root>
-        }
-    </>
+        </>
       )
 
 }
