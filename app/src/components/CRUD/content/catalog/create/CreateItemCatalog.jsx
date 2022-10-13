@@ -12,54 +12,47 @@ import { map } from "lodash";
 
 import { useSlug } from "@/hooks/slug";
 
-export default function CreateItemCatalog() {
-
-
-  const { loading, error, data } = useQuery(ALL_MENU, {variables: { key: '1' }})
-
-  const menu = map(data?.menu, v => v.id)
-// console.log(menu);
-  const visibleForm = useReactiveVar(is_visible_create)
-  const [text, setText] = useState('');
-  const [selectedParent, setSelectedParent] = useState([]);
-
-  const handleParentChange = (e) => setSelectedParent((menu[e.target.value]));
-  const [addCatalog] = useMutation(CREATE_CATALOG, {
-    refetchQueries: [
-      { query: ALL_CATALOG,
-        variables: { key: '1' }}
-    ],
-    // update(cache, { data: { newTodo } }) {
-    //   const { catalog } = cache.readQuery({ query: ALL_CATALOG });
-
-    //   cache.writeQuery({
-    //     query: ALL_CATALOG,
-    //     data: {
-    //       catalog: [newTodo, ...catalog]
-    //     }
-    //   })
-    // }
-  });
-
-  const { slugify } = useSlug();
-
-const handleAddCatalog = (e) => {
-    e.preventDefault();
-    if (text.trim().length) {
-      addCatalog({
-        variables: {
-          key: '1',
-          is_active: true,
-          value: text,
-          slug: slugify(text.translit()),
-          parentableType: 'menu',
-          parentableId: Number(selectedParent),
-        },
-      });
-      setText('');
+const CreateItemCatalog = () => {
+    const visibleForm = useReactiveVar(is_visible_create)
+    const { data } = useQuery(ALL_MENU, {variables: { key: '1' }})
+    const menu = map(data?.menu, v => v.id)
+    const [selectedParent, setSelectedParent] = useState([]);
+    const handleParentChange = (e) => setSelectedParent((menu[e.target.value]));
+    const [text, setText] = useState('');
+    const { slugify } = useSlug();
+    const handleAddCatalog = (e) => {
+        e.preventDefault();
+        if (text.trim().length) {
+        addCatalog({
+            variables: {
+            key: '1',
+            is_active: true,
+            value: text,
+            slug: slugify(text.translit()),
+            parentableType: 'menu',
+            parentableId: Number(selectedParent),
+            },
+        });
+        setText('');
+        }
     }
-  }
-  const cancelButtonRef = useRef(null)
+    const [addCatalog] = useMutation(CREATE_CATALOG, {
+        refetchQueries: [
+        { query: ALL_CATALOG,
+            variables: { key: '1' }}
+        ],
+        // update(cache, { data: { newTodo } }) {
+        //   const { catalog } = cache.readQuery({ query: ALL_CATALOG });
+
+        //   cache.writeQuery({
+        //     query: ALL_CATALOG,
+        //     data: {
+        //       catalog: [newTodo, ...catalog]
+        //     }
+        //   })
+        // }
+    });
+    const cancelButtonRef = useRef(null)
 
   return (
     <>
@@ -144,9 +137,6 @@ const handleAddCatalog = (e) => {
                                     />
                                 </div>
                                 </div>
-
-
-
                             </div>
                             </div>
 
@@ -179,3 +169,4 @@ const handleAddCatalog = (e) => {
     </>
   )
 }
+export default CreateItemCatalog
