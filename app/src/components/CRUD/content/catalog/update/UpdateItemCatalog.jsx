@@ -2,7 +2,7 @@ import { useQuery, useReactiveVar, useMutation } from '@apollo/client'
 import { ALL_CATALOG, ONE_CATALOG, UPDATE_CATALOG } from '@/apollo/query/catalog'
 import { ALL_MENU } from '@/apollo/query/menu'
 import { is_visible_update } from '@/apollo/stores/visible'
-import { current_value_catalog, current_id_catalog } from '@/apollo/stores/current'
+import { current_id_catalog, current_value_catalog, current_parent_value_catalog } from '@/apollo/stores/current'
 
 
 
@@ -15,22 +15,19 @@ import { map } from "lodash";
 import { useSlug } from "@/hooks/slug";
 
 export default function UpdateItemCatalog() {
+    const visibleForm = useReactiveVar(is_visible_update)
 
-  const currentValueCatalog = useReactiveVar(current_value_catalog)
-  const currentIdCatalog = useReactiveVar(current_id_catalog)
 
-  const { loading, error, data } = useQuery(ALL_MENU, {variables: { key: '1' }})
-  const { data: data_one_catalog } = useQuery(ONE_CATALOG,
-        {
-            variables: { id: currentIdCatalog },
-            fetchPolicy: 'network-only'
-        });
-// console.log(data_one_catalog.catalog_one?.parent.value);
-  const menu = map(data?.menu, v => v.id)
-  const visibleForm = useReactiveVar(is_visible_update)
+    const currentIdCatalog = useReactiveVar(current_id_catalog)
+    const currentValueCatalog = useReactiveVar(current_value_catalog)
+    const currentParentValueCatalog = useReactiveVar(current_parent_value_catalog)
+
+
+    const { data } = useQuery(ALL_MENU, {variables: { key: '1' }})
+    const menu = map(data?.menu, v => v.id)
+
   const [text, setText] = useState((currentValueCatalog));
-  console.log(text);
-  const [selectedParent, setSelectedParent] = useState((data_one_catalog?.catalog_one?.parent.value));
+  const [selectedParent, setSelectedParent] = useState((currentParentValueCatalog));
   const handleParentChange = (e) => setSelectedParent((menu[e.target.value]));
   const [addCatalog] = useMutation(UPDATE_CATALOG, {
     refetchQueries: [
@@ -62,7 +59,7 @@ const handleAddCatalog = (e) => {
 
   return (
     <>
-        { data && data_one_catalog &&
+        { data &&
             <Transition.Root show={visibleForm} as={Fragment}>
             <Dialog as="div" className="relative z-10" initialFocus={cancelButtonRef} onClose={() => is_visible_update(false)}>
                 <Transition.Child
@@ -117,17 +114,17 @@ const handleAddCatalog = (e) => {
                                     <select
 
                                         onChange={e => handleParentChange(e)}
-                                        defaultValue={data_one_catalog.catalog_one?.parent.value}
+                                        defaultValue={currentParentValueCatalog}
                                         id="parent"
                                         name="parent"
                                         autoComplete="parent-name"
                                         className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                         >
                                             {data.menu.map((item, key) => {
-                                                return item.value == data_one_catalog.catalog_one?.parent.value ?
-                                                <option key={key} value={item.value}>{data_one_catalog.catalog_one?.parent.value}</option>
-                                                :
-                                                <option key={key} value={key}>{item.value}</option>
+                                                return item.value == currentParentValueCatalog ?
+                                                    <option key={key} value={item.value}>{currentParentValueCatalog}</option>
+                                                    :
+                                                    <option key={key} value={key}>{item.value}</option>
                                             }
                                                 )}
 

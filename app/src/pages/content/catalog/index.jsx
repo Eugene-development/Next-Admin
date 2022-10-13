@@ -189,6 +189,7 @@ export default function MainCatalog({key}) {
                                                     onClick={() => {
                                                         is_visible_update(true)
                                                         current_value_catalog(item.value)
+                                                        current_parent_value_catalog(item.parent.value)
                                                         current_id_catalog(item.id)
                                                         }
                                                     }
