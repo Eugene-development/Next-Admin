@@ -8,7 +8,7 @@ import { is_visible_update } from '@/apollo/stores/visible'
 import { current_id_catalog, current_value_catalog, current_parent_id_catalog, current_parent_value_catalog } from '@/apollo/stores/current'
 import { useSlug } from "@/hooks/slug";
 
-export default function UpdateItemCatalog() {
+const UpdateItemCatalog = () => {
     const visibleForm = useReactiveVar(is_visible_update)
     const currentIdCatalog = useReactiveVar(current_id_catalog)
     const currentValueCatalog = useReactiveVar(current_value_catalog)
@@ -21,10 +21,10 @@ export default function UpdateItemCatalog() {
     const text = changedText ? changedText : currentValueCatalog;
     const handleParentChange = (e) => setSelectedParent((e.target.value));
     const { slugify } = useSlug();
-    const handleAddCatalog = (e) => {
+    const handleUpdateCatalog = (e) => {
         e.preventDefault();
         if (text.trim().length) {
-        addCatalog({
+        updateCatalog({
             variables: {
             id: currentIdCatalog,
             key: '1',
@@ -38,7 +38,7 @@ export default function UpdateItemCatalog() {
         setText('');
         }
     }
-        const [addCatalog] = useMutation(UPDATE_CATALOG, {
+        const [updateCatalog] = useMutation(UPDATE_CATALOG, {
         refetchQueries: [
         { query: ALL_CATALOG,
             variables: { key: '1' }}
@@ -92,37 +92,33 @@ export default function UpdateItemCatalog() {
                             </div>
                         </div>
                         </div>
-                        <form onSubmit={handleAddCatalog} className="space-y-8 divide-y divide-gray-200">
+                        <form onSubmit={handleUpdateCatalog} className="space-y-8 divide-y divide-gray-200">
 
                             <div className="py-2">
                             <div className="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
                                 <div className="sm:col-span-3">
-                                <label htmlFor="parent" className="block text-sm font-medium text-gray-700">
-                                    Изменить элемент меню
-                                </label>
-                                <div className="mt-1">
-                                    <select
-
-                                        onChange={e => handleParentChange(e)}
-                                        defaultValue={currentParentIdCatalog}
-                                        id="parent"
-                                        name="parent"
-                                        autoComplete="parent-name"
-                                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                                        >
-                                            {data.menu.map((item, key) => {
-                                                return item?.id == currentParentIdCatalog ?
-                                                    <option key={key} value={currentParentIdCatalog}>{currentParentValueCatalog}</option>
-                                                    :
-                                                    <option key={key} value={item?.id}>{item?.value}</option>
-                                            }
-                                                )}
-
-
-                                    </select>
+                                    <label htmlFor="parent" className="block text-sm font-medium text-gray-700">
+                                        Изменить элемент меню
+                                    </label>
+                                    <div className="mt-1">
+                                        <select
+                                            onChange={e => handleParentChange(e)}
+                                            defaultValue={currentParentIdCatalog}
+                                            id="parent"
+                                            name="parent"
+                                            autoComplete="parent-name"
+                                            className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                            >
+                                                {data.menu.map((item, key) => {
+                                                    return item?.id == currentParentIdCatalog ?
+                                                        <option key={key} value={currentParentIdCatalog}>{currentParentValueCatalog}</option>
+                                                        :
+                                                        <option key={key} value={item?.id}>{item?.value}</option>
+                                                }
+                                                    )}
+                                        </select>
+                                    </div>
                                 </div>
-                                </div>
-
                                 <div className="sm:col-span-6">
                                 <label htmlFor="value" className="block text-sm font-medium text-gray-700">
                                     Значение
@@ -139,9 +135,6 @@ export default function UpdateItemCatalog() {
                                     />
                                 </div>
                                 </div>
-
-
-
                             </div>
                             </div>
 
@@ -174,3 +167,5 @@ export default function UpdateItemCatalog() {
     </>
   )
 }
+
+export default UpdateItemCatalog
