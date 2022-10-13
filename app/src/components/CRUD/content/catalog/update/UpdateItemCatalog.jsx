@@ -28,9 +28,11 @@ export default function UpdateItemCatalog() {
     // const menu = map(data?.menu, v => v.id)
     // console.log(menu);
 
-    const [text, setText] = useState(([currentValueCatalog]));
+    const [text, setText] = useState((currentValueCatalog));
+    console.log(currentValueCatalog);
     console.log(text);
-    const [selectedParent, setSelectedParent] = useState(([currentParentIdCatalog]));
+    const [selectedParent, setSelectedParent] = useState((currentParentIdCatalog));
+    console.log(currentParentIdCatalog);
     console.log(selectedParent);
     const handleParentChange = (e) => setSelectedParent(([e.target.value]));
     const [addCatalog] = useMutation(UPDATE_CATALOG, {
@@ -125,7 +127,7 @@ export default function UpdateItemCatalog() {
                                         >
                                             {data.menu.map((item, key) => {
                                                 return item.value == currentParentValueCatalog ?
-                                                    <option key={key} value={item.id}>{currentParentValueCatalog}</option>
+                                                    <option key={key} value={currentParentIdCatalog}>{currentParentValueCatalog}</option>
                                                     :
                                                     <option key={key} value={item.id}>{item.value}</option>
                                             }
