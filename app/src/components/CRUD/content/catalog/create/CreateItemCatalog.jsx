@@ -2,14 +2,10 @@ import { useQuery, useReactiveVar, useMutation } from '@apollo/client'
 import { ALL_CATALOG, CREATE_CATALOG } from '@/apollo/query/catalog'
 import { ALL_MENU } from '@/apollo/query/menu'
 import { is_visible_create } from '@/apollo/stores/visible'
-
-
 import { Fragment, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { CheckIcon } from '@heroicons/react/24/outline'
-
 import { map } from "lodash";
-
 import { useSlug } from "@/hooks/slug";
 
 const CreateItemCatalog = () => {
@@ -41,16 +37,6 @@ const CreateItemCatalog = () => {
         { query: ALL_CATALOG,
             variables: { key: '1' }}
         ],
-        // update(cache, { data: { newTodo } }) {
-        //   const { catalog } = cache.readQuery({ query: ALL_CATALOG });
-
-        //   cache.writeQuery({
-        //     query: ALL_CATALOG,
-        //     data: {
-        //       catalog: [newTodo, ...catalog]
-        //     }
-        //   })
-        // }
     });
     const cancelButtonRef = useRef(null)
 

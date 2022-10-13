@@ -11,7 +11,6 @@ const ReadItemCatalog = () => {
     const currentParentValueCatalog = useReactiveVar(current_parent_value_catalog)
     const currentCreatedCatalog = useReactiveVar(current_created_catalog)
     const currentUpdatedCatalog = useReactiveVar(current_updated_catalog)
-
     const cancelButtonRef = useRef(null)
 
     return (

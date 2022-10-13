@@ -6,12 +6,10 @@ import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 import { is_visible_delete } from '@/apollo/stores/visible'
 import { current_value_catalog, current_id_catalog } from '@/apollo/stores/current'
 
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
-
 const DeleteItemCatalog = () => {
+    const visibleForm = useReactiveVar(is_visible_delete)
+    const currentValueCatalog = useReactiveVar(current_value_catalog)
+    const currentIDCatalog = useReactiveVar(current_id_catalog)
     const [removeCatalog, {error: removeError}] = useMutation(DELETE_CATALOG, {
             refetchQueries: [
                 {
@@ -19,24 +17,9 @@ const DeleteItemCatalog = () => {
                     variables: { key: '1' }
                 }
             ],
-    // update(cache, { data: { deleteCatalog } }) {
-    //   cache.modify({
-    //     fields: {
-    //       catalog(currentCatalog = []) {
-    //         return currentCatalog.filter(catalog => catalog.__ref !== `Catalog:${removeCatalog.id}`)
-    //       }
-    //     }
-    //   })
-    // }
-
       })
-
-    const visibleForm = useReactiveVar(is_visible_delete)
-    const currentValueCatalog = useReactiveVar(current_value_catalog)
-    const currentIDCatalog = useReactiveVar(current_id_catalog)
     const cancelButtonRef = useRef(null)
-
-
+    
     return (
         <Transition.Root show={visibleForm} as={Fragment}>
         <Dialog as="div" className="relative z-10" initialFocus={cancelButtonRef} onClose={() => is_visible_delete(false)}>
