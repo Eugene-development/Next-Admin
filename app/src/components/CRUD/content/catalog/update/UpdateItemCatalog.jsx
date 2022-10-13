@@ -27,7 +27,7 @@ export default function UpdateItemCatalog() {
     // const menu = map(data?.menu, v => v.id)
     // console.log(menu);
 
-    console.log(currentIdCatalog)
+    // console.log(currentIdCatalog)
     const [text, setText] = useState((currentValueCatalog));
     // console.log(currentValueCatalog);
     // console.log(text);
