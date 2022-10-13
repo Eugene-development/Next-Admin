@@ -126,7 +126,7 @@ export default function UpdateItemCatalog() {
                                         className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                         >
                                             {data.menu.map((item, key) => {
-                                                return item.value == currentParentValueCatalog ?
+                                                return item.id == currentParentIdCatalog ?
                                                     <option key={key} value={currentParentIdCatalog}>{currentParentValueCatalog}</option>
                                                     :
                                                     <option key={key} value={item.id}>{item.value}</option>
