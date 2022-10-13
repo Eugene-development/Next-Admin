@@ -17,7 +17,6 @@ import { useSlug } from "@/hooks/slug";
 export default function UpdateItemCatalog() {
     const visibleForm = useReactiveVar(is_visible_update)
 
-
     const currentIdCatalog = useReactiveVar(current_id_catalog)
     const currentValueCatalog = useReactiveVar(current_value_catalog)
     const currentParentIdCatalog = useReactiveVar(current_parent_id_catalog)
@@ -28,13 +27,14 @@ export default function UpdateItemCatalog() {
     // const menu = map(data?.menu, v => v.id)
     // console.log(menu);
 
+    console.log(currentIdCatalog)
     const [text, setText] = useState((currentValueCatalog));
-    console.log(currentValueCatalog);
-    console.log(text);
+    // console.log(currentValueCatalog);
+    // console.log(text);
     const [selectedParent, setSelectedParent] = useState((currentParentIdCatalog));
-    console.log(currentParentIdCatalog);
-    console.log(selectedParent);
-    const handleParentChange = (e) => setSelectedParent(([e.target.value]));
+    // console.log(currentParentIdCatalog);
+    // console.log(selectedParent);
+    const handleParentChange = (e) => setSelectedParent((e.target.value));
     const [addCatalog] = useMutation(UPDATE_CATALOG, {
         refetchQueries: [
         { query: ALL_CATALOG,
