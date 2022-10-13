@@ -1,8 +1,8 @@
+import { key_project } from '@/apollo/stores/auth'
 import AppLayout from '@/components/Layouts/AppLayout'
 import Head from 'next/head'
 import { useAuth } from '@/hooks/auth'
 import Greetings from '@/components/dashboard/greetings'
-import { key_project } from '@/apollo/stores/auth'
 
 
 const Dashboard = () => {
