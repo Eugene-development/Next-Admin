@@ -23,19 +23,33 @@ export default function UpdateItemCatalog() {
     const currentParentValueCatalog = useReactiveVar(current_parent_value_catalog)
 
 
-    current_parent_id_catalog(currentParentIdCatalog)
+    // current_parent_id_catalog(currentParentIdCatalog)
 
     const { data } = useQuery(ALL_MENU, {variables: { key: '1' }})
     // const menu = map(data?.menu, v => v.id)
     // console.log(menu);
 
     // console.log(currentIdCatalog)
-    const [text, setText] = useState((currentValueCatalog));
+    const [changedText, setText] = useState((currentValueCatalog));
     // console.log(currentValueCatalog);
     // console.log(text);
     const [selectedParent, setSelectedParent] = useState();
 
-    console.log(selectedParent);
+    let parent;
+if(selectedParent) {
+    parent = selectedParent
+} else {
+    parent = currentParentIdCatalog }
+console.log(parent);
+
+
+    let text;
+if(changedText) {
+    text = changedText
+} else {
+    text = currentValueCatalog }
+
+    console.log(text);
     // console.log(selectedParent);
     const handleParentChange = (e) => {
         setSelectedParent((e.target.value))
@@ -49,6 +63,7 @@ export default function UpdateItemCatalog() {
 
     const { slugify } = useSlug();
     const handleAddCatalog = (e) => {
+
         e.preventDefault();
         if (text.trim().length) {
         addCatalog({
@@ -59,7 +74,7 @@ export default function UpdateItemCatalog() {
             value: text,
             slug: slugify(text.translit()),
             parentableType: 'menu',
-            parentableId: Number(selectedParent),
+            parentableId: Number(parent),
             },
         });
         setText('');
