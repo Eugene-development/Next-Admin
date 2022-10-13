@@ -16,54 +16,18 @@ import { useSlug } from "@/hooks/slug";
 
 export default function UpdateItemCatalog() {
     const visibleForm = useReactiveVar(is_visible_update)
-
     const currentIdCatalog = useReactiveVar(current_id_catalog)
     const currentValueCatalog = useReactiveVar(current_value_catalog)
     const currentParentIdCatalog = useReactiveVar(current_parent_id_catalog)
     const currentParentValueCatalog = useReactiveVar(current_parent_value_catalog)
-
-
-    // current_parent_id_catalog(currentParentIdCatalog)
-
     const { data } = useQuery(ALL_MENU, {variables: { key: '1' }})
-    // const menu = map(data?.menu, v => v.id)
-    // console.log(menu);
-
-    // console.log(currentIdCatalog)
-    const [changedText, setText] = useState((currentValueCatalog));
-    // console.log(currentValueCatalog);
-    // console.log(text);
+    const [changedText, setText] = useState();
     const [selectedParent, setSelectedParent] = useState();
-
-    let parent;
-if(selectedParent) {
-    parent = selectedParent
-} else {
-    parent = currentParentIdCatalog }
-console.log(parent);
-
-
-    let text;
-if(changedText) {
-    text = changedText
-} else {
-    text = currentValueCatalog }
-
-    console.log(text);
-    // console.log(selectedParent);
-    const handleParentChange = (e) => {
-        setSelectedParent((e.target.value))
-    } ;
-    const [addCatalog] = useMutation(UPDATE_CATALOG, {
-        refetchQueries: [
-        { query: ALL_CATALOG,
-            variables: { key: '1' }}
-        ],
-    });
-
+    const parent = selectedParent ?  selectedParent : currentParentIdCatalog;
+    const text = changedText ? changedText : currentValueCatalog;
+    const handleParentChange = (e) => setSelectedParent((e.target.value));
     const { slugify } = useSlug();
     const handleAddCatalog = (e) => {
-
         e.preventDefault();
         if (text.trim().length) {
         addCatalog({
@@ -80,6 +44,13 @@ if(changedText) {
         setText('');
         }
     }
+        const [addCatalog] = useMutation(UPDATE_CATALOG, {
+        refetchQueries: [
+        { query: ALL_CATALOG,
+            variables: { key: '1' }}
+        ],
+    });
+
     const cancelButtonRef = useRef(null)
 
   return (
