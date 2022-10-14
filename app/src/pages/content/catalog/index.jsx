@@ -22,7 +22,6 @@ function classNames(...classes) {
 export default function Catalog() {
     const key = useReactiveVar(key_project)
 
-    console.log(key);
   const { loading, error, data } = useQuery(ALL_CATALOG, {variables: { key }, fetchPolicy: 'network-only'})
   const checkbox = useRef()
   const [checked, setChecked] = useState(false)

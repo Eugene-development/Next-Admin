@@ -18,7 +18,9 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
             }),
     )
 
-    key_project(user?.key)
+    useEffect(() => {
+        key_project(user?.key)
+    }, [])
 
     const csrf = () => axios.get('/sanctum/csrf-cookie')
 
