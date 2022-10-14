@@ -105,7 +105,7 @@ const CreateItemCatalog = () => {
                                     className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                     >
                                         <option value="DEFAULT" disabled hidden>Выбрать</option>
-                                        {data.menu.map((item, key) => <option key={key} value={key}>{item.value}</option>)}
+                                        {data.menu.map((item, key) => <option key={item.id} value={item.id}>{item.value}</option>)}
                                     </select>
                                 </div>
                                 </div>

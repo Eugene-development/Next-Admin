@@ -133,7 +133,7 @@ export default function Catalog() {
                                         </thead>
                                         <tbody className="divide-y divide-gray-200 bg-white">
                                         {catalog?.map((item, i) => (
-                                            <tr key={i} className={selectedCatalog.includes(item) ? 'bg-gray-50' : undefined}>
+                                            <tr key={item.id} className={selectedCatalog.includes(item) ? 'bg-gray-50' : undefined}>
                                             <td className="relative w-12 px-6 sm:w-16 sm:px-8">
                                                 {selectedCatalog.includes(item) && (
                                                 <div className="absolute inset-y-0 left-0 w-0.5 bg-indigo-600" />
