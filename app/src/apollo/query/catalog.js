@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client'
 
 export const ALL_CATALOG = gql`
-    query all_catalog($key: String) {
+    query all_catalog($key: String!) {
         catalog(key: $key) {
             id
             value
