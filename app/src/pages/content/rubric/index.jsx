@@ -6,10 +6,10 @@ import { useQuery,  useReactiveVar } from '@apollo/client'
 import { ALL_RUBRIC } from '@/apollo/query/rubric'
 import { is_visible_create, is_visible_read, is_visible_update, is_visible_delete } from '@/apollo/stores/visible'
 import { current_value_rubric, current_id_rubric, current_parent_id_rubric, current_parent_value_rubric, current_created_rubric, current_updated_rubric } from '@/apollo/stores/current'
-// import CreateItemCatalog from '@/components/CRUD/content/rubric/create/CreateItemCatalog'
-// import ReadItemCatalog from '@/components/CRUD/content/rubric/read/ReadItemCatalog'
-// import UpdateItemCatalog from '@/components/CRUD/content/rubric/update/UpdateItemCatalog'
-// import DeleteItemCatalog from '@/components/CRUD/content/rubric/delete/DeleteItemCatalog'
+// import CreateItemRubric from '@/components/CRUD/content/rubric/create/CreateItemRubric'
+import ReadItemRubric from '@/components/CRUD/content/rubric/read/ReadItemRubric'
+// import UpdateItemRubric from '@/components/CRUD/content/rubric/update/UpdateItemRubric'
+// import DeleteItemRubric from '@/components/CRUD/content/rubric/delete/DeleteItemRubric'
 import  Switch  from '@/components/UI/buttons/Switch'
 
 
@@ -18,25 +18,25 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Catalog() {
+export default function Rubric() {
     const key = useReactiveVar(key_project)
     const { loading, error, data } = useQuery(ALL_RUBRIC, {variables: { key }, fetchPolicy: 'network-only'})
     const checkbox = useRef()
     const [checked, setChecked] = useState(false)
     const [indeterminate, setIndeterminate] = useState(false)
-    const [selectedCatalog, setSelectedCatalog] = useState([])
+    const [selectedRubric, setSelectedRubric] = useState([])
 
   useEffect(() => {
     if (data){
-    const isIndeterminate = selectedCatalog.length > 0 && selectedCatalog.length < data?.rubric.length
-    setChecked(selectedCatalog.length === data?.rubric.length)
+    const isIndeterminate = selectedRubric.length > 0 && selectedRubric.length < data?.rubric.length
+    setChecked(selectedRubric.length === data?.rubric.length)
     setIndeterminate(isIndeterminate)
     checkbox.current.indeterminate = isIndeterminate
     }
-  }, [selectedCatalog])
+  }, [selectedRubric])
 
   function toggleAll() {
-    setSelectedCatalog(checked || indeterminate ? [] : data?.rubric)
+    setSelectedRubric(checked || indeterminate ? [] : data?.rubric)
     setChecked(!checked && !indeterminate)
     setIndeterminate(false)
   }
@@ -85,7 +85,7 @@ export default function Catalog() {
                                     <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
                                     <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                                         <div className="relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-                                            {selectedCatalog.length > 0 && (
+                                            {selectedRubric.length > 0 && (
                                                 <div className="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
                                                 <button
                                                     type="button"
@@ -129,21 +129,21 @@ export default function Catalog() {
                                                 </thead>
                                                 <tbody className="divide-y divide-gray-200 bg-white">
                                                 {rubric?.map((item, i) => (
-                                                    <tr key={item.id} className={selectedCatalog.includes(item) ? 'bg-gray-50' : undefined}>
+                                                    <tr key={item.id} className={selectedRubric.includes(item) ? 'bg-gray-50' : undefined}>
                                                         <td className="relative w-12 px-6 sm:w-16 sm:px-8">
-                                                            {selectedCatalog.includes(item) && (
+                                                            {selectedRubric.includes(item) && (
                                                             <div className="absolute inset-y-0 left-0 w-0.5 bg-indigo-600" />
                                                             )}
                                                             <input
                                                             type="checkbox"
                                                             className="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6"
                                                             value={item.email}
-                                                            checked={selectedCatalog.includes(item)}
+                                                            checked={selectedRubric.includes(item)}
                                                             onChange={(e) =>
-                                                                setSelectedCatalog(
+                                                                setSelectedRubric(
                                                                 e.target.checked
-                                                                    ? [...selectedCatalog, item]
-                                                                    : selectedCatalog.filter((p) => p !== item)
+                                                                    ? [...selectedRubric, item]
+                                                                    : selectedRubric.filter((p) => p !== item)
                                                                 )
                                                             }
                                                             />
@@ -151,7 +151,7 @@ export default function Catalog() {
                                                     <td
                                                         className={classNames(
                                                         'whitespace-nowrap py-4 pr-3 text-sm font-medium',
-                                                        selectedCatalog.includes(item) ? 'text-indigo-600' : 'text-gray-900'
+                                                        selectedRubric.includes(item) ? 'text-indigo-600' : 'text-gray-900'
                                                         )}
                                                     >
                                                         {i+1}
@@ -225,10 +225,10 @@ export default function Catalog() {
                             </div>
                 </AppLayout>
                 }
-                {/* <CreateItemCatalog/>
-                <ReadItemCatalog/>
-                <UpdateItemCatalog/>
-                <DeleteItemCatalog/> */}
+                {/* <CreateItemRubric/> */}
+                <ReadItemRubric/>
+                {/* <UpdateItemRubric/> */}
+                {/* <DeleteItemRubric/> */}
             </>
         )
     }
