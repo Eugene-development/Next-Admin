@@ -6,10 +6,6 @@ import { useQuery,  useReactiveVar } from '@apollo/client'
 import { ALL_RUBRIC } from '@/apollo/query/rubric'
 import { is_visible_create, is_visible_read, is_visible_update, is_visible_delete } from '@/apollo/stores/visible'
 import { current_value_rubric, current_id_rubric, current_parent_id_rubric, current_parent_value_rubric, current_created_rubric, current_updated_rubric } from '@/apollo/stores/current'
-import CreateItemRubric from '@/components/CRUD/content/rubric/create/CreateItemRubric'
-import ReadItemRubric from '@/components/CRUD/content/rubric/read/ReadItemRubric'
-// import UpdateItemRubric from '@/components/CRUD/content/rubric/update/UpdateItemRubric'
-import DeleteItemRubric from '@/components/CRUD/content/rubric/delete/DeleteItemRubric'
 import  Switch  from '@/components/UI/buttons/Switch'
 
 
@@ -225,10 +221,6 @@ export default function Rubric() {
                             </div>
                 </AppLayout>
                 }
-                <CreateItemRubric/>
-                <ReadItemRubric/>
-                {/* <UpdateItemRubric/> */}
-                <DeleteItemRubric/>
             </>
         )
     }

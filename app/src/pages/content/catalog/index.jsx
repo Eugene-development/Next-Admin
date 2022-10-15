@@ -6,10 +6,6 @@ import { useQuery,  useReactiveVar } from '@apollo/client'
 import { ALL_CATALOG } from '@/apollo/query/catalog'
 import { is_visible_create, is_visible_read, is_visible_update, is_visible_delete } from '@/apollo/stores/visible'
 import { current_value_catalog, current_id_catalog, current_parent_id_catalog, current_parent_value_catalog, current_created_catalog, current_updated_catalog } from '@/apollo/stores/current'
-import CreateItemCatalog from '@/components/CRUD/content/catalog/create/CreateItemCatalog'
-import ReadItemCatalog from '@/components/CRUD/content/catalog/read/ReadItemCatalog'
-import UpdateItemCatalog from '@/components/CRUD/content/catalog/update/UpdateItemCatalog'
-import DeleteItemCatalog from '@/components/CRUD/content/catalog/delete/DeleteItemCatalog'
 import  Switch  from '@/components/UI/buttons/Switch'
 
 
@@ -225,10 +221,6 @@ export default function Catalog() {
                             </div>
                 </AppLayout>
                 }
-                <CreateItemCatalog/>
-                <ReadItemCatalog/>
-                <UpdateItemCatalog/>
-                <DeleteItemCatalog/>
             </>
         )
     }

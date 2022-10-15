@@ -7,6 +7,16 @@ import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import ApplicationLogo from '@/components/ApplicationLogo'
 import NavLink from '@/components/NavLink'
 import Link from 'next/link'
+import CreateItemCatalog from '@/components/CRUD/content/catalog/create/CreateItemCatalog'
+import ReadItemCatalog from '@/components/CRUD/content/catalog/read/ReadItemCatalog'
+import UpdateItemCatalog from '@/components/CRUD/content/catalog/update/UpdateItemCatalog'
+import DeleteItemCatalog from '@/components/CRUD/content/catalog/delete/DeleteItemCatalog'
+import CreateItemRubric from '@/components/CRUD/content/rubric/create/CreateItemRubric'
+import ReadItemRubric from '@/components/CRUD/content/rubric/read/ReadItemRubric'
+// import UpdateItemRubric from '@/components/CRUD/content/rubric/update/UpdateItemRubric'
+import DeleteItemRubric from '@/components/CRUD/content/rubric/delete/DeleteItemRubric'
+
+
 
 import {
     Bars3BottomLeftIcon,
@@ -103,8 +113,20 @@ const AppLayout = ({ header, children }) => {
       {user && user.is_active === 0 && <p>У вас нет прав доступа</p>}
 
       { user && user.is_active === 1 &&
+<>
 
-            <div>
+                <CreateItemCatalog/>
+                <ReadItemCatalog/>
+                <UpdateItemCatalog/>
+                <DeleteItemCatalog/>
+
+                <CreateItemRubric/>
+                <ReadItemRubric/>
+                {/* <UpdateItemRubric/> */}
+                <DeleteItemRubric/>
+
+
+                            <div>
                 <Transition.Root show={sidebarOpen} as={Fragment}>
                     <Dialog
                         as="div"
@@ -408,6 +430,9 @@ const AppLayout = ({ header, children }) => {
                     </div>
                 </div>
             </div>
+
+
+</>
 
         }
 
