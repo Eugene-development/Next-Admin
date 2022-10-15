@@ -9,7 +9,7 @@ export const ALL_RUBRIC = gql`
             created_at
             updated_at
             parent: parentable {
-                ... on Menu {
+                ... on Catalog {
                     id
                     value
                 }
@@ -25,7 +25,7 @@ export const ONE_RUBRIC = gql`
             created_at
             updated_at
             parent: parentable {
-                ... on Menu {
+                ... on Catalog {
                     value
                 }
             }
@@ -42,7 +42,7 @@ export const CREATE_RUBRIC = gql`
         $parentableType: String
         $parentableId: Int!
     ) {
-        createCatalog(
+        createRubric(
             input: {
                 key: $key
                 is_active: $is_active
@@ -66,7 +66,7 @@ export const UPDATE_RUBRIC = gql`
         $parentableType: String
         $parentableId: Int
     ) {
-        updateCatalog(
+        updateRubric(
             input: {
                 id: $id
                 key: $key
@@ -83,7 +83,7 @@ export const UPDATE_RUBRIC = gql`
 `
 export const DELETE_RUBRIC = gql`
     mutation delete_rubric($id: ID!) {
-        deleteCatalog(id: $id) {
+        deleteRubric(id: $id) {
             value
         }
     }
