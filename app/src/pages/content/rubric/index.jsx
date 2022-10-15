@@ -9,7 +9,7 @@ import { current_value_rubric, current_id_rubric, current_parent_id_rubric, curr
 import CreateItemRubric from '@/components/CRUD/content/rubric/create/CreateItemRubric'
 import ReadItemRubric from '@/components/CRUD/content/rubric/read/ReadItemRubric'
 // import UpdateItemRubric from '@/components/CRUD/content/rubric/update/UpdateItemRubric'
-// import DeleteItemRubric from '@/components/CRUD/content/rubric/delete/DeleteItemRubric'
+import DeleteItemRubric from '@/components/CRUD/content/rubric/delete/DeleteItemRubric'
 import  Switch  from '@/components/UI/buttons/Switch'
 
 
@@ -228,7 +228,7 @@ export default function Rubric() {
                 <CreateItemRubric/>
                 <ReadItemRubric/>
                 {/* <UpdateItemRubric/> */}
-                {/* <DeleteItemRubric/> */}
+                <DeleteItemRubric/>
             </>
         )
     }
