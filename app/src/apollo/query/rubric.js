@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client'
 
 export const ALL_RUBRIC = gql`
-    query all_rubric($key: String) {
+    query all_rubric($key: String!) {
         rubric(key: $key) {
             id
             value
@@ -9,7 +9,7 @@ export const ALL_RUBRIC = gql`
             created_at
             updated_at
             parent: parentable {
-                ... on Catalog {
+                ... on Menu {
                     id
                     value
                 }
@@ -25,7 +25,7 @@ export const ONE_RUBRIC = gql`
             created_at
             updated_at
             parent: parentable {
-                ... on Catalog {
+                ... on Menu {
                     value
                 }
             }
@@ -40,7 +40,7 @@ export const CREATE_RUBRIC = gql`
         $value: String!
         $slug: String!
         $parentableType: String
-        $parentableId: Int
+        $parentableId: Int!
     ) {
         createCatalog(
             input: {
@@ -52,10 +52,7 @@ export const CREATE_RUBRIC = gql`
                 parentable_id: $parentableId
             }
         ) {
-            id
-            is_active
             value
-            slug
         }
     }
 `
@@ -80,17 +77,13 @@ export const UPDATE_RUBRIC = gql`
                 parentable_id: $parentableId
             }
         ) {
-            id
-            is_active
             value
-            slug
         }
     }
 `
 export const DELETE_RUBRIC = gql`
     mutation delete_rubric($id: ID!) {
         deleteCatalog(id: $id) {
-            id
             value
         }
     }

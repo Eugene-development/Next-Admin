@@ -19,8 +19,8 @@ export const ALL_CATALOG = gql`
 `
 
 export const ONE_CATALOG = gql`
-    query catalog_one($id: ID!) {
-        catalog_one(id: $id) {
+    query catalog_one($id: ID!, $key: String!) {
+        catalog_one(id: $id, key: $key) {
             value
             created_at
             updated_at
@@ -40,7 +40,7 @@ export const CREATE_CATALOG = gql`
         $value: String!
         $slug: String!
         $parentableType: String
-        $parentableId: Int
+        $parentableId: Int!
     ) {
         createCatalog(
             input: {
@@ -52,10 +52,7 @@ export const CREATE_CATALOG = gql`
                 parentable_id: $parentableId
             }
         ) {
-            id
-            is_active
             value
-            slug
         }
     }
 `
@@ -80,17 +77,13 @@ export const UPDATE_CATALOG = gql`
                 parentable_id: $parentableId
             }
         ) {
-            id
-            is_active
             value
-            slug
         }
     }
 `
 export const DELETE_CATALOG = gql`
     mutation delete_catalog($id: ID!) {
         deleteCatalog(id: $id) {
-            id
             value
         }
     }
