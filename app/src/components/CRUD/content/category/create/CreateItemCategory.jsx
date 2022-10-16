@@ -13,9 +13,9 @@ const CreateItemCategory = () => {
     const key = useReactiveVar(key_project)
     const visibleForm = useReactiveVar(is_visible_create_category)
     const { data } = useQuery(ALL_RUBRIC, {variables: { key }})
-    const catalog = map(data?.catalog, v => v.id)
+    const rubric = map(data?.rubric, v => v.id)
     const [selectedParent, setSelectedParent] = useState([]);
-    const handleParentChange = (e) => setSelectedParent((catalog[e.target.value]));
+    const handleParentChange = (e) => setSelectedParent((rubric[e.target.value]));
     const [text, setText] = useState('');
     const { slugify } = useSlug();
     const handleAddCategory = (e) => {

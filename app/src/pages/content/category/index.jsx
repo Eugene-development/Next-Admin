@@ -56,17 +56,17 @@ export default function Category() {
                 { category && <AppLayout
                             header={
                                 <h2 className="font-semibold text-xl text-gray-800 leading-tight">
-                                    Рубрика
+                                    Категория
                                 </h2>
                             }>
                             <Head>
-                                <title>Рубрика</title>
+                                <title>Категория</title>
                             </Head>
 
                             <div className="mt-4 p-4 sm:p-6 lg:p-8">
                                 <div className="sm:flex sm:items-center">
                                     <div className="sm:flex-auto">
-                                    <h1 className="text-xl font-semibold text-gray-900">Раздел "Рубрика"</h1>
+                                    <h1 className="text-xl font-semibold text-gray-900">Раздел "Категория"</h1>
                                     <p className="mt-2 text-sm text-gray-700">
                                         При изменении статуса элемента в неактивное положение, данные не будут отображаться на сайте.
                                     </p>
