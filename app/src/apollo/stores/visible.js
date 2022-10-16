@@ -17,7 +17,7 @@ export const is_visible_delete_catalog = makeVar(false)
 
 export const is_visible_create_rubric = makeVar(false)
 export const is_visible_read_rubric = makeVar(false)
-export const is_visible_update_rubric = makeVar(false)
+export const is_visible_update_rubric = makeVar(true)
 export const is_visible_delete_rubric = makeVar(false)
 
 export const is_visible_create_category = makeVar(false)

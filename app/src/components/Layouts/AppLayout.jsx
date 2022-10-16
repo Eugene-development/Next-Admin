@@ -13,7 +13,7 @@ import UpdateItemCatalog from '@/components/CRUD/content/catalog/update/UpdateIt
 import DeleteItemCatalog from '@/components/CRUD/content/catalog/delete/DeleteItemCatalog'
 import CreateItemRubric from '@/components/CRUD/content/rubric/create/CreateItemRubric'
 import ReadItemRubric from '@/components/CRUD/content/rubric/read/ReadItemRubric'
-// import UpdateItemRubric from '@/components/CRUD/content/rubric/update/UpdateItemRubric'
+import UpdateItemRubric from '@/components/CRUD/content/rubric/update/UpdateItemRubric'
 import DeleteItemRubric from '@/components/CRUD/content/rubric/delete/DeleteItemRubric'
 
 
@@ -123,7 +123,7 @@ const AppLayout = ({ header, children }) => {
 
                 <CreateItemRubric/>
                 <ReadItemRubric/>
-                {/* <UpdateItemRubric/> */}
+                <UpdateItemRubric/>
                 <DeleteItemRubric/>
 
 

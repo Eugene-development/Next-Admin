@@ -4,7 +4,7 @@ import { Dialog, Transition } from '@headlessui/react'
 import { CheckIcon } from '@heroicons/react/24/outline'
 import { useQuery, useReactiveVar, useMutation } from '@apollo/client'
 import { ALL_RUBRIC, UPDATE_RUBRIC } from '@/apollo/query/rubric'
-import { ALL_CATALOG } from '@/apollo/query/menu'
+import { ALL_CATALOG } from '@/apollo/query/catalog'
 import { is_visible_update_rubric } from '@/apollo/stores/visible'
 import { current_id_rubric, current_value_rubric, current_parent_id_rubric, current_parent_value_rubric } from '@/apollo/stores/current'
 import { useSlug } from "@/hooks/slug";
