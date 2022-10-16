@@ -19,7 +19,7 @@ const UpdateItemCatalog = () => {
     const { data } = useQuery(ALL_MENU, {variables: { key }})
     const [changedText, setText] = useState();
     const [selectedParent, setSelectedParent] = useState();
-    const parent = selectedParent ?  selectedParent : currentParentIdCatalog;
+    const parent = selectedParent ? selectedParent : currentParentIdCatalog;
     const text = changedText ? changedText : currentValueCatalog;
     const handleParentChange = (e) => setSelectedParent((e.target.value));
     const { slugify } = useSlug();
