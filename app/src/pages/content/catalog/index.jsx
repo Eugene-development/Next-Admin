@@ -4,7 +4,7 @@ import AppLayout from '@/components/Layouts/AppLayout'
 import Head from 'next/head'
 import { useQuery,  useReactiveVar } from '@apollo/client'
 import { ALL_CATALOG } from '@/apollo/query/catalog'
-import { is_visible_create, is_visible_read, is_visible_update, is_visible_delete } from '@/apollo/stores/visible'
+import { is_visible_create_catalog, is_visible_read_catalog, is_visible_update_catalog, is_visible_delete_catalog } from '@/apollo/stores/visible'
 import { current_value_catalog, current_id_catalog, current_parent_id_catalog, current_parent_value_catalog, current_created_catalog, current_updated_catalog } from '@/apollo/stores/current'
 import  Switch  from '@/components/UI/buttons/Switch'
 
@@ -74,7 +74,7 @@ export default function Catalog() {
                                     </div>
                                     <div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
                                     <button
-                                    onClick={() => {is_visible_create(true)} }
+                                    onClick={() => {is_visible_create_catalog(true)} }
                                         type="button"
                                         className="inline-flex items-center justify-center rounded-md border border-transparent bg-green-600 px-8 py-2 text-sm font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 sm:w-auto"
                                     >
@@ -167,7 +167,7 @@ export default function Catalog() {
 
                                                             <button
                                                                 onClick={() => {
-                                                                    is_visible_read(true)
+                                                                    is_visible_read_catalog(true)
                                                                     current_value_catalog(item.value)
                                                                     current_parent_value_catalog(item.parent.value)
                                                                     current_created_catalog(item.created_at)
@@ -184,7 +184,7 @@ export default function Catalog() {
                                                             </button>
                                                             <button
                                                                 onClick={() => {
-                                                                    is_visible_update(true)
+                                                                    is_visible_update_catalog(true)
                                                                     current_id_catalog(item.id)
                                                                     current_value_catalog(item.value)
                                                                     current_parent_value_catalog(item.parent.value)
@@ -201,7 +201,7 @@ export default function Catalog() {
                                                             </button>
                                                             <button
                                                                 onClick={() => {
-                                                                    is_visible_delete(true)
+                                                                    is_visible_delete_catalog(true)
                                                                     current_value_catalog(item.value)
                                                                     current_id_catalog(item.id)
                                                                     }

@@ -2,7 +2,7 @@ import { key_project } from '@/apollo/stores/auth'
 import { useQuery, useReactiveVar, useMutation } from '@apollo/client'
 import { ALL_RUBRIC, CREATE_RUBRIC } from '@/apollo/query/rubric'
 import { ALL_CATALOG } from '@/apollo/query/catalog'
-import { is_visible_create } from '@/apollo/stores/visible'
+import { is_visible_create_rubric } from '@/apollo/stores/visible'
 import { Fragment, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { CheckIcon } from '@heroicons/react/24/outline'
@@ -11,7 +11,7 @@ import { useSlug } from "@/hooks/slug";
 
 const CreateItemRubric = () => {
     const key = useReactiveVar(key_project)
-    const visibleForm = useReactiveVar(is_visible_create)
+    const visibleForm = useReactiveVar(is_visible_create_rubric)
     const { data } = useQuery(ALL_CATALOG, {variables: { key }})
     const catalog = map(data?.catalog, v => v.id)
     const [selectedParent, setSelectedParent] = useState([]);
@@ -47,7 +47,7 @@ const CreateItemRubric = () => {
     <>
         { data &&
             <Transition.Root show={visibleForm} as={Fragment}>
-            <Dialog as="div" className="relative z-10" initialFocus={cancelButtonRef} onClose={() => is_visible_create(false)}>
+            <Dialog as="div" className="relative z-10" initialFocus={cancelButtonRef} onClose={() => is_visible_create_rubric(false)}>
                 <Transition.Child
                 as={Fragment}
                 enter="ease-out duration-300"
@@ -133,14 +133,14 @@ const CreateItemRubric = () => {
                                 <button
                                     type="submit"
                                     className="inline-flex w-full justify-center rounded-md border border-transparent bg-green-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 sm:col-start-2 sm:text-sm"
-                                    onClick={() => is_visible_create(false)}
+                                    onClick={() => is_visible_create_rubric(false)}
                                     >
                                     Добавить
                                 </button>
                                 <button
                                     type="button"
                                     className="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 sm:col-start-1 sm:mt-0 sm:text-sm"
-                                    onClick={() => is_visible_create(false)}
+                                    onClick={() => is_visible_create_rubric(false)}
                                     ref={cancelButtonRef}
                                     >
                                     Отменить

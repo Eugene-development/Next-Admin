@@ -2,11 +2,11 @@ import { Fragment, useRef } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { CheckIcon } from '@heroicons/react/24/outline'
 import { useReactiveVar } from '@apollo/client'
-import { is_visible_read } from '@/apollo/stores/visible'
+import { is_visible_read_rubric } from '@/apollo/stores/visible'
 import { current_value_rubric, current_parent_value_rubric, current_created_rubric, current_updated_rubric } from '@/apollo/stores/current'
 
 const ReadItemRubric = () => {
-    const visibleForm = useReactiveVar(is_visible_read)
+    const visibleForm = useReactiveVar(is_visible_read_rubric)
     const currentValueRubric = useReactiveVar(current_value_rubric)
     const currentParentValueRubric = useReactiveVar(current_parent_value_rubric)
     const currentCreatedRubric = useReactiveVar(current_created_rubric)
@@ -16,7 +16,7 @@ const ReadItemRubric = () => {
     return (
         <>
             <Transition.Root show={visibleForm} as={Fragment}>
-            <Dialog as="div" className="relative z-10" initialFocus={cancelButtonRef} onClose={() => is_visible_read(false)}>
+            <Dialog as="div" className="relative z-10" initialFocus={cancelButtonRef} onClose={() => is_visible_read_rubric(false)}>
                 <Transition.Child
                 as={Fragment}
                 enter="ease-out duration-300"
@@ -88,7 +88,7 @@ const ReadItemRubric = () => {
                                 <button
                                     type="button"
                                     className="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:col-start-1 sm:mt-0 sm:text-sm"
-                                    onClick={() => is_visible_read(false)}
+                                    onClick={() => is_visible_read_rubric(false)}
                                     ref={cancelButtonRef}
                                     >
                                     Закрыть

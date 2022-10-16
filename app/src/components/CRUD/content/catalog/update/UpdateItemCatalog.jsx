@@ -5,13 +5,13 @@ import { CheckIcon } from '@heroicons/react/24/outline'
 import { useQuery, useReactiveVar, useMutation } from '@apollo/client'
 import { ALL_CATALOG, UPDATE_CATALOG } from '@/apollo/query/catalog'
 import { ALL_MENU } from '@/apollo/query/menu'
-import { is_visible_update } from '@/apollo/stores/visible'
+import { is_visible_update_catalog } from '@/apollo/stores/visible'
 import { current_id_catalog, current_value_catalog, current_parent_id_catalog, current_parent_value_catalog } from '@/apollo/stores/current'
 import { useSlug } from "@/hooks/slug";
 
 const UpdateItemCatalog = () => {
     const key = useReactiveVar(key_project)
-    const visibleForm = useReactiveVar(is_visible_update)
+    const visibleForm = useReactiveVar(is_visible_update_catalog)
     const currentIdCatalog = useReactiveVar(current_id_catalog)
     const currentValueCatalog = useReactiveVar(current_value_catalog)
     const currentParentIdCatalog = useReactiveVar(current_parent_id_catalog)
@@ -53,7 +53,7 @@ const UpdateItemCatalog = () => {
     <>
         { data &&
             <Transition.Root show={visibleForm} as={Fragment}>
-            <Dialog as="div" className="relative z-10" initialFocus={cancelButtonRef} onClose={() => is_visible_update(false)}>
+            <Dialog as="div" className="relative z-10" initialFocus={cancelButtonRef} onClose={() => is_visible_update_catalog(false)}>
                 <Transition.Child
                 as={Fragment}
                 enter="ease-out duration-300"
@@ -144,14 +144,14 @@ const UpdateItemCatalog = () => {
                                 <button
                                 type="submit"
                                 className="inline-flex w-full justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 sm:col-start-2 sm:text-sm"
-                                onClick={() => is_visible_update(false)}
+                                onClick={() => is_visible_update_catalog(false)}
                                 >
                                 Обновить
                                 </button>
                                 <button
                                 type="button"
                                 className="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 sm:col-start-1 sm:mt-0 sm:text-sm"
-                                onClick={() => is_visible_update(false)}
+                                onClick={() => is_visible_update_catalog(false)}
                                 ref={cancelButtonRef}
                                 >
                                 Отменить

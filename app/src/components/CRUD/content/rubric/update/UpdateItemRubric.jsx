@@ -5,13 +5,13 @@ import { CheckIcon } from '@heroicons/react/24/outline'
 import { useQuery, useReactiveVar, useMutation } from '@apollo/client'
 import { ALL_RUBRIC, UPDATE_RUBRIC } from '@/apollo/query/rubric'
 import { ALL_CATALOG } from '@/apollo/query/menu'
-import { is_visible_update } from '@/apollo/stores/visible'
+import { is_visible_update_rubric } from '@/apollo/stores/visible'
 import { current_id_rubric, current_value_rubric, current_parent_id_rubric, current_parent_value_rubric } from '@/apollo/stores/current'
 import { useSlug } from "@/hooks/slug";
 
 const UpdateItemRubric = () => {
     const key = useReactiveVar(key_project)
-    const visibleForm = useReactiveVar(is_visible_update)
+    const visibleForm = useReactiveVar(is_visible_update_rubric)
     const currentIdRubric = useReactiveVar(current_id_rubric)
     const currentValueRubric = useReactiveVar(current_value_rubric)
     const currentParentIdRubric = useReactiveVar(current_parent_id_rubric)
@@ -53,7 +53,7 @@ const UpdateItemRubric = () => {
     <>
         { data &&
             <Transition.Root show={visibleForm} as={Fragment}>
-            <Dialog as="div" className="relative z-10" initialFocus={cancelButtonRef} onClose={() => is_visible_update(false)}>
+            <Dialog as="div" className="relative z-10" initialFocus={cancelButtonRef} onClose={() => is_visible_update_rubric(false)}>
                 <Transition.Child
                 as={Fragment}
                 enter="ease-out duration-300"
@@ -144,14 +144,14 @@ const UpdateItemRubric = () => {
                                 <button
                                 type="submit"
                                 className="inline-flex w-full justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 sm:col-start-2 sm:text-sm"
-                                onClick={() => is_visible_update(false)}
+                                onClick={() => is_visible_update_rubric(false)}
                                 >
                                 Обновить
                                 </button>
                                 <button
                                 type="button"
                                 className="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 sm:col-start-1 sm:mt-0 sm:text-sm"
-                                onClick={() => is_visible_update(false)}
+                                onClick={() => is_visible_update_rubric(false)}
                                 ref={cancelButtonRef}
                                 >
                                 Отменить

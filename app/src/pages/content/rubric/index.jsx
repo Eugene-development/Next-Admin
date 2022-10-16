@@ -4,7 +4,7 @@ import AppLayout from '@/components/Layouts/AppLayout'
 import Head from 'next/head'
 import { useQuery,  useReactiveVar } from '@apollo/client'
 import { ALL_RUBRIC } from '@/apollo/query/rubric'
-import { is_visible_create, is_visible_read, is_visible_update, is_visible_delete } from '@/apollo/stores/visible'
+import { is_visible_create_rubric, is_visible_read_rubric, is_visible_update_rubric, is_visible_delete_rubric } from '@/apollo/stores/visible'
 import { current_value_rubric, current_id_rubric, current_parent_id_rubric, current_parent_value_rubric, current_created_rubric, current_updated_rubric } from '@/apollo/stores/current'
 import  Switch  from '@/components/UI/buttons/Switch'
 
@@ -73,7 +73,7 @@ export default function Rubric() {
                                     </div>
                                     <div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
                                     <button
-                                    onClick={() => {is_visible_create(true)} }
+                                    onClick={() => {is_visible_create_rubric(true)} }
                                         type="button"
                                         className="inline-flex items-center justify-center rounded-md border border-transparent bg-green-600 px-8 py-2 text-sm font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 sm:w-auto"
                                     >
@@ -166,7 +166,7 @@ export default function Rubric() {
 
                                                             <button
                                                                 onClick={() => {
-                                                                    is_visible_read(true)
+                                                                    is_visible_read_rubric(true)
                                                                     current_value_rubric(item.value)
                                                                     current_parent_value_rubric(item.parent.value)
                                                                     current_created_rubric(item.created_at)
@@ -183,7 +183,7 @@ export default function Rubric() {
                                                             </button>
                                                             <button
                                                                 onClick={() => {
-                                                                    is_visible_update(true)
+                                                                    is_visible_update_rubric(true)
                                                                     current_id_rubric(item.id)
                                                                     current_value_rubric(item.value)
                                                                     current_parent_value_rubric(item.parent.value)
@@ -200,7 +200,7 @@ export default function Rubric() {
                                                             </button>
                                                             <button
                                                                 onClick={() => {
-                                                                    is_visible_delete(true)
+                                                                    is_visible_delete_rubric(true)
                                                                     current_value_rubric(item.value)
                                                                     current_id_rubric(item.id)
                                                                     }

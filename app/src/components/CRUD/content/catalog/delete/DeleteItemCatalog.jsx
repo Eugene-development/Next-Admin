@@ -4,13 +4,13 @@ import { ALL_CATALOG, DELETE_CATALOG } from '@/apollo/query/catalog'
 import { useRef, Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
-import { is_visible_delete } from '@/apollo/stores/visible'
+import { is_visible_delete_catalog } from '@/apollo/stores/visible'
 import { current_value_catalog, current_id_catalog } from '@/apollo/stores/current'
 
 
 const DeleteItemCatalog = () => {
     const key = useReactiveVar(key_project)
-    const visibleForm = useReactiveVar(is_visible_delete)
+    const visibleForm = useReactiveVar(is_visible_delete_catalog)
     const currentValueCatalog = useReactiveVar(current_value_catalog)
     const currentIDCatalog = useReactiveVar(current_id_catalog)
     const [removeCatalog, {error: removeError}] = useMutation(DELETE_CATALOG, {
@@ -25,7 +25,7 @@ const DeleteItemCatalog = () => {
 
     return (
         <Transition.Root show={visibleForm} as={Fragment}>
-        <Dialog as="div" className="relative z-10" initialFocus={cancelButtonRef} onClose={() => is_visible_delete(false)}>
+        <Dialog as="div" className="relative z-10" initialFocus={cancelButtonRef} onClose={() => is_visible_delete_catalog(false)}>
             <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -71,7 +71,7 @@ const DeleteItemCatalog = () => {
                         className="inline-flex w-full justify-center rounded-md border border-transparent bg-red-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm"
                         onClick={() => {
                             removeCatalog({variables: { id: currentIDCatalog }}),
-                            is_visible_delete(false)
+                            is_visible_delete_catalog(false)
                         }}
                     >
                         Удалить
@@ -79,7 +79,7 @@ const DeleteItemCatalog = () => {
                     <button
                         type="button"
                         className="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:w-auto sm:text-sm"
-                        onClick={() => is_visible_delete(false)}
+                        onClick={() => is_visible_delete_catalog(false)}
                         ref={cancelButtonRef}
                     >
                         Отменить
