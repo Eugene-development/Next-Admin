@@ -15,6 +15,10 @@ import CreateItemRubric from '@/components/CRUD/content/rubric/create/CreateItem
 import ReadItemRubric from '@/components/CRUD/content/rubric/read/ReadItemRubric'
 import UpdateItemRubric from '@/components/CRUD/content/rubric/update/UpdateItemRubric'
 import DeleteItemRubric from '@/components/CRUD/content/rubric/delete/DeleteItemRubric'
+import CreateItemCategory from '@/components/CRUD/content/category/create/CreateItemCategory'
+import ReadItemCategory from '@/components/CRUD/content/category/read/ReadItemCategory'
+import UpdateItemCategory from '@/components/CRUD/content/category/update/UpdateItemCategory'
+import DeleteItemCategory from '@/components/CRUD/content/category/delete/DeleteItemCategory'
 
 
 
@@ -125,6 +129,11 @@ const AppLayout = ({ header, children }) => {
                 <ReadItemRubric/>
                 <UpdateItemRubric/>
                 <DeleteItemRubric/>
+
+                <CreateItemCategory/>
+                <ReadItemCategory/>
+                <UpdateItemCategory/>
+                <DeleteItemCategory/>
 
 
                             <div>

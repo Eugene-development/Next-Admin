@@ -1,42 +1,42 @@
 import { key_project } from '@/apollo/stores/auth'
 import { useQuery, useReactiveVar, useMutation } from '@apollo/client'
-import { ALL_RUBRIC, CREATE_RUBRIC } from '@/apollo/query/rubric'
-import { ALL_CATALOG } from '@/apollo/query/catalog'
-import { is_visible_create_rubric } from '@/apollo/stores/visible'
+import { ALL_CATEGORY, CREATE_CATEGORY } from '@/apollo/query/category'
+import { ALL_RUBRIC } from '@/apollo/query/rubric'
+import { is_visible_create_category } from '@/apollo/stores/visible'
 import { Fragment, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { CheckIcon } from '@heroicons/react/24/outline'
 import { map } from "lodash";
 import { useSlug } from "@/hooks/slug";
 
-const CreateItemRubric = () => {
+const CreateItemCategory = () => {
     const key = useReactiveVar(key_project)
-    const visibleForm = useReactiveVar(is_visible_create_rubric)
-    const { data } = useQuery(ALL_CATALOG, {variables: { key }})
+    const visibleForm = useReactiveVar(is_visible_create_category)
+    const { data } = useQuery(ALL_RUBRIC, {variables: { key }})
     const catalog = map(data?.catalog, v => v.id)
     const [selectedParent, setSelectedParent] = useState([]);
     const handleParentChange = (e) => setSelectedParent((catalog[e.target.value]));
     const [text, setText] = useState('');
     const { slugify } = useSlug();
-    const handleAddRubric = (e) => {
+    const handleAddCategory = (e) => {
         e.preventDefault();
         if (text.trim().length) {
-        addRubric({
+        addCategory({
             variables: {
             key,
             is_active: true,
             value: text,
             slug: slugify(text.translit()),
-            parentableType: 'catalog',
+            parentableType: 'rubric',
             parentableId: Number(selectedParent),
             },
         });
         setText('');
         }
     }
-    const [addRubric] = useMutation(CREATE_RUBRIC, {
+    const [addCategory] = useMutation(CREATE_CATEGORY, {
         refetchQueries: [
-        { query: ALL_RUBRIC,
+        { query: ALL_CATEGORY,
             variables: { key }}
         ],
     });
@@ -46,7 +46,7 @@ const CreateItemRubric = () => {
     <>
         { data &&
             <Transition.Root show={visibleForm} as={Fragment}>
-            <Dialog as="div" className="relative z-10" initialFocus={cancelButtonRef} onClose={() => is_visible_create_rubric(false)}>
+            <Dialog as="div" className="relative z-10" initialFocus={cancelButtonRef} onClose={() => is_visible_create_category(false)}>
                 <Transition.Child
                 as={Fragment}
                 enter="ease-out duration-300"
@@ -87,7 +87,7 @@ const CreateItemRubric = () => {
                             </div>
                         </div>
                         </div>
-                        <form onSubmit={handleAddRubric} className="space-y-8 divide-y divide-gray-200">
+                        <form onSubmit={handleAddCategory} className="space-y-8 divide-y divide-gray-200">
 
                             <div className="py-2">
                             <div className="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
@@ -105,7 +105,7 @@ const CreateItemRubric = () => {
                                     className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                     >
                                         <option value="DEFAULT" disabled hidden>Выбрать</option>
-                                        {data.catalog.map((item, key) => <option key={item.id} value={item.id}>{item.value}</option>)}
+                                        {data.rubric.map((item, key) => <option key={item.id} value={item.id}>{item.value}</option>)}
                                     </select>
                                 </div>
                                 </div>
@@ -132,14 +132,14 @@ const CreateItemRubric = () => {
                                 <button
                                     type="submit"
                                     className="inline-flex w-full justify-center rounded-md border border-transparent bg-green-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 sm:col-start-2 sm:text-sm"
-                                    onClick={() => is_visible_create_rubric(false)}
+                                    onClick={() => is_visible_create_category(false)}
                                     >
                                     Добавить
                                 </button>
                                 <button
                                     type="button"
                                     className="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 sm:col-start-1 sm:mt-0 sm:text-sm"
-                                    onClick={() => is_visible_create_rubric(false)}
+                                    onClick={() => is_visible_create_category(false)}
                                     ref={cancelButtonRef}
                                     >
                                     Отменить
@@ -157,4 +157,4 @@ const CreateItemRubric = () => {
     </>
   )
 }
-export default CreateItemRubric
+export default CreateItemCategory
