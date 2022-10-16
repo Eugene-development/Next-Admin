@@ -9,13 +9,18 @@ import { current_value_catalog, current_id_catalog, current_parent_id_catalog, c
 import  Switch  from '@/components/UI/buttons/Switch'
 
 
+import { useAuth } from '@/hooks/auth'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
 export default function Catalog() {
-    const key = useReactiveVar(key_project)
+    // TODO: key через локал сторадж
+    const { user } = useAuth({ middleware: 'guest' })
+    const key = user?.key
+// const key = useReactiveVar(key_project)
+
     const { loading, error, data } = useQuery(ALL_CATALOG, {variables: { key }, fetchPolicy: 'network-only'})
     const checkbox = useRef()
     const [checked, setChecked] = useState(false)
@@ -62,7 +67,7 @@ export default function Catalog() {
                             <div className="mt-4 p-4 sm:p-6 lg:p-8">
                                 <div className="sm:flex sm:items-center">
                                     <div className="sm:flex-auto">
-                                    <h1 className="text-xl font-semibold text-gray-900">Заголовки каталога</h1>
+                                    <h1 className="text-xl font-semibold text-gray-900">Раздел "Каталог"</h1>
                                     <p className="mt-2 text-sm text-gray-700">
                                         При изменении статуса элемента в неактивное положение, данные не будут отображаться на сайте.
                                     </p>

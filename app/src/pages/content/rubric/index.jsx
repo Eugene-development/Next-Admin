@@ -8,6 +8,7 @@ import { is_visible_create, is_visible_read, is_visible_update, is_visible_delet
 import { current_value_rubric, current_id_rubric, current_parent_id_rubric, current_parent_value_rubric, current_created_rubric, current_updated_rubric } from '@/apollo/stores/current'
 import  Switch  from '@/components/UI/buttons/Switch'
 
+import { useAuth } from '@/hooks/auth'
 
 
 function classNames(...classes) {
@@ -15,7 +16,10 @@ function classNames(...classes) {
 }
 
 export default function Rubric() {
-    const key = useReactiveVar(key_project)
+    const { user } = useAuth({ middleware: 'guest' })
+    const key = user?.key
+    // const key = useReactiveVar(key_project)
+
     const { loading, error, data } = useQuery(ALL_RUBRIC, {variables: { key }, fetchPolicy: 'network-only'})
     const checkbox = useRef()
     const [checked, setChecked] = useState(false)
@@ -52,17 +56,17 @@ export default function Rubric() {
                 { rubric && <AppLayout
                             header={
                                 <h2 className="font-semibold text-xl text-gray-800 leading-tight">
-                                    Каталог
+                                    Рубрика
                                 </h2>
                             }>
                             <Head>
-                                <title>Каталог</title>
+                                <title>Рубрика</title>
                             </Head>
 
                             <div className="mt-4 p-4 sm:p-6 lg:p-8">
                                 <div className="sm:flex sm:items-center">
                                     <div className="sm:flex-auto">
-                                    <h1 className="text-xl font-semibold text-gray-900">Заголовки каталога</h1>
+                                    <h1 className="text-xl font-semibold text-gray-900">Раздел "Рубрика"</h1>
                                     <p className="mt-2 text-sm text-gray-700">
                                         При изменении статуса элемента в неактивное положение, данные не будут отображаться на сайте.
                                     </p>
