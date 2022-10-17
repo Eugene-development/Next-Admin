@@ -77,7 +77,7 @@ const CreateItemProduct = () => {
                         </div>
                         <div className="mt-3 text-center sm:mt-5">
                             <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
-                            Добавление элемента каталога
+                            Добавление продукта
                             </Dialog.Title>
                             <div className="mt-2">
                             <p className="text-sm text-gray-500">
@@ -105,7 +105,7 @@ const CreateItemProduct = () => {
                                     className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                     >
                                         <option value="DEFAULT" disabled hidden>Выбрать</option>
-                                        {data.rubric.map((item, key) => <option key={item.id} value={item.id}>{item.value}</option>)}
+                                        {data.category.map((item, key) => <option key={item.id} value={item.id}>{item.value}</option>)}
                                     </select>
                                 </div>
                                 </div>

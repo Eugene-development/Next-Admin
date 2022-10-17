@@ -60,7 +60,7 @@ const DeleteItemProduct = () => {
                         </Dialog.Title>
                         <div className="mt-2">
                         <p className="text-sm text-gray-500">
-                            Элемент каталога "<strong>{currentValueProduct}</strong>" будет удалён из базы данных. Если вы не уверены просто поменяйте переключателем статус элемента в таблице.
+                            Продукт "<strong>{currentValueProduct}</strong>" будет удалён из базы данных. Если вы не уверены просто поменяйте переключателем статус элемента в таблице.
                         </p>
                         </div>
                     </div>

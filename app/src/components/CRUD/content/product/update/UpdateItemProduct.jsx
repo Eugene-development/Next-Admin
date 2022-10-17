@@ -84,7 +84,7 @@ const UpdateItemProduct = () => {
                         </div>
                         <div className="mt-3 text-center sm:mt-5">
                             <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
-                            Обновление элемента рубрик
+                            Обновление продукта
                             </Dialog.Title>
                             <div className="mt-2">
                             <p className="text-sm text-gray-500">
@@ -111,7 +111,7 @@ const UpdateItemProduct = () => {
                                             autoComplete="parent-name"
                                             className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                             >
-                                                {data.rubric.map((item, key) => {
+                                                {data.category.map((item, key) => {
                                                     return item.id == currentParentIdProduct ?
                                                         <option key={item.id} value={currentParentIdProduct}>{currentParentValueProduct}</option>
                                                         :

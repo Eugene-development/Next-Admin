@@ -19,6 +19,10 @@ import CreateItemCategory from '@/components/CRUD/content/category/create/Create
 import ReadItemCategory from '@/components/CRUD/content/category/read/ReadItemCategory'
 import UpdateItemCategory from '@/components/CRUD/content/category/update/UpdateItemCategory'
 import DeleteItemCategory from '@/components/CRUD/content/category/delete/DeleteItemCategory'
+import CreateItemProduct from '@/components/CRUD/content/product/create/CreateItemProduct'
+import ReadItemProduct from '@/components/CRUD/content/product/read/ReadItemProduct'
+import UpdateItemProduct from '@/components/CRUD/content/product/update/UpdateItemProduct'
+import DeleteItemProduct from '@/components/CRUD/content/product/delete/DeleteItemProduct'
 
 
 
@@ -134,6 +138,11 @@ const AppLayout = ({ header, children }) => {
                 <ReadItemCategory/>
                 <UpdateItemCategory/>
                 <DeleteItemCategory/>
+
+                <CreateItemProduct/>
+                <ReadItemProduct/>
+                <UpdateItemProduct/>
+                <DeleteItemProduct/>
 
 
                             <div>

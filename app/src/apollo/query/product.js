@@ -17,6 +17,26 @@ export const ALL_PRODUCT = gql`
         }
     }
 `
+export const PRODUCR_PRICE = gql`
+    query product_price($key: String!) {
+        product_price(key: $key) {
+            id
+            value
+            is_active
+            created_at
+            updated_at
+            price {
+                value
+            }
+            parent: parentable {
+                ... on Category {
+                    id
+                    value
+                }
+            }
+        }
+    }
+`
 
 export const ONE_PRODUCT = gql`
     query product_one($id: ID!) {
