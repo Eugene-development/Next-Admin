@@ -3,9 +3,9 @@ import { useEffect, useRef, useState } from 'react'
 import AppLayout from '@/components/Layouts/AppLayout'
 import Head from 'next/head'
 import { useQuery,  useReactiveVar } from '@apollo/client'
-import { ALL_PRODUCT } from '@/apollo/query/product'
+import { PRODUCT_PRICE } from '@/apollo/query/product'
 import { is_visible_create_product, is_visible_read_product, is_visible_update_product, is_visible_delete_product } from '@/apollo/stores/visible'
-import { current_value_product, current_id_product, current_parent_id_product, current_parent_value_product, current_created_product, current_updated_product } from '@/apollo/stores/current'
+import { current_value_product, current_value_product_price, current_id_product, current_parent_id_product, current_parent_value_product, current_created_product, current_updated_product } from '@/apollo/stores/current'
 import  Switch  from '@/components/UI/buttons/Switch'
 
 import { useAuth } from '@/hooks/auth'
@@ -20,7 +20,7 @@ export default function Product() {
     const key = user?.key
     // const key = useReactiveVar(key_project)
 
-    const { loading, error, data } = useQuery(ALL_PRODUCT, {variables: { key }, fetchPolicy: 'network-only'})
+    const { loading, error, data } = useQuery(PRODUCT_PRICE, {variables: { key }, fetchPolicy: 'network-only'})
     const checkbox = useRef()
     const [checked, setChecked] = useState(false)
     const [indeterminate, setIndeterminate] = useState(false)
@@ -159,7 +159,7 @@ export default function Product() {
                                                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.value}</td>
                                                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
 
-                                                    <Switch/>
+                                                    <Switch is_active={item.is_active}/>
 
                                                     </td>
                                                         <td className="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
@@ -168,6 +168,7 @@ export default function Product() {
                                                                 onClick={() => {
                                                                     is_visible_read_product(true)
                                                                     current_value_product(item.value)
+                                                                    current_value_product_price(item.price[0].value)
                                                                     current_parent_value_product(item.parent.value)
                                                                     current_created_product(item.created_at)
                                                                     current_updated_product(item.updated_at)

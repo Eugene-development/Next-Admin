@@ -29,6 +29,7 @@ export const current_created_category = makeVar()
 export const current_updated_category = makeVar()
 
 export const current_value_product = makeVar()
+export const current_value_product_price = makeVar()
 export const current_parent_id_product = makeVar()
 export const current_parent_value_product = makeVar()
 export const current_id_product = makeVar()

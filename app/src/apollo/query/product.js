@@ -17,9 +17,9 @@ export const ALL_PRODUCT = gql`
         }
     }
 `
-export const PRODUCR_PRICE = gql`
+export const PRODUCT_PRICE = gql`
     query product_price($key: String!) {
-        product_price(key: $key) {
+        product: product_price(key: $key) {
             id
             value
             is_active
@@ -30,7 +30,7 @@ export const PRODUCR_PRICE = gql`
             }
             parent: parentable {
                 ... on Category {
-                    id
+                    # id
                     value
                 }
             }

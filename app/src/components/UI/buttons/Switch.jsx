@@ -5,8 +5,8 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function SwitchButton() {
-  const [enabled, setEnabled] = useState(false)
+export default function SwitchButton({is_active}) {
+  const [enabled, setEnabled] = useState(is_active)
 
   return (
     <Switch

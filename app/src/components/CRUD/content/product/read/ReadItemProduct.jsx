@@ -3,11 +3,12 @@ import { Dialog, Transition } from '@headlessui/react'
 import { CheckIcon } from '@heroicons/react/24/outline'
 import { useReactiveVar } from '@apollo/client'
 import { is_visible_read_product } from '@/apollo/stores/visible'
-import { current_value_product, current_parent_value_product, current_created_product, current_updated_product } from '@/apollo/stores/current'
+import { current_value_product, current_value_product_price, current_parent_value_product, current_created_product, current_updated_product } from '@/apollo/stores/current'
 
 const ReadItemProduct = () => {
     const visibleForm = useReactiveVar(is_visible_read_product)
     const currentValueProduct = useReactiveVar(current_value_product)
+    const currentValueProductPrice = useReactiveVar(current_value_product_price)
     const currentParentValueProduct = useReactiveVar(current_parent_value_product)
     const currentCreatedProduct = useReactiveVar(current_created_product)
     const currentUpdatedProduct = useReactiveVar(current_updated_product)
@@ -51,34 +52,39 @@ const ReadItemProduct = () => {
                             </Dialog.Title>
                             <div className="mt-2">
                             <p className="text-sm text-gray-500">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius aliquam laudantium explicabo
-                                pariatur iste dolorem animi vitae error totam. At sapiente aliquam accusamus facere veritatis.
+                                Общая актуальная информация на момент запроса. Для изменения или удаления данных воспользуйтесь другим модальным окном.
                             </p>
                             </div>
                         </div>
                         </div>
                             <div className="py-2">
-                            <div className="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-                                <div className="sm:col-span-6">
+                            <div className="mt-6 grid grid-cols-1 gap-y-6">
+                                <div className="">
                                     <span className="block text-sm font-medium text-gray-700">
-                                        Значение - "{currentValueProduct}"
+                                        <strong>Значение</strong> - "{currentValueProduct}"
                                     </span>
                                 </div>
 
-                                <div className="sm:col-span-3">
+                                <div className="">
+                                    <span className="block text-sm font-medium text-gray-700">
+                                        <strong>Цена</strong> - {currentValueProductPrice} руб/
+                                    </span>
+                                </div>
+
+                                <div className="">
                                     <span  className="block text-sm font-medium text-gray-700">
-                                        Принадлежит элементу меню - "{currentParentValueProduct}"
+                                        <strong>Категория</strong> - "{currentParentValueProduct}"
                                     </span>
                                 </div>
 
-                                <div className="sm:col-span-6">
+                                <div className="">
                                     <span className="block text-sm font-medium text-gray-700">
-                                        Запись создана - {new Date(currentCreatedProduct).toLocaleDateString("ru")}
+                                        Запись создана - {currentCreatedProduct ? new Date(currentCreatedProduct).toLocaleDateString("ru") : "Не указано"}
                                     </span>
                                 </div>
-                                <div className="sm:col-span-6">
+                                <div className="">
                                     <span className="block text-sm font-medium text-gray-700">
-                                        Последнее изменение - {new Date(currentUpdatedProduct).toLocaleDateString("ru")}
+                                        Последнее изменение - {currentUpdatedProduct ? new Date(currentUpdatedProduct).toLocaleDateString("ru") : "Не указано"}
                                     </span>
                                 </div>
                             </div>
