@@ -17,8 +17,12 @@ function classNames(...classes) {
 export default function Product() {
     const { user } = useAuth({ middleware: 'guest' })
     const key = user?.key
-    const { loading, error, data } = useQuery(PRODUCT_PRICE, {variables: { key }, fetchPolicy: 'network-only'})
+    const { loading, error, data } = useQuery(PRODUCT_PRICE, {variables: { key }})
     const { data: dataCategory } = useQuery(ALL_CATEGORY, {variables: { key }})
+    const [selectedCategory, setSelectedCategory] = useState([]);
+    const handleCategoryChange = (e) => setSelectedCategory(([e.target.value]));
+
+    console.log(selectedCategory);
 
     const checkbox = useRef()
     const [checked, setChecked] = useState(false)
@@ -53,7 +57,7 @@ export default function Product() {
         const {product} = data
         return (
             <>
-                { product && <AppLayout
+                { product && dataCategory && <AppLayout
                             header={
                                 <h2 className="font-semibold text-xl text-gray-800 leading-tight">
                                     Продукция
@@ -70,7 +74,7 @@ export default function Product() {
                                     </label>
                                     <div className="mt-1">
                                         <select
-                                        onChange={e => handleParentChange(e)}
+                                        onChange={e => handleCategoryChange(e)}
                                         defaultValue={'DEFAULT'}
                                         id="parent"
                                         name="parent"
