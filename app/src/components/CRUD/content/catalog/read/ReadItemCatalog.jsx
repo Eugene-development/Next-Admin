@@ -58,25 +58,25 @@ const ReadItemCatalog = () => {
                         </div>
                         </div>
                             <div className="py-2">
-                            <div className="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-                                <div className="sm:col-span-6">
+                            <div className="mt-6 grid grid-cols-1 gap-y-6">
+                                <div className="">
                                     <span className="block text-sm font-medium text-gray-700">
                                         Значение - "{currentValueCatalog}"
                                     </span>
                                 </div>
 
-                                <div className="sm:col-span-3">
+                                <div className="">
                                     <span  className="block text-sm font-medium text-gray-700">
                                         Принадлежит элементу меню - "{currentParentValueCatalog}"
                                     </span>
                                 </div>
 
-                                <div className="sm:col-span-6">
+                                <div className="">
                                     <span className="block text-sm font-medium text-gray-700">
                                         Запись создана - {new Date(currentCreatedCatalog).toLocaleDateString("ru")}
                                     </span>
                                 </div>
-                                <div className="sm:col-span-6">
+                                <div className="">
                                     <span className="block text-sm font-medium text-gray-700">
                                         Последнее изменение - {new Date(currentUpdatedCatalog).toLocaleDateString("ru")}
                                     </span>
