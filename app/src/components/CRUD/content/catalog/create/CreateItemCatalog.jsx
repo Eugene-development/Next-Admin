@@ -1,4 +1,6 @@
 import { key_project } from '@/apollo/stores/auth'
+import { useAuth } from '@/hooks/auth'
+
 import { useQuery, useReactiveVar, useMutation } from '@apollo/client'
 import { ALL_CATALOG, CREATE_CATALOG } from '@/apollo/query/catalog'
 import { ALL_MENU } from '@/apollo/query/menu'
@@ -10,7 +12,9 @@ import { map } from "lodash";
 import { useSlug } from "@/hooks/slug";
 
 const CreateItemCatalog = () => {
-    const key = useReactiveVar(key_project)
+    const { user } = useAuth({ middleware: 'guest' })
+    const key = user?.key
+
     const visibleForm = useReactiveVar(is_visible_create_catalog)
     const { data } = useQuery(ALL_MENU, {variables: { key }})
     const menu = map(data?.menu, v => v.id)

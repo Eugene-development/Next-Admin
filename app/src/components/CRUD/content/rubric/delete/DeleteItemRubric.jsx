@@ -1,4 +1,6 @@
 import { key_project } from '@/apollo/stores/auth'
+import { useAuth } from '@/hooks/auth'
+
 import { useReactiveVar, useMutation } from '@apollo/client'
 import { ALL_RUBRIC, DELETE_RUBRIC } from '@/apollo/query/rubric'
 import { useRef, Fragment } from 'react'
@@ -9,7 +11,8 @@ import { current_value_rubric, current_id_rubric } from '@/apollo/stores/current
 
 
 const DeleteItemRubric = () => {
-    const key = useReactiveVar(key_project)
+    const { user } = useAuth({ middleware: 'guest' })
+    const key = user?.key
     const visibleForm = useReactiveVar(is_visible_delete_rubric)
     const currentValueRubric = useReactiveVar(current_value_rubric)
     const currentIDRubric = useReactiveVar(current_id_rubric)

@@ -1,4 +1,6 @@
 import { key_project } from '@/apollo/stores/auth'
+import { useAuth } from '@/hooks/auth'
+
 import { useQuery, useReactiveVar, useMutation } from '@apollo/client'
 import { ALL_CATEGORY, CREATE_CATEGORY } from '@/apollo/query/category'
 import { ALL_RUBRIC } from '@/apollo/query/rubric'
@@ -10,7 +12,8 @@ import { map } from "lodash";
 import { useSlug } from "@/hooks/slug";
 
 const CreateItemCategory = () => {
-    const key = useReactiveVar(key_project)
+    const { user } = useAuth({ middleware: 'guest' })
+    const key = user?.key
     const visibleForm = useReactiveVar(is_visible_create_category)
     const { data } = useQuery(ALL_RUBRIC, {variables: { key }})
     const rubric = map(data?.rubric, v => v.id)

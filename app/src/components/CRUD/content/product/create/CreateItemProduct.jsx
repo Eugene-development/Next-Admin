@@ -1,4 +1,6 @@
 import { key_project } from '@/apollo/stores/auth'
+import { useAuth } from '@/hooks/auth'
+
 import { useQuery, useReactiveVar, useMutation } from '@apollo/client'
 import { ALL_PRODUCT, CREATE_PRODUCT } from '@/apollo/query/product'
 import { ALL_CATEGORY } from '@/apollo/query/category'
@@ -10,7 +12,8 @@ import { map } from "lodash";
 import { useSlug } from "@/hooks/slug";
 
 const CreateItemProduct = () => {
-    const key = useReactiveVar(key_project)
+    const { user } = useAuth({ middleware: 'guest' })
+    const key = user?.key
     const visibleForm = useReactiveVar(is_visible_create_product)
     const { data } = useQuery(ALL_CATEGORY, {variables: { key }})
     const rubric = map(data?.rubric, v => v.id)

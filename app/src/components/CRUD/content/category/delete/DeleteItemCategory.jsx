@@ -1,4 +1,6 @@
 import { key_project } from '@/apollo/stores/auth'
+import { useAuth } from '@/hooks/auth'
+
 import { useReactiveVar, useMutation } from '@apollo/client'
 import { ALL_CATEGORY, DELETE_CATEGORY } from '@/apollo/query/category'
 import { useRef, Fragment } from 'react'
@@ -9,7 +11,8 @@ import { current_value_category, current_id_category } from '@/apollo/stores/cur
 
 
 const DeleteItemCategory = () => {
-    const key = useReactiveVar(key_project)
+    const { user } = useAuth({ middleware: 'guest' })
+    const key = user?.key
     const visibleForm = useReactiveVar(is_visible_delete_category)
     const currentValueCategory = useReactiveVar(current_value_category)
     const currentIDCategory = useReactiveVar(current_id_category)

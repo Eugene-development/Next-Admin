@@ -1,4 +1,6 @@
 import { key_project } from '@/apollo/stores/auth'
+import { useAuth } from '@/hooks/auth'
+
 import { Fragment, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { CheckIcon } from '@heroicons/react/24/outline'
@@ -10,7 +12,8 @@ import { current_id_product, current_value_product, current_parent_id_product, c
 import { useSlug } from "@/hooks/slug";
 
 const UpdateItemProduct = () => {
-    const key = useReactiveVar(key_project)
+    const { user } = useAuth({ middleware: 'guest' })
+    const key = user?.key
     const visibleForm = useReactiveVar(is_visible_update_product)
     const currentIdProduct = useReactiveVar(current_id_product)
     const currentValueProduct = useReactiveVar(current_value_product)

@@ -1,4 +1,6 @@
 import { key_project } from '@/apollo/stores/auth'
+import { useAuth } from '@/hooks/auth'
+
 import { useReactiveVar, useMutation } from '@apollo/client'
 import { ALL_PRODUCT, DELETE_PRODUCT } from '@/apollo/query/product'
 import { useRef, Fragment } from 'react'
@@ -9,7 +11,8 @@ import { current_value_product, current_id_product } from '@/apollo/stores/curre
 
 
 const DeleteItemProduct = () => {
-    const key = useReactiveVar(key_project)
+    const { user } = useAuth({ middleware: 'guest' })
+    const key = user?.key
     const visibleForm = useReactiveVar(is_visible_delete_product)
     const currentValueProduct = useReactiveVar(current_value_product)
     const currentIDProduct = useReactiveVar(current_id_product)
