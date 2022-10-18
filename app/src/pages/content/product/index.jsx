@@ -1,4 +1,4 @@
-import { key_project } from '@/apollo/stores/auth'
+import { useAuth } from '@/hooks/auth'
 import { useEffect, useRef, useState } from 'react'
 import AppLayout from '@/components/Layouts/AppLayout'
 import Head from 'next/head'
@@ -8,8 +8,6 @@ import { is_visible_create_product, is_visible_read_product, is_visible_update_p
 import { current_value_product, current_value_product_price, current_id_product, current_parent_id_product, current_parent_value_product, current_created_product, current_updated_product } from '@/apollo/stores/current'
 import  Switch  from '@/components/UI/buttons/Switch'
 
-import { useAuth } from '@/hooks/auth'
-
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -18,8 +16,6 @@ function classNames(...classes) {
 export default function Product() {
     const { user } = useAuth({ middleware: 'guest' })
     const key = user?.key
-    // const key = useReactiveVar(key_project)
-
     const { loading, error, data } = useQuery(PRODUCT_PRICE, {variables: { key }, fetchPolicy: 'network-only'})
     const checkbox = useRef()
     const [checked, setChecked] = useState(false)
@@ -128,7 +124,7 @@ export default function Product() {
                                                     </tr>
                                                 </thead>
                                                 <tbody className="divide-y divide-gray-200 bg-white">
-                                                {product?.map((item, i) => (
+                                                {product.map((item, i) => (
                                                     <tr key={item.id} className={selectedProduct.includes(item) ? 'bg-gray-50' : undefined}>
                                                         <td className="relative w-12 px-6 sm:w-16 sm:px-8">
                                                             {selectedProduct.includes(item) && (

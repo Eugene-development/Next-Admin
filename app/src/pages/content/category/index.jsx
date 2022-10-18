@@ -1,4 +1,4 @@
-import { key_project } from '@/apollo/stores/auth'
+import { useAuth } from '@/hooks/auth'
 import { useEffect, useRef, useState } from 'react'
 import AppLayout from '@/components/Layouts/AppLayout'
 import Head from 'next/head'
@@ -8,8 +8,6 @@ import { is_visible_create_category, is_visible_read_category, is_visible_update
 import { current_value_category, current_id_category, current_parent_id_category, current_parent_value_category, current_created_category, current_updated_category } from '@/apollo/stores/current'
 import  Switch  from '@/components/UI/buttons/Switch'
 
-import { useAuth } from '@/hooks/auth'
-
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -18,8 +16,6 @@ function classNames(...classes) {
 export default function Category() {
     const { user } = useAuth({ middleware: 'guest' })
     const key = user?.key
-    // const key = useReactiveVar(key_project)
-
     const { loading, error, data } = useQuery(ALL_CATEGORY, {variables: { key }, fetchPolicy: 'network-only'})
     const checkbox = useRef()
     const [checked, setChecked] = useState(false)

@@ -1,4 +1,4 @@
-import { key_project } from '@/apollo/stores/auth'
+import { useAuth } from '@/hooks/auth'
 import { useEffect, useRef, useState } from 'react'
 import AppLayout from '@/components/Layouts/AppLayout'
 import Head from 'next/head'
@@ -7,9 +7,6 @@ import { ALL_CATALOG } from '@/apollo/query/catalog'
 import { is_visible_create_catalog, is_visible_read_catalog, is_visible_update_catalog, is_visible_delete_catalog } from '@/apollo/stores/visible'
 import { current_value_catalog, current_id_catalog, current_parent_id_catalog, current_parent_value_catalog, current_created_catalog, current_updated_catalog } from '@/apollo/stores/current'
 import  Switch  from '@/components/UI/buttons/Switch'
-
-
-import { useAuth } from '@/hooks/auth'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -129,7 +126,7 @@ export default function Catalog() {
                                                     </tr>
                                                 </thead>
                                                 <tbody className="divide-y divide-gray-200 bg-white">
-                                                {catalog?.map((item, i) => (
+                                                {catalog.map((item, i) => (
                                                     <tr key={item.id} className={selectedCatalog.includes(item) ? 'bg-gray-50' : undefined}>
                                                         <td className="relative w-12 px-6 sm:w-16 sm:px-8">
                                                             {selectedCatalog.includes(item) && (
