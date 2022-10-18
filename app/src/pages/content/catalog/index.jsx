@@ -13,10 +13,13 @@ function classNames(...classes) {
 }
 
 export default function Catalog() {
-    // TODO: key через локал сторадж
     const { user } = useAuth({ middleware: 'guest' })
-    const key = user?.key
-// const key = useReactiveVar(key_project)
+    // const key = user?.key
+
+    const [key, setKey] = useState(null)
+    useEffect(() => {
+        setKey(user?.key)
+    })
 
     const { loading, error, data } = useQuery(ALL_CATALOG, {variables: { key }, fetchPolicy: 'network-only'})
     const checkbox = useRef()

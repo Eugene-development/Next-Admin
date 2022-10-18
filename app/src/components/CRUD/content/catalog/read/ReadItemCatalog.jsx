@@ -4,8 +4,19 @@ import { CheckIcon } from '@heroicons/react/24/outline'
 import { useReactiveVar } from '@apollo/client'
 import { is_visible_read_catalog } from '@/apollo/stores/visible'
 import { current_value_catalog, current_parent_value_catalog, current_created_catalog, current_updated_catalog } from '@/apollo/stores/current'
+import { useEffect, useState } from 'react'
 
 const ReadItemCatalog = () => {
+
+    // const [stat, setSome] = useState(null)
+    // useEffect(() => {
+    //         setSome('blablabla')
+    // })
+
+    // const stat = 'bibibi';
+    // console.log(stat)
+
+
     const visibleForm = useReactiveVar(is_visible_read_catalog)
     const currentValueCatalog = useReactiveVar(current_value_catalog)
     const currentParentValueCatalog = useReactiveVar(current_parent_value_catalog)
