@@ -1,6 +1,4 @@
-import { key_project } from '@/apollo/stores/auth'
 import { useAuth } from '@/hooks/auth'
-
 import { Fragment, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { CheckIcon } from '@heroicons/react/24/outline'

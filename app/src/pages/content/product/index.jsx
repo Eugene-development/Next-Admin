@@ -4,6 +4,7 @@ import AppLayout from '@/components/Layouts/AppLayout'
 import Head from 'next/head'
 import { useQuery,  useReactiveVar } from '@apollo/client'
 import { PRODUCT_PRICE } from '@/apollo/query/product'
+import { ALL_CATEGORY } from '@/apollo/query/category'
 import { is_visible_create_product, is_visible_read_product, is_visible_update_product, is_visible_delete_product } from '@/apollo/stores/visible'
 import { current_value_product, current_value_product_price, current_id_product, current_parent_id_product, current_parent_value_product, current_created_product, current_updated_product } from '@/apollo/stores/current'
 import  Switch  from '@/components/UI/buttons/Switch'
@@ -17,10 +18,13 @@ export default function Product() {
     const { user } = useAuth({ middleware: 'guest' })
     const key = user?.key
     const { loading, error, data } = useQuery(PRODUCT_PRICE, {variables: { key }, fetchPolicy: 'network-only'})
+    const { data: dataCategory } = useQuery(ALL_CATEGORY, {variables: { key }})
+
     const checkbox = useRef()
     const [checked, setChecked] = useState(false)
     const [indeterminate, setIndeterminate] = useState(false)
     const [selectedProduct, setSelectedProduct] = useState([])
+
 
   useEffect(() => {
     if (data){
@@ -58,6 +62,27 @@ export default function Product() {
                             <Head>
                                 <title>Продукция</title>
                             </Head>
+
+
+                                <div className="sm:col-span-3">
+                                    <label htmlFor="parent" className="block text-sm font-medium text-gray-700">
+                                        Выберите категорию
+                                    </label>
+                                    <div className="mt-1">
+                                        <select
+                                        onChange={e => handleParentChange(e)}
+                                        defaultValue={'DEFAULT'}
+                                        id="parent"
+                                        name="parent"
+                                        autoComplete="parent-name"
+                                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                        >
+                                            <option value="DEFAULT" disabled hidden>Выбрать</option>
+                                            {dataCategory.category.map((item, key) => <option key={item.id} value={item.id}>{item.value}</option>)}
+                                        </select>
+                                    </div>
+                                </div>
+
 
                             <div className="mt-4 p-4 sm:p-6 lg:p-8">
                                 <div className="sm:flex sm:items-center">

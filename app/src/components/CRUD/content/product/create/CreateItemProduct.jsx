@@ -1,6 +1,4 @@
-import { key_project } from '@/apollo/stores/auth'
 import { useAuth } from '@/hooks/auth'
-
 import { useQuery, useReactiveVar, useMutation } from '@apollo/client'
 import { ALL_PRODUCT, CREATE_PRODUCT } from '@/apollo/query/product'
 import { ALL_CATEGORY } from '@/apollo/query/category'
@@ -16,7 +14,7 @@ const CreateItemProduct = () => {
     const key = user?.key
     const visibleForm = useReactiveVar(is_visible_create_product)
     const { data } = useQuery(ALL_CATEGORY, {variables: { key }})
-    const rubric = map(data?.rubric, v => v.id)
+    const category = map(data?.category, v => v.id)
     const [selectedParent, setSelectedParent] = useState([]);
     const handleParentChange = (e) => setSelectedParent((category[e.target.value]));
     const [text, setText] = useState('');
@@ -95,22 +93,22 @@ const CreateItemProduct = () => {
                             <div className="py-2">
                             <div className="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
                                 <div className="sm:col-span-3">
-                                <label htmlFor="parent" className="block text-sm font-medium text-gray-700">
-                                    Принадлежит элементу меню
-                                </label>
-                                <div className="mt-1">
-                                    <select
-                                    onChange={e => handleParentChange(e)}
-                                    defaultValue={'DEFAULT'}
-                                    id="parent"
-                                    name="parent"
-                                    autoComplete="parent-name"
-                                    className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                                    >
-                                        <option value="DEFAULT" disabled hidden>Выбрать</option>
-                                        {data.category.map((item, key) => <option key={item.id} value={item.id}>{item.value}</option>)}
-                                    </select>
-                                </div>
+                                    <label htmlFor="parent" className="block text-sm font-medium text-gray-700">
+                                        Принадлежит элементу меню
+                                    </label>
+                                    <div className="mt-1">
+                                        <select
+                                        onChange={e => handleParentChange(e)}
+                                        defaultValue={'DEFAULT'}
+                                        id="parent"
+                                        name="parent"
+                                        autoComplete="parent-name"
+                                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                        >
+                                            <option value="DEFAULT" disabled hidden>Выбрать</option>
+                                            {data.category.map((item, key) => <option key={item.id} value={item.id}>{item.value}</option>)}
+                                        </select>
+                                    </div>
                                 </div>
 
                                 <div className="sm:col-span-6">
