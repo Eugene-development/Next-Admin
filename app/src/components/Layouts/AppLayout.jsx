@@ -217,7 +217,7 @@ const AppLayout = ({ header, children }) => {
                                                                     item.current
                                                                         ? 'bg-gray-900 text-gray-100 hover:bg-gray-100 hover:text-gray-900'
                                                                         : 'bg-gray-100 text-gray-900 hover:bg-gray-900 hover:text-gray-900',
-                                                                    'group w-full flex items-center pl-2 py-2 text-sm font-medium rounded-md',
+                                                                    'group w-full flex items-center pl-2 py-2 text-base font-medium rounded-md',
                                                                 )}>
                                                                 <item.icon
                                                                     className={classNames(
@@ -243,7 +243,7 @@ const AppLayout = ({ header, children }) => {
                                                                             item.current
                                                                                 ? 'bg-gray-100 text-gray-900'
                                                                                 : 'bg-gray-900 text-gray-100 hover:bg-gray-50 hover:text-gray-900',
-                                                                            'group w-full flex items-center pl-2 pr-1 py-2 text-left text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500',
+                                                                            'group w-full flex items-center pl-2 pr-1 py-2 text-left text-base font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500',
                                                                         )}>
                                                                         <item.icon
                                                                             className="mr-3 h-6 w-6 flex-shrink-0 text-gray-100 group-hover:text-gray-900"
@@ -277,7 +277,7 @@ const AppLayout = ({ header, children }) => {
                                                                                     key={
                                                                                         subItem.name
                                                                                     }
-                                                                                    className="my-1 group flex w-full items-center rounded-md py-2 pl-11 pr-2 text-sm font-medium text-gray-100 hover:bg-gray-50 hover:text-gray-900">
+                                                                                    className="my-2 group flex w-full items-center rounded-md py-1 pl-14 pr-2 text-sm font-medium text-gray-100 hover:bg-gray-50 hover:text-gray-900">
                                                                                     <Link
                                                                                         href={
                                                                                             subItem.href
