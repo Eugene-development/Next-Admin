@@ -73,12 +73,12 @@ const ReadItemCategory = () => {
 
                                 <div className="">
                                     <span className="block text-sm font-medium text-gray-700">
-                                        Запись создана - {new Date(currentCreatedCategory).toLocaleDateString("ru")}
+                                        Запись создана - {currentCreatedCategory ? new Date(currentCreatedCategory).toLocaleDateString("ru") : "Не указано"}
                                     </span>
                                 </div>
                                 <div className="">
                                     <span className="block text-sm font-medium text-gray-700">
-                                        Последнее изменение - {new Date(currentUpdatedCategory).toLocaleDateString("ru")}
+                                        Последнее изменение - {currentCreatedCategory ? new Date(currentUpdatedCategory).toLocaleDateString("ru") : "Не указано"}
                                     </span>
                                 </div>
                             </div>

@@ -73,12 +73,12 @@ const ReadItemRubric = () => {
 
                                 <div className="">
                                     <span className="block text-sm font-medium text-gray-700">
-                                        Запись создана - {new Date(currentCreatedRubric).toLocaleDateString("ru")}
+                                        Запись создана - {currentCreatedRubric ? new Date(currentCreatedRubric).toLocaleDateString("ru") : "Не указано"}
                                     </span>
                                 </div>
                                 <div className="">
                                     <span className="block text-sm font-medium text-gray-700">
-                                        Последнее изменение - {new Date(currentUpdatedRubric).toLocaleDateString("ru")}
+                                        Последнее изменение - {currentCreatedRubric ? new Date(currentUpdatedRubric).toLocaleDateString("ru") : "Не указано"}
                                     </span>
                                 </div>
                             </div>

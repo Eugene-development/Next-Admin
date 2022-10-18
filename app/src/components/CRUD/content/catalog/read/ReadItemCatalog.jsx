@@ -73,12 +73,12 @@ const ReadItemCatalog = () => {
 
                                 <div className="">
                                     <span className="block text-sm font-medium text-gray-700">
-                                        Запись создана - {new Date(currentCreatedCatalog).toLocaleDateString("ru")}
+                                        Запись создана - {currentCreatedCatalog ? new Date(currentCreatedCatalog).toLocaleDateString("ru") : "Не указано"}
                                     </span>
                                 </div>
                                 <div className="">
                                     <span className="block text-sm font-medium text-gray-700">
-                                        Последнее изменение - {new Date(currentUpdatedCatalog).toLocaleDateString("ru")}
+                                        Последнее изменение - {currentCreatedCatalog ? new Date(currentUpdatedCatalog).toLocaleDateString("ru") : "Не указано"}
                                     </span>
                                 </div>
                             </div>
