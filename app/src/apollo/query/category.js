@@ -19,11 +19,18 @@ export const ALL_CATEGORY = gql`
 `
 
 export const ONE_CATEGORY = gql`
-    query category_one($id: ID!) {
-        category_one(id: $id) {
+    query category_one($id: ID!, $key: String!) {
+        category_one(id: $id, key: $key) {
             value
             created_at
             updated_at
+            product {
+                id
+                value
+                is_active
+                created_at
+                updated_at
+            }
             parent: parentable {
                 ... on Rubric {
                     value

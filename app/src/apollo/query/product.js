@@ -30,7 +30,7 @@ export const PRODUCT_PRICE = gql`
             }
             parent: parentable {
                 ... on Category {
-                    # id
+                    id
                     value
                 }
             }

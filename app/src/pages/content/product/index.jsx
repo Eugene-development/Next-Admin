@@ -14,15 +14,30 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
+
+    // const { user } = useAuth({ middleware: 'guest' })
+    // const key = user?.key
+    // // const { loading, error, data } = useQuery(PRODUCT_PRICE, {variables: { key }, fetchPolicy: 'network-only'})
+
+    // const { loading, error, data: dataCategory } = useQuery(ALL_CATEGORY, {variables: { key }})
+    // const [selectedCategoryId, setSelectedCategoryId] = useState();
+    // const handleCategoryChange = (e) => setSelectedCategoryId(([e.target.value]));
+
+    // const [selectedOneCategory, setSelectedOneCategoryId] = useState();
+
+    // const { loading: load, error: e, data } = useQuery(ONE_CATEGORY, {
+    //     variables: {
+    //         key,
+    //         id: selectedCategoryId
+    //         },
+    //     fetchPolicy: 'network-only'});
+
+
 export default function Product() {
     const { user } = useAuth({ middleware: 'guest' })
     const key = user?.key
-    const { loading, error, data } = useQuery(PRODUCT_PRICE, {variables: { key }})
+    const { loading, error, data } = useQuery(PRODUCT_PRICE, {variables: { key }, fetchPolicy: 'network-only'})
     const { data: dataCategory } = useQuery(ALL_CATEGORY, {variables: { key }})
-    const [selectedCategory, setSelectedCategory] = useState([]);
-    const handleCategoryChange = (e) => setSelectedCategory(([e.target.value]));
-
-    console.log(selectedCategory);
 
     const checkbox = useRef()
     const [checked, setChecked] = useState(false)
@@ -57,7 +72,7 @@ export default function Product() {
         const {product} = data
         return (
             <>
-                { product && dataCategory && <AppLayout
+                { product && <AppLayout
                             header={
                                 <h2 className="font-semibold text-xl text-gray-800 leading-tight">
                                     Продукция
@@ -68,13 +83,14 @@ export default function Product() {
                             </Head>
 
 
-                                <div className="sm:col-span-3">
+
+                            <div className="sm:col-span-3">
                                     <label htmlFor="parent" className="block text-sm font-medium text-gray-700">
-                                        Выберите категорию
+                                        Принадлежит элементу меню
                                     </label>
                                     <div className="mt-1">
                                         <select
-                                        onChange={e => handleCategoryChange(e)}
+                                        onChange={e => handleParentChange(e)}
                                         defaultValue={'DEFAULT'}
                                         id="parent"
                                         name="parent"
