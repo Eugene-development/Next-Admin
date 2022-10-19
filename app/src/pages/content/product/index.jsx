@@ -38,25 +38,38 @@ export default function Product() {
     const key = user?.key
     const { loading, error, data } = useQuery(PRODUCT_PRICE, {variables: { key }, fetchPolicy: 'network-only'})
     const { data: dataCategory } = useQuery(ALL_CATEGORY, {variables: { key }})
+    console.log(data);
 
     const [selectedCategoryId, setSelectedCategoryId] = useState();
-    const handleCategoryChange = (e) => setSelectedCategoryId((e.target.value));
-    console.log(selectedCategoryId);
+    const [selectedCategory, setSelectedCategory] = useState([]);
+    const [newData, setnewData] = useState([]);
+    const handleCategoryChange = (e) => {
+        setSelectedCategoryId((e.target.value));
 
+        const newData = data.product.filter(p => p.parent?.id == selectedCategoryId);
+        // const newData = data.product.filter(c => c.some(e => e.parent === 105));
+        setnewData(newData);
+
+
+
+
+    }
+
+    console.log(newData);
 
     const checkbox = useRef()
     const [checked, setChecked] = useState(false)
     const [indeterminate, setIndeterminate] = useState(false)
     const [selectedProduct, setSelectedProduct] = useState([])
 
-  useEffect(() => {
-    if (data){
-    const isIndeterminate = selectedProduct.length > 0 && selectedProduct.length < data?.product.length
-    setChecked(selectedProduct.length === data?.product.length)
-    setIndeterminate(isIndeterminate)
-    checkbox.current.indeterminate = isIndeterminate
-    }
-  }, [selectedProduct])
+//   useEffect(() => {
+//     if (data){
+//     const isIndeterminate = selectedProduct.length > 0 && selectedProduct.length < data?.product.length
+//     setChecked(selectedProduct.length === data?.product.length)
+//     setIndeterminate(isIndeterminate)
+//     checkbox.current.indeterminate = isIndeterminate
+//     }
+//   }, [selectedProduct])
 
   function toggleAll() {
     setSelectedProduct(checked || indeterminate ? [] : data?.product)
@@ -86,10 +99,10 @@ export default function Product() {
                             </Head>
 
 
-
+{ dataCategory &&
                             <div className="sm:col-span-3">
                                     <label htmlFor="parent" className="block text-sm font-medium text-gray-700">
-                                        Принадлежит элементу меню
+                                        Выберите категорию
                                     </label>
                                     <div className="mt-1">
                                         <select
@@ -106,7 +119,9 @@ export default function Product() {
                                     </div>
                                 </div>
 
-{ data.product &&
+}
+
+{ selectedCategoryId && newData &&
                             <div className="mt-4 p-4 sm:p-6 lg:p-8">
                                 <div className="sm:flex sm:items-center">
                                     <div className="sm:flex-auto">
@@ -172,7 +187,7 @@ export default function Product() {
                                                     </tr>
                                                 </thead>
                                                 <tbody className="divide-y divide-gray-200 bg-white">
-                                                {data.product.map((item, i) => (
+                                                {newData.map((item, i) => (
                                                     <tr key={item.id} className={selectedProduct.includes(item) ? 'bg-gray-50' : undefined}>
                                                         <td className="relative w-12 px-6 sm:w-16 sm:px-8">
                                                             {selectedProduct.includes(item) && (
