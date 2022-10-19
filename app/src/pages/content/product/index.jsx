@@ -39,11 +39,15 @@ export default function Product() {
     const { loading, error, data } = useQuery(PRODUCT_PRICE, {variables: { key }, fetchPolicy: 'network-only'})
     const { data: dataCategory } = useQuery(ALL_CATEGORY, {variables: { key }})
 
+    const [selectedCategoryId, setSelectedCategoryId] = useState();
+    const handleCategoryChange = (e) => setSelectedCategoryId((e.target.value));
+    console.log(selectedCategoryId);
+
+
     const checkbox = useRef()
     const [checked, setChecked] = useState(false)
     const [indeterminate, setIndeterminate] = useState(false)
     const [selectedProduct, setSelectedProduct] = useState([])
-
 
   useEffect(() => {
     if (data){
@@ -68,11 +72,10 @@ export default function Product() {
         return <h2>Error...</h2>
     }
 
-    if (data) {
-        const {product} = data
+
         return (
             <>
-                { product && <AppLayout
+                 <AppLayout
                             header={
                                 <h2 className="font-semibold text-xl text-gray-800 leading-tight">
                                     Продукция
@@ -90,7 +93,7 @@ export default function Product() {
                                     </label>
                                     <div className="mt-1">
                                         <select
-                                        onChange={e => handleParentChange(e)}
+                                        onChange={e => handleCategoryChange(e)}
                                         defaultValue={'DEFAULT'}
                                         id="parent"
                                         name="parent"
@@ -103,7 +106,7 @@ export default function Product() {
                                     </div>
                                 </div>
 
-
+{ data.product &&
                             <div className="mt-4 p-4 sm:p-6 lg:p-8">
                                 <div className="sm:flex sm:items-center">
                                     <div className="sm:flex-auto">
@@ -169,7 +172,7 @@ export default function Product() {
                                                     </tr>
                                                 </thead>
                                                 <tbody className="divide-y divide-gray-200 bg-white">
-                                                {product.map((item, i) => (
+                                                {data.product.map((item, i) => (
                                                     <tr key={item.id} className={selectedProduct.includes(item) ? 'bg-gray-50' : undefined}>
                                                         <td className="relative w-12 px-6 sm:w-16 sm:px-8">
                                                             {selectedProduct.includes(item) && (
@@ -265,9 +268,10 @@ export default function Product() {
                                     </div>
                                 </div>
                             </div>
+
+}
                 </AppLayout>
-                }
+
             </>
         )
-    }
 }
