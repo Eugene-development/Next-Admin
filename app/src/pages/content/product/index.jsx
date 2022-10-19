@@ -41,18 +41,12 @@ export default function Product() {
     console.log(data);
 
     const [selectedCategoryId, setSelectedCategoryId] = useState();
-    const [selectedCategory, setSelectedCategory] = useState([]);
+    // const [selectedCategory, setSelectedCategory] = useState([]);
     const [newData, setnewData] = useState([]);
     const handleCategoryChange = (e) => {
         setSelectedCategoryId((e.target.value));
-
-        const newData = data.product.filter(p => p.parent?.id == selectedCategoryId);
-        // const newData = data.product.filter(c => c.some(e => e.parent === 105));
+        const newData = data.product.filter(p => p.parent?.id == e.target.value);
         setnewData(newData);
-
-
-
-
     }
 
     console.log(newData);
