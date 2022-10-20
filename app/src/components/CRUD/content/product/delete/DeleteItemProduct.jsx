@@ -3,11 +3,13 @@ import { useAuth } from '@/hooks/auth'
 
 import { useReactiveVar, useMutation } from '@apollo/client'
 import { ALL_PRODUCT, DELETE_PRODUCT } from '@/apollo/query/product'
+import { ONE_CATEGORY } from '@/apollo/query/category'
+
 import { useRef, Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 import { is_visible_delete_product } from '@/apollo/stores/visible'
-import { current_value_product, current_id_product } from '@/apollo/stores/current'
+import { current_value_product, current_id_product, current_parent_id_product } from '@/apollo/stores/current'
 
 
 const DeleteItemProduct = () => {
@@ -16,11 +18,12 @@ const DeleteItemProduct = () => {
     const visibleForm = useReactiveVar(is_visible_delete_product)
     const currentValueProduct = useReactiveVar(current_value_product)
     const currentIDProduct = useReactiveVar(current_id_product)
+    const currentParentIdProduct = useReactiveVar(current_parent_id_product)
     const [removeProduct, {error: removeError}] = useMutation(DELETE_PRODUCT, {
             refetchQueries: [
                 {
-                    query: ALL_PRODUCT,
-                    variables: { key }
+                    query: ONE_CATEGORY,
+                    variables: {key, id: currentParentIdProduct}
                 }
             ],
       })

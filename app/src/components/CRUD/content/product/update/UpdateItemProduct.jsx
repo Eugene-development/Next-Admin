@@ -34,7 +34,7 @@ const UpdateItemProduct = () => {
             is_active: true,
             value: text,
             slug: slugify(text.translit()),
-            parentableType: 'rubric',
+            parentableType: 'category',
             parentableId: Number(parent),
             },
         });
