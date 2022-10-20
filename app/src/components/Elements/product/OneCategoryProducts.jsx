@@ -13,9 +13,9 @@ function classNames(...classes) {
 
 export const OneCategoryProducts = ({selectedCategoryId}) => {
     const { user } = useAuth({ middleware: 'guest' })
-    const key = user?.key
+    const key = user.key
     const { loading, error, data } = useQuery (ONE_CATEGORY, {variables: {key, id: selectedCategoryId}})
-    // console.log (   data )
+    console.log (   data )
 
     const checkbox = useRef()
     const [checked, setChecked] = useState(false)
@@ -168,8 +168,8 @@ export const OneCategoryProducts = ({selectedCategoryId}) => {
                                                             is_visible_update_product(true)
                                                             current_id_product(item.id)
                                                             current_value_product(item.value)
-                                                            current_parent_value_product(item.parent.value)
-                                                            current_parent_id_product(item.parent.id)
+                                                            current_parent_value_product(category_one.value)
+                                                            current_parent_id_product(category_one.id)
                                                             }
                                                         }
                                                         type="button"
