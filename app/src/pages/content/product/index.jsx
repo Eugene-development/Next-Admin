@@ -5,8 +5,6 @@ import Head from 'next/head'
 import { useQuery,  useReactiveVar } from '@apollo/client'
 import { PRODUCT_PRICE } from '@/apollo/query/product'
 import { ALL_CATEGORY, ONE_CATEGORY } from '@/apollo/query/category'
-import { is_visible_create_product, is_visible_read_product, is_visible_update_product, is_visible_delete_product } from '@/apollo/stores/visible'
-import { current_value_product, current_value_product_price, current_id_product, current_parent_id_product, current_parent_value_product, current_created_product, current_updated_product } from '@/apollo/stores/current'
 import OneCategoryProducts from '@/components/Elements/product/OneCategoryProducts'
 
 function classNames(...classes) {

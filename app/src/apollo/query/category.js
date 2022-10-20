@@ -28,6 +28,9 @@ export const ONE_CATEGORY = gql`
                 id
                 value
                 is_active
+                price {
+                    value
+                }
                 created_at
                 updated_at
             }

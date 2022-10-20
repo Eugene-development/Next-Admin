@@ -2,7 +2,10 @@ import { useAuth } from '@/hooks/auth'
 import { useEffect, useRef, useState } from 'react'
 import { useQuery,  useReactiveVar } from '@apollo/client'
 import { ONE_CATEGORY } from '@/apollo/query/category'
+import { is_visible_create_product, is_visible_read_product, is_visible_update_product, is_visible_delete_product } from '@/apollo/stores/visible'
+import { current_value_product, current_value_product_price, current_id_product, current_parent_id_product, current_parent_value_product, current_created_product, current_updated_product } from '@/apollo/stores/current'
 import  Switch  from '@/components/UI/buttons/Switch'
+
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -12,6 +15,7 @@ export const OneCategoryProducts = ({selectedCategoryId}) => {
     const { user } = useAuth({ middleware: 'guest' })
     const key = user?.key
     const { loading, error, data } = useQuery (ONE_CATEGORY, {variables: {key, id: selectedCategoryId}})
+    // console.log (   data )
 
     const checkbox = useRef()
     const [checked, setChecked] = useState(false)
@@ -33,10 +37,8 @@ export const OneCategoryProducts = ({selectedCategoryId}) => {
     setIndeterminate(false)
   }
 
-    if (loading) return <h2>Loading...</h2>
-
+    if (loading) return <h2>Загрузка...</h2>
     if (error) return <h2>Error...</h2>
-
     if (data) {
         const {category_one} = data
         return (
@@ -147,8 +149,8 @@ export const OneCategoryProducts = ({selectedCategoryId}) => {
                                                         onClick={() => {
                                                             is_visible_read_product(true)
                                                             current_value_product(item.value)
-                                                            current_value_product_price(item.price[0].value)
-                                                            current_parent_value_product(item.parent.value)
+                                                            current_value_product_price(item?.price[0]?.value)
+                                                            current_parent_value_product(category_one.value)
                                                             current_created_product(item.created_at)
                                                             current_updated_product(item.updated_at)
                                                             }
