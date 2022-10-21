@@ -18,7 +18,7 @@ export default function Catalog() {
 
     const [key, setKey] = useState(null)
     useEffect(() => {
-        setKey(user?.key)
+        setKey(user.key)
     })
 
     const { loading, error, data } = useQuery(ALL_CATALOG, {variables: { key }, fetchPolicy: 'network-only'})
@@ -42,15 +42,9 @@ export default function Catalog() {
     setIndeterminate(false)
   }
 
-  if (loading) {
-        return <h2>Loading...</h2>
-    }
-
-  if (error) {
-        return <h2>Error...</h2>
-    }
-
-    if (data) {
+  if (loading) <h2>Загрузка...</h2>
+  if (error) <h2>Error...</h2>
+  if (data) {
         const {catalog} = data
         return (
             <>

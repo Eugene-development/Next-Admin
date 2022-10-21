@@ -14,8 +14,7 @@ function classNames(...classes) {
 
 export default function Rubric() {
     const { user } = useAuth({ middleware: 'guest' })
-    const key = user?.key
-    // const key = useReactiveVar(key_project)
+    const key = user.key
 
     const { loading, error, data } = useQuery(ALL_RUBRIC, {variables: { key }, fetchPolicy: 'network-only'})
     const checkbox = useRef()
@@ -38,14 +37,8 @@ export default function Rubric() {
     setIndeterminate(false)
   }
 
-  if (loading) {
-        return <h2>Loading...</h2>
-    }
-
-  if (error) {
-        return <h2>Error...</h2>
-    }
-
+    if (loading) <h2>Loading...</h2>
+    if (error) <h2>Error...</h2>
     if (data) {
         const {rubric} = data
         return (

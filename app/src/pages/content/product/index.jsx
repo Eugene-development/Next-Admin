@@ -32,7 +32,8 @@ function classNames(...classes) {
 
 export default function Product() {
     const { user } = useAuth({ middleware: 'guest' })
-    const key = user?.key
+    const key = user.key
+    
     const { loading, error, data } = useQuery(PRODUCT_PRICE, {variables: { key }, fetchPolicy: 'network-only'})
     const { data: dataCategory } = useQuery(ALL_CATEGORY, {variables: { key }})
 
@@ -50,15 +51,8 @@ export default function Product() {
     }
 
 
-  if (loading) {
-        return <h2>Loading...</h2>
-    }
-
-  if (error) {
-        return <h2>Error...</h2>
-    }
-
-
+  if (loading) <h2>Загрузка...</h2>
+  if (error) <h2>Error...</h2>
         return (
             <>
                  <AppLayout
