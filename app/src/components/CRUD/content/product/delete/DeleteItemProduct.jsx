@@ -14,7 +14,8 @@ import { current_value_product, current_id_product, current_parent_id_product } 
 
 const DeleteItemProduct = () => {
     const { user } = useAuth({ middleware: 'guest' })
-    const key = user?.key
+    const key = user.key
+
     const visibleForm = useReactiveVar(is_visible_delete_product)
     const currentValueProduct = useReactiveVar(current_value_product)
     const currentIDProduct = useReactiveVar(current_id_product)

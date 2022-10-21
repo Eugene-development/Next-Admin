@@ -13,7 +13,8 @@ import { useSlug } from "@/hooks/slug";
 
 const UpdateItemCategory = () => {
     const { user } = useAuth({ middleware: 'guest' })
-    const key = user?.key
+    const key = user.key
+
     const visibleForm = useReactiveVar(is_visible_update_category)
     const currentIdCategory = useReactiveVar(current_id_category)
     const currentValueCategory = useReactiveVar(current_value_category)

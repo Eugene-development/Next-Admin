@@ -11,7 +11,8 @@ import { useSlug } from "@/hooks/slug";
 
 const UpdateItemRubric = () => {
     const { user } = useAuth({ middleware: 'guest' })
-    const key = user?.key
+    const key = user.key
+    
     const visibleForm = useReactiveVar(is_visible_update_rubric)
     const currentIdRubric = useReactiveVar(current_id_rubric)
     const currentValueRubric = useReactiveVar(current_value_rubric)

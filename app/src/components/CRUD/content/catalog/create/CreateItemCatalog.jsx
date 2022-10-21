@@ -13,7 +13,7 @@ import { useSlug } from "@/hooks/slug";
 
 const CreateItemCatalog = () => {
     const { user } = useAuth({ middleware: 'guest' })
-    const key = user?.key
+    const key = user.key
 
     const visibleForm = useReactiveVar(is_visible_create_catalog)
     const { data } = useQuery(ALL_MENU, {variables: { key }})

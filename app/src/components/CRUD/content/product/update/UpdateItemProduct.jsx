@@ -11,12 +11,14 @@ import { useSlug } from "@/hooks/slug";
 
 const UpdateItemProduct = () => {
     const { user } = useAuth({ middleware: 'guest' })
-    const key = user?.key
+    const key = user.key
+
     const visibleForm = useReactiveVar(is_visible_update_product)
     const currentIdProduct = useReactiveVar(current_id_product)
     const currentValueProduct = useReactiveVar(current_value_product)
     const currentParentIdProduct = useReactiveVar(current_parent_id_product)
     const currentParentValueProduct = useReactiveVar(current_parent_value_product)
+    
     const { data } = useQuery(ALL_CATEGORY, {variables: { key }})
     const [changedText, setText] = useState();
     const [selectedParent, setSelectedParent] = useState();

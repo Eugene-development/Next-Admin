@@ -11,7 +11,8 @@ import { useSlug } from "@/hooks/slug";
 
 const CreateItemProduct = () => {
     const { user } = useAuth({ middleware: 'guest' })
-    const key = user?.key
+    const key = user.key
+
     const visibleForm = useReactiveVar(is_visible_create_product)
     const { data } = useQuery(ALL_CATEGORY, {variables: { key }})
     const category = map(data?.category, v => v.id)

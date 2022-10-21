@@ -12,7 +12,8 @@ import { current_value_rubric, current_id_rubric } from '@/apollo/stores/current
 
 const DeleteItemRubric = () => {
     const { user } = useAuth({ middleware: 'guest' })
-    const key = user?.key
+    const key = user.key
+    
     const visibleForm = useReactiveVar(is_visible_delete_rubric)
     const currentValueRubric = useReactiveVar(current_value_rubric)
     const currentIDRubric = useReactiveVar(current_id_rubric)

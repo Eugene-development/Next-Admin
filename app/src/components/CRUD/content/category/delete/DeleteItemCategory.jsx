@@ -12,7 +12,8 @@ import { current_value_category, current_id_category } from '@/apollo/stores/cur
 
 const DeleteItemCategory = () => {
     const { user } = useAuth({ middleware: 'guest' })
-    const key = user?.key
+    const key = user.key
+    
     const visibleForm = useReactiveVar(is_visible_delete_category)
     const currentValueCategory = useReactiveVar(current_value_category)
     const currentIDCategory = useReactiveVar(current_id_category)

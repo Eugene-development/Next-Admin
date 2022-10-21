@@ -13,7 +13,8 @@ import { useSlug } from "@/hooks/slug";
 
 const CreateItemCategory = () => {
     const { user } = useAuth({ middleware: 'guest' })
-    const key = user?.key
+    const key = user.key
+    
     const visibleForm = useReactiveVar(is_visible_create_category)
     const { data } = useQuery(ALL_RUBRIC, {variables: { key }})
     const rubric = map(data?.rubric, v => v.id)

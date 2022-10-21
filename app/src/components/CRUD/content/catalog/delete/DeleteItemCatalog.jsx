@@ -12,7 +12,8 @@ import { current_value_catalog, current_id_catalog } from '@/apollo/stores/curre
 
 const DeleteItemCatalog = () => {
     const { user } = useAuth({ middleware: 'guest' })
-    const key = user?.key
+    const key = user.key
+    
     const visibleForm = useReactiveVar(is_visible_delete_catalog)
     const currentValueCatalog = useReactiveVar(current_value_catalog)
     const currentIDCatalog = useReactiveVar(current_id_catalog)
