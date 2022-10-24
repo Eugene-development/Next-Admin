@@ -27,6 +27,7 @@ const UpdateItemProduct = () => {
     const handleParentChange = (e) => setSelectedParent((e.target.value));
     const { slugify } = useSlug();
     const handleUpdateProduct = (e) => {
+
         e.preventDefault();
         if (text.trim().length) {
         updateProduct({
@@ -46,7 +47,7 @@ const UpdateItemProduct = () => {
         const [updateProduct] = useMutation(UPDATE_PRODUCT, {
         refetchQueries: [
         { query: ONE_CATEGORY,
-            variables: {key, id: selectedParent}}
+            variables: {key, id: parent}}
         ],
     });
 
