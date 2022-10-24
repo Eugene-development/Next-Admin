@@ -14,14 +14,17 @@ function classNames(...classes) {
 
 export default function Catalog() {
     const { user } = useAuth({ middleware: 'guest' })
-    // const key = user?.key
+    const key = user?.key
 
-    const [key, setKey] = useState(null)
-    useEffect(() => {
-        setKey(user.key)
-    })
+    // const [key, setKey] = useState(null)
+    // useEffect(() => {
+    //     setKey(user?.key)
+    // })
 
-    const { loading, error, data } = useQuery(ALL_CATALOG, {variables: { key }, fetchPolicy: 'network-only'})
+    const { loading, error, data } = useQuery(ALL_CATALOG, {variables: { key }})
+
+
+    console.log(data)
     const checkbox = useRef()
     const [checked, setChecked] = useState(false)
     const [indeterminate, setIndeterminate] = useState(false)
@@ -123,7 +126,7 @@ export default function Catalog() {
                                                     </tr>
                                                 </thead>
                                                 <tbody className="divide-y divide-gray-200 bg-white">
-                                                {catalog.map((item, i) => (
+                                                {catalog?.map((item, i) => (
                                                     <tr key={item.id} className={selectedCatalog.includes(item) ? 'bg-gray-50' : undefined}>
                                                         <td className="relative w-12 px-6 sm:w-16 sm:px-8">
                                                             {selectedCatalog.includes(item) && (

@@ -14,9 +14,10 @@ function classNames(...classes) {
 
 export default function Rubric() {
     const { user } = useAuth({ middleware: 'guest' })
-    const key = user.key
+    const key = user?.key
 
-    const { loading, error, data } = useQuery(ALL_RUBRIC, {variables: { key }, fetchPolicy: 'network-only'})
+    const { loading, error, data } = useQuery(ALL_RUBRIC, {variables: { key }})
+
     const checkbox = useRef()
     const [checked, setChecked] = useState(false)
     const [indeterminate, setIndeterminate] = useState(false)
@@ -118,7 +119,7 @@ export default function Rubric() {
                                                     </tr>
                                                 </thead>
                                                 <tbody className="divide-y divide-gray-200 bg-white">
-                                                {rubric.map((item, i) => (
+                                                {rubric?.map((item, i) => (
                                                     <tr key={item.id} className={selectedRubric.includes(item) ? 'bg-gray-50' : undefined}>
                                                         <td className="relative w-12 px-6 sm:w-16 sm:px-8">
                                                             {selectedRubric.includes(item) && (

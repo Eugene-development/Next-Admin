@@ -15,9 +15,12 @@ function classNames(...classes) {
 
 export default function Category() {
     const { user } = useAuth({ middleware: 'guest' })
-    const key = user.key
-    
-    const { loading, error, data } = useQuery(ALL_CATEGORY, {variables: { key }, fetchPolicy: 'network-only'})
+    const key = user?.key
+
+    const { loading, error, data } = useQuery(ALL_CATEGORY, {variables: { key }})
+
+    if (data) console.log(data)
+
     const checkbox = useRef()
     const [checked, setChecked] = useState(false)
     const [indeterminate, setIndeterminate] = useState(false)
@@ -44,7 +47,7 @@ export default function Category() {
         const {category} = data
         return (
             <>
-                { category && <AppLayout
+                 <AppLayout
                             header={
                                 <h2 className="font-semibold text-xl text-gray-800 leading-tight">
                                     Категория
@@ -215,7 +218,7 @@ export default function Category() {
                                 </div>
                             </div>
                 </AppLayout>
-                }
+
             </>
         )
     }
