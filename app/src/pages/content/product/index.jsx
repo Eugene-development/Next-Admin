@@ -32,10 +32,10 @@ function classNames(...classes) {
 
 export default function Product() {
     const { user } = useAuth({ middleware: 'guest' })
-    const key = user.key
-    
-    const { loading, error, data } = useQuery(PRODUCT_PRICE, {variables: { key }, fetchPolicy: 'network-only'})
-    const { data: dataCategory } = useQuery(ALL_CATEGORY, {variables: { key }})
+    const key = user?.key
+
+    // const { loading, error, data } = useQuery(PRODUCT_PRICE, {variables: { key }, fetchPolicy: 'network-only'})
+    const { loading, error, data: dataCategory } = useQuery(ALL_CATEGORY, {variables: { key }})
 
     const [selectedCategoryId, setSelectedCategoryId] = useState();
     // const [selectedCategory, setSelectedCategory] = useState([]);
@@ -81,7 +81,7 @@ export default function Product() {
                                         className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                         >
                                             <option value="DEFAULT" disabled hidden>Выбрать</option>
-                                            {dataCategory.category.map((item, key) => <option key={item.id} value={item.id}>{item.value}</option>)}
+                                            {dataCategory.category.map((item, key) => <option key={item.id} value={item.id}>{item.value}-{item.id}</option>)}
                                         </select>
                                     </div>
                                 </div>

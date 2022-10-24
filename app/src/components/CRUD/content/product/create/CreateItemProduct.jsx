@@ -1,7 +1,7 @@
 import { useAuth } from '@/hooks/auth'
 import { useQuery, useReactiveVar, useMutation } from '@apollo/client'
 import { ALL_PRODUCT, CREATE_PRODUCT } from '@/apollo/query/product'
-import { ALL_CATEGORY } from '@/apollo/query/category'
+import { ALL_CATEGORY, ONE_CATEGORY } from '@/apollo/query/category'
 import { is_visible_create_product } from '@/apollo/stores/visible'
 import { Fragment, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
@@ -15,9 +15,9 @@ const CreateItemProduct = () => {
 
     const visibleForm = useReactiveVar(is_visible_create_product)
     const { data } = useQuery(ALL_CATEGORY, {variables: { key }})
-    const category = map(data?.category, v => v.id)
+    // const category = map(data?.category, v => v.id)
     const [selectedParent, setSelectedParent] = useState([]);
-    const handleParentChange = (e) => setSelectedParent((category[e.target.value]));
+    const handleParentChange = (e) => setSelectedParent(e.target.value);
     const [text, setText] = useState('');
     const { slugify } = useSlug();
     const handleAddProduct = (e) => {
@@ -38,10 +38,16 @@ const CreateItemProduct = () => {
     }
     const [addProduct] = useMutation(CREATE_PRODUCT, {
         refetchQueries: [
-        { query: ALL_PRODUCT,
-            variables: { key }}
+        { query: ONE_CATEGORY,
+            variables: {key, id: selectedParent}}
         ],
     });
+    // const [addProduct] = useMutation(CREATE_PRODUCT, {
+    //     refetchQueries: [
+    //     { query: ALL_PRODUCT,
+    //         variables: { key }}
+    //     ],
+    // });
     const cancelButtonRef = useRef(null)
 
   return (
@@ -107,7 +113,7 @@ const CreateItemProduct = () => {
                                         className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                         >
                                             <option value="DEFAULT" disabled hidden>Выбрать</option>
-                                            {data.category.map((item, key) => <option key={item.id} value={item.id}>{item.value}</option>)}
+                                            {data.category.map((item, key) => <option key={item.id} value={item.id}>{item.value}-{item.id}</option>)}
                                         </select>
                                     </div>
                                 </div>

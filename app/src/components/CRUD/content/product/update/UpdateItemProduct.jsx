@@ -4,7 +4,7 @@ import { Dialog, Transition } from '@headlessui/react'
 import { CheckIcon } from '@heroicons/react/24/outline'
 import { useQuery, useReactiveVar, useMutation } from '@apollo/client'
 import { ALL_PRODUCT, UPDATE_PRODUCT } from '@/apollo/query/product'
-import { ALL_CATEGORY } from '@/apollo/query/category'
+import { ALL_CATEGORY, ONE_CATEGORY } from '@/apollo/query/category'
 import { is_visible_update_product } from '@/apollo/stores/visible'
 import { current_id_product, current_value_product, current_parent_id_product, current_parent_value_product } from '@/apollo/stores/current'
 import { useSlug } from "@/hooks/slug";
@@ -18,7 +18,7 @@ const UpdateItemProduct = () => {
     const currentValueProduct = useReactiveVar(current_value_product)
     const currentParentIdProduct = useReactiveVar(current_parent_id_product)
     const currentParentValueProduct = useReactiveVar(current_parent_value_product)
-    
+
     const { data } = useQuery(ALL_CATEGORY, {variables: { key }})
     const [changedText, setText] = useState();
     const [selectedParent, setSelectedParent] = useState();
@@ -45,8 +45,8 @@ const UpdateItemProduct = () => {
     }
         const [updateProduct] = useMutation(UPDATE_PRODUCT, {
         refetchQueries: [
-        { query: ALL_PRODUCT,
-            variables: { key }}
+        { query: ONE_CATEGORY,
+            variables: {key, id: selectedParent}}
         ],
     });
 
