@@ -18,8 +18,11 @@ export default function Category() {
     const key = user?.key
 
     const { loading, error, data } = useQuery(ALL_CATEGORY, {variables: { key }})
+    const [category, setCategory] = useState([])
+    useEffect(() => {
+        if (data) setCategory(data.category)
+    }, [data]);
 
-    if (data) console.log(data)
 
     const checkbox = useRef()
     const [checked, setChecked] = useState(false)
@@ -28,26 +31,25 @@ export default function Category() {
 
   useEffect(() => {
     if (data){
-    const isIndeterminate = selectedCategory.length > 0 && selectedCategory.length < data?.category.length
-    setChecked(selectedCategory.length === data?.category.length)
+    const isIndeterminate = selectedCategory.length > 0 && selectedCategory.length < category.length
+    setChecked(selectedCategory.length === category.length)
     setIndeterminate(isIndeterminate)
     checkbox.current.indeterminate = isIndeterminate
     }
   }, [selectedCategory])
 
   function toggleAll() {
-    setSelectedCategory(checked || indeterminate ? [] : data?.category)
+    setSelectedCategory(checked || indeterminate ? [] : category)
     setChecked(!checked && !indeterminate)
     setIndeterminate(false)
   }
 
     if (loading) <h2>Загрузка...</h2>
     if (error) <h2>Error...</h2>
-    if (data) {
-        const {category} = data
         return (
             <>
-                 <AppLayout
+            {category &&
+                             <AppLayout
                             header={
                                 <h2 className="font-semibold text-xl text-gray-800 leading-tight">
                                     Категория
@@ -219,7 +221,9 @@ export default function Category() {
                             </div>
                 </AppLayout>
 
+
+            }
             </>
         )
-    }
+
 }
