@@ -16,15 +16,12 @@ export default function Catalog() {
     const { user } = useAuth({ middleware: 'guest' })
     const key = user?.key
 
-    // const [key, setKey] = useState(null)
-    // useEffect(() => {
-    //     setKey(user?.key)
-    // })
-
     const { loading, error, data } = useQuery(ALL_CATALOG, {variables: { key }})
+    const [catalog, setCatalog] = useState([])
+    useEffect(() => {
+        if (data) setCatalog(data.catalog)
+    }, [data]);
 
-
-    console.log(data)
     const checkbox = useRef()
     const [checked, setChecked] = useState(false)
     const [indeterminate, setIndeterminate] = useState(false)
@@ -32,26 +29,25 @@ export default function Catalog() {
 
   useEffect(() => {
     if (data){
-    const isIndeterminate = selectedCatalog.length > 0 && selectedCatalog.length < data?.catalog.length
-    setChecked(selectedCatalog.length === data?.catalog.length)
+    const isIndeterminate = selectedCatalog.length > 0 && selectedCatalog.length < catalog.length
+    setChecked(selectedCatalog.length === catalog.length)
     setIndeterminate(isIndeterminate)
     checkbox.current.indeterminate = isIndeterminate
     }
   }, [selectedCatalog])
 
   function toggleAll() {
-    setSelectedCatalog(checked || indeterminate ? [] : data?.catalog)
+    setSelectedCatalog(checked || indeterminate ? [] : catalog)
     setChecked(!checked && !indeterminate)
     setIndeterminate(false)
   }
 
   if (loading) <h2>Загрузка...</h2>
   if (error) <h2>Error...</h2>
-  if (data) {
-        const {catalog} = data
-        return (
+  return (
             <>
-                { catalog && <AppLayout
+                {catalog &&
+                                <AppLayout
                             header={
                                 <h2 className="font-semibold text-xl text-gray-800 leading-tight">
                                     Каталог
@@ -126,7 +122,7 @@ export default function Catalog() {
                                                     </tr>
                                                 </thead>
                                                 <tbody className="divide-y divide-gray-200 bg-white">
-                                                {catalog?.map((item, i) => (
+                                                {catalog.map((item, i) => (
                                                     <tr key={item.id} className={selectedCatalog.includes(item) ? 'bg-gray-50' : undefined}>
                                                         <td className="relative w-12 px-6 sm:w-16 sm:px-8">
                                                             {selectedCatalog.includes(item) && (
@@ -222,8 +218,11 @@ export default function Catalog() {
                                 </div>
                             </div>
                 </AppLayout>
+
                 }
+
+
             </>
         )
-    }
+
 }

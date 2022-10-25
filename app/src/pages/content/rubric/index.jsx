@@ -17,6 +17,11 @@ export default function Rubric() {
     const key = user?.key
 
     const { loading, error, data } = useQuery(ALL_RUBRIC, {variables: { key }})
+    const [rubric, setRubric] = useState([])
+    useEffect(() => {
+        if (data) setRubric(data.rubric)
+    }, [data]);
+
 
     const checkbox = useRef()
     const [checked, setChecked] = useState(false)
@@ -25,23 +30,21 @@ export default function Rubric() {
 
   useEffect(() => {
     if (data){
-    const isIndeterminate = selectedRubric.length > 0 && selectedRubric.length < data?.rubric.length
-    setChecked(selectedRubric.length === data?.rubric.length)
+    const isIndeterminate = selectedRubric.length > 0 && selectedRubric.length < rubric.length
+    setChecked(selectedRubric.length === rubric.length)
     setIndeterminate(isIndeterminate)
     checkbox.current.indeterminate = isIndeterminate
     }
   }, [selectedRubric])
 
   function toggleAll() {
-    setSelectedRubric(checked || indeterminate ? [] : data?.rubric)
+    setSelectedRubric(checked || indeterminate ? [] : rubric)
     setChecked(!checked && !indeterminate)
     setIndeterminate(false)
   }
 
     if (loading) <h2>Loading...</h2>
     if (error) <h2>Error...</h2>
-    if (data) {
-        const {rubric} = data
         return (
             <>
                 { rubric && <AppLayout
@@ -119,7 +122,7 @@ export default function Rubric() {
                                                     </tr>
                                                 </thead>
                                                 <tbody className="divide-y divide-gray-200 bg-white">
-                                                {rubric?.map((item, i) => (
+                                                {rubric.map((item, i) => (
                                                     <tr key={item.id} className={selectedRubric.includes(item) ? 'bg-gray-50' : undefined}>
                                                         <td className="relative w-12 px-6 sm:w-16 sm:px-8">
                                                             {selectedRubric.includes(item) && (
@@ -218,5 +221,5 @@ export default function Rubric() {
                 }
             </>
         )
-    }
+
 }
