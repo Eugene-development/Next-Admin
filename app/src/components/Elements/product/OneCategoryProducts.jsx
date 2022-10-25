@@ -15,6 +15,12 @@ export const OneCategoryProducts = ({selectedCategoryId}) => {
     const { user } = useAuth({ middleware: 'guest' })
     const key = user?.key
     const { loading, error, data } = useQuery (ONE_CATEGORY, {variables: {key, id: selectedCategoryId}})
+    const [categoryOne, setCategory] = useState()
+    useEffect(() => {
+        if (data) setCategory(data.category_one)
+    }, [data]);
+
+console.log(categoryOne);
 
     const checkbox = useRef()
     const [checked, setChecked] = useState(false)
@@ -23,27 +29,27 @@ export const OneCategoryProducts = ({selectedCategoryId}) => {
 
   useEffect(() => {
     if (data){
-    const isIndeterminate = selectedProduct.length > 0 && selectedProduct.length < data?.category_one.product.length
-    setChecked(selectedProduct.length === data?.category_one.product.length)
+    const isIndeterminate = selectedProduct.length > 0 && selectedProduct.length < categoryOne.product.length
+    setChecked(selectedProduct.length === categoryOne.product.length)
     setIndeterminate(isIndeterminate)
     checkbox.current.indeterminate = isIndeterminate
     }
   }, [selectedProduct])
 
   function toggleAll() {
-    setSelectedProduct(checked || indeterminate ? [] : data?.product)
+    setSelectedProduct(checked || indeterminate ? [] : categoryOne.product)
     setChecked(!checked && !indeterminate)
     setIndeterminate(false)
   }
 
     if (loading) return <h2>Загрузка...</h2>
     if (error) return <h2>Error...</h2>
-    if (data) {
-        const {category_one} = data
+
         return (
 
                 <>
-                    <div className="mt-4 p-4 sm:p-6 lg:p-8">
+                {categoryOne &&
+                                    <div className="mt-4 p-4 sm:p-6 lg:p-8">
                         <div className="sm:flex sm:items-center">
                             <div className="sm:flex-auto">
                             <h1 className="text-xl font-semibold text-gray-900">Раздел "Продукция"</h1>
@@ -108,7 +114,7 @@ export const OneCategoryProducts = ({selectedCategoryId}) => {
                                             </tr>
                                         </thead>
                                         <tbody className="divide-y divide-gray-200 bg-white">
-                                        {category_one.product.map((item, i) => (
+                                        {categoryOne.product.map((item, i) => (
                                             <tr key={item.id} className={selectedProduct.includes(item) ? 'bg-gray-50' : undefined}>
                                                 <td className="relative w-12 px-6 sm:w-16 sm:px-8">
                                                     {selectedProduct.includes(item) && (
@@ -149,7 +155,7 @@ export const OneCategoryProducts = ({selectedCategoryId}) => {
                                                             is_visible_read_product(true)
                                                             current_value_product(item.value)
                                                             current_value_product_price(item?.price[0]?.value)
-                                                            current_parent_value_product(category_one.value)
+                                                            current_parent_value_product(categoryOne.parent.value)
                                                             current_created_product(item.created_at)
                                                             current_updated_product(item.updated_at)
                                                             }
@@ -167,8 +173,8 @@ export const OneCategoryProducts = ({selectedCategoryId}) => {
                                                             is_visible_update_product(true)
                                                             current_id_product(item.id)
                                                             current_value_product(item.value)
-                                                            current_parent_value_product(category_one.value)
-                                                            current_parent_id_product(category_one.id)
+                                                            current_parent_value_product(categoryOne.value)
+                                                            current_parent_id_product(categoryOne.id)
                                                             }
                                                         }
                                                         type="button"
@@ -184,7 +190,7 @@ export const OneCategoryProducts = ({selectedCategoryId}) => {
                                                             is_visible_delete_product(true)
                                                             current_value_product(item.value)
                                                             current_id_product(item.id)
-                                                            current_parent_id_product(category_one.id)
+                                                            current_parent_id_product(categoryOne.id)
                                                             }
                                                         }
                                                         type="button"
@@ -206,10 +212,12 @@ export const OneCategoryProducts = ({selectedCategoryId}) => {
                         </div>
                     </div>
 
+
+                }
+
                 </>
 
         )
-    }
 
 }
 
