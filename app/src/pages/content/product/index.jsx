@@ -35,7 +35,13 @@ export default function Product() {
     const key = user?.key
 
     // const { loading, error, data } = useQuery(PRODUCT_PRICE, {variables: { key }, fetchPolicy: 'network-only'})
-    const { loading, error, data: dataCategory } = useQuery(ALL_CATEGORY, {variables: { key }})
+    const { loading, error, data } = useQuery(ALL_CATEGORY, {variables: { key }})
+    const [category, setCategory] = useState([])
+    useEffect(() => {
+        if (data) setCategory(data.category)
+    }, [data]);
+
+
 
     const [selectedCategoryId, setSelectedCategoryId] = useState();
     // const [selectedCategory, setSelectedCategory] = useState([]);
@@ -66,7 +72,7 @@ export default function Product() {
                             </Head>
 
 
-{ dataCategory &&
+{ category &&
                             <div className="sm:col-span-3">
                                     <label htmlFor="parent" className="block text-sm font-medium text-gray-700">
                                         Выберите категорию
@@ -81,7 +87,7 @@ export default function Product() {
                                         className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                         >
                                             <option value="DEFAULT" disabled hidden>Выбрать</option>
-                                            {dataCategory.category.map((item, key) => <option key={item.id} value={item.id}>{item.value}-{item.id}</option>)}
+                                            {category.map((item, key) => <option key={item.id} value={item.id}>{item.value}-{item.id}</option>)}
                                         </select>
                                     </div>
                                 </div>
