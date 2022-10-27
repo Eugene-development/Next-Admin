@@ -30,7 +30,8 @@ export default function Catalog() {
   useEffect(() => {
     if (data){
     const isIndeterminate = selectedCatalog.length > 0 && selectedCatalog.length < catalog.length
-    setChecked(selectedCatalog.length === catalog.length)
+    setChecked(selectedCatalog.length === catalog.length && selectedCatalog.length > 0)
+    // setChecked(selectedCatalog.length === catalog.length)
     setIndeterminate(isIndeterminate)
     checkbox.current.indeterminate = isIndeterminate
     }

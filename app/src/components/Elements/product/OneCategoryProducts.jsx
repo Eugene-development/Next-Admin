@@ -30,7 +30,7 @@ console.log(categoryOne);
   useEffect(() => {
     if (data){
     const isIndeterminate = selectedProduct.length > 0 && selectedProduct.length < categoryOne.product.length
-    setChecked(selectedProduct.length === categoryOne.product.length)
+    setChecked(selectedProduct.length === categoryOne.product.length && selectedProduct.length > 0)
     setIndeterminate(isIndeterminate)
     checkbox.current.indeterminate = isIndeterminate
     }

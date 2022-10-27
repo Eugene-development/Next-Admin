@@ -32,7 +32,7 @@ export default function Category() {
   useEffect(() => {
     if (data){
     const isIndeterminate = selectedCategory.length > 0 && selectedCategory.length < category.length
-    setChecked(selectedCategory.length === category.length)
+    setChecked(selectedCategory.length === category.length && selectedCategory.length > 0)
     setIndeterminate(isIndeterminate)
     checkbox.current.indeterminate = isIndeterminate
     }
