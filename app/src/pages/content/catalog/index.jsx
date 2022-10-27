@@ -154,7 +154,7 @@ export default function Catalog() {
                                                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.value}</td>
                                                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
 
-                                                    <Switch/>
+                                                    <Switch is_active={item.is_active}/>
 
                                                     </td>
                                                         <td className="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">

@@ -73,7 +73,7 @@ export default function Product() {
 
 
 { category &&
-                            <div className="sm:col-span-3">
+                            <div className=" p-4 sm:p-6 lg:p-8">
                                     <label htmlFor="parent" className="block text-sm font-medium text-gray-700">
                                         Выберите категорию
                                     </label>
