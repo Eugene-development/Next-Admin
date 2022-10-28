@@ -31,7 +31,7 @@ export default function Rubric() {
   useEffect(() => {
     if (data){
     const isIndeterminate = selectedRubric.length > 0 && selectedRubric.length < rubric.length
-    setChecked(selectedRubric.length === rubric.length && selectedRubric.length > 0)
+    setChecked(selectedRubric.length === rubric.length && selectedCatalog.length > 0)
     setIndeterminate(isIndeterminate)
     checkbox.current.indeterminate = isIndeterminate
     }
