@@ -5,7 +5,9 @@ import Head from 'next/head'
 import { useQuery,  useReactiveVar } from '@apollo/client'
 import { PRODUCT_PRICE } from '@/apollo/query/product'
 import { ALL_CATEGORY, ONE_CATEGORY } from '@/apollo/query/category'
+import { sortBy } from "lodash"
 import OneCategoryProducts from '@/components/Elements/product/OneCategoryProducts'
+
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -38,10 +40,11 @@ export default function Product() {
     const { loading, error, data } = useQuery(ALL_CATEGORY, {variables: { key }})
     const [category, setCategory] = useState([])
     useEffect(() => {
-        if (data) setCategory(data.category)
+        if (data) {
+            const sortedCategory = sortBy(data.category, ['value']);
+            setCategory(sortedCategory);
+        }
     }, [data]);
-
-
 
     const [selectedCategoryId, setSelectedCategoryId] = useState();
     // const [selectedCategory, setSelectedCategory] = useState([]);
