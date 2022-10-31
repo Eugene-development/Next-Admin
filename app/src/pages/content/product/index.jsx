@@ -87,7 +87,7 @@ export default function Product() {
                                         className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                         >
                                             <option value="DEFAULT" disabled hidden>Выбрать</option>
-                                            {category.map((item, key) => <option key={item.id} value={item.id}>{item.value}-{item.id}</option>)}
+                                            {category.map((item, key) => <option key={item.id} value={item.id}>{item.value}</option>)}
                                         </select>
                                     </div>
                                 </div>
