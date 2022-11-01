@@ -102,7 +102,7 @@ console.log(categoryOne);
                                                 <th scope="col" className="min-w-[4rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
                                                 №
                                                 </th>
-                                                <th scope="col" className="px-3 ml-8 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                                <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                                 Значение
                                                 </th>
                                                 <th scope="col" className="px-3 ml-8 py-3.5 text-left text-sm font-semibold text-gray-900">
