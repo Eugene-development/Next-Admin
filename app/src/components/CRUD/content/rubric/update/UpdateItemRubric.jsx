@@ -12,7 +12,7 @@ import { useSlug } from "@/hooks/slug";
 const UpdateItemRubric = () => {
     const { user } = useAuth({ middleware: 'guest' })
     const key = user.key
-    
+
     const visibleForm = useReactiveVar(is_visible_update_rubric)
     const currentIdRubric = useReactiveVar(current_id_rubric)
     const currentValueRubric = useReactiveVar(current_value_rubric)
@@ -90,8 +90,7 @@ const UpdateItemRubric = () => {
                             </Dialog.Title>
                             <div className="mt-2">
                             <p className="text-sm text-gray-500">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius aliquam laudantium explicabo
-                                pariatur iste dolorem animi vitae error totam. At sapiente aliquam accusamus facere veritatis.
+                                Обновление действия необратимо. Будьте внимательны к заполнению полей и предварительно сверяйте данные с первоисточником.
                             </p>
                             </div>
                         </div>

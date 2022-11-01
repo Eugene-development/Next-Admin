@@ -20,7 +20,7 @@ const UpdateItemCatalog = () => {
     const currentValueCatalog = useReactiveVar(current_value_catalog)
     const currentParentIdCatalog = useReactiveVar(current_parent_id_catalog)
     const currentParentValueCatalog = useReactiveVar(current_parent_value_catalog)
-    
+
     const { data } = useQuery(ALL_MENU, {variables: { key }})
     const [changedText, setText] = useState();
     const [selectedParent, setSelectedParent] = useState();
@@ -93,8 +93,7 @@ const UpdateItemCatalog = () => {
                             </Dialog.Title>
                             <div className="mt-2">
                             <p className="text-sm text-gray-500">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius aliquam laudantium explicabo
-                                pariatur iste dolorem animi vitae error totam. At sapiente aliquam accusamus facere veritatis.
+                                Обновление действия необратимо. Будьте внимательны к заполнению полей и предварительно сверяйте данные с первоисточником.
                             </p>
                             </div>
                         </div>
