@@ -18,22 +18,25 @@ const CreateItemProduct = () => {
     // const category = map(data?.category, v => v.id)
     const [selectedParent, setSelectedParent] = useState([]);
     const handleParentChange = (e) => setSelectedParent(e.target.value);
-    const [text, setText] = useState('');
+    const [name, setName] = useState('');
+    const [price, setPrice] = useState('');
     const { slugify } = useSlug();
     const handleAddProduct = (e) => {
         e.preventDefault();
-        if (text.trim().length) {
-        addProduct({
-            variables: {
-            key,
-            is_active: true,
-            value: text,
-            slug: slugify(text.translit()),
-            parentableType: 'category',
-            parentableId: Number(selectedParent),
+        if (name.trim().length && price.trim().length) {
+            addProduct({
+                variables: {
+                key,
+                is_active: true,
+                value: name,
+                slug: slugify(name.translit()),
+                parentableType: 'category',
+                parentableId: Number(selectedParent),
             },
-        });
-        setText('');
+            });
+            setName('');
+            setPrice('');
+            setSelectedParent([]);
         }
     }
     const [addProduct] = useMutation(CREATE_PRODUCT, {
@@ -101,7 +104,7 @@ const CreateItemProduct = () => {
                             <div className="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
                                 <div className="sm:col-span-3">
                                     <label htmlFor="parent" className="block text-sm font-medium text-gray-700">
-                                        Принадлежит элементу меню
+                                        Принадлежит категории
                                     </label>
                                     <div className="mt-1">
                                         <select
@@ -119,19 +122,34 @@ const CreateItemProduct = () => {
                                 </div>
 
                                 <div className="sm:col-span-6">
-                                <label htmlFor="value" className="block text-sm font-medium text-gray-700">
-                                    Значение
-                                </label>
-                                <div className="mt-1">
-                                    <input
-                                    onChange={(e) => setText(e.target.value)}
-                                    type="text"
-                                    name="value"
-                                    id="value"
-                                    autoComplete="value"
-                                    className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                                    />
+                                    <label htmlFor="value" className="block text-sm font-medium text-gray-700">
+                                        Наименование
+                                    </label>
+                                    <div className="mt-1">
+                                        <input
+                                        onChange={(e) => setName(e.target.value)}
+                                        type="text"
+                                        name="value"
+                                        id="value"
+                                        autoComplete="value"
+                                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                        />
+                                    </div>
                                 </div>
+                                <div className="sm:col-span-6">
+                                    <label htmlFor="price" className="block text-sm font-medium text-gray-700">
+                                        Цена
+                                    </label>
+                                    <div className="mt-1">
+                                        <input
+                                        onChange={(e) => setPrice(e.target.value)}
+                                        type="text"
+                                        name="price"
+                                        id="price"
+                                        autoComplete="price"
+                                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                        />
+                                    </div>
                                 </div>
                             </div>
                             </div>
