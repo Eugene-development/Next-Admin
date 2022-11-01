@@ -54,28 +54,57 @@ export const ONE_PRODUCT = gql`
 `
 
 export const CREATE_PRODUCT = gql`
-    mutation create_product(
+    mutation(
         $key: String!
-        $is_active: Boolean
+        $active: Boolean
         $value: String!
         $slug: String!
-        $parentableType: String
+        $parentableType: String!
         $parentableId: Int!
+        $createPrice: [CreatePriceInput!]
     ) {
         createProduct(
             input: {
                 key: $key
-                is_active: $is_active
+                is_active: $active
                 value: $value
                 slug: $slug
                 parentable_type: $parentableType
                 parentable_id: $parentableId
+                price: { create: $createPrice }
             }
         ) {
             value
+            price {
+                value
+            }
         }
     }
 `
+
+// export const CREATE_PRODUCT = gql`
+//     mutation create_product(
+//         $key: String!
+//         $is_active: Boolean
+//         $value: String!
+//         $slug: String!
+//         $parentableType: String
+//         $parentableId: Int!
+//     ) {
+//         createProduct(
+//             input: {
+//                 key: $key
+//                 is_active: $is_active
+//                 value: $value
+//                 slug: $slug
+//                 parentable_type: $parentableType
+//                 parentable_id: $parentableId
+//             }
+//         ) {
+//             value
+//         }
+//     }
+// `
 export const UPDATE_PRODUCT = gql`
     mutation update_product(
         $id: ID!

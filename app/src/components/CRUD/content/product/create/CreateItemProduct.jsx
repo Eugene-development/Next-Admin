@@ -6,7 +6,7 @@ import { is_visible_create_product } from '@/apollo/stores/visible'
 import { Fragment, useRef, useState, useEffect } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { CheckIcon } from '@heroicons/react/24/outline'
-import { sortBy } from "lodash"
+import { sortBy, values } from "lodash"
 import { useSlug } from "@/hooks/slug";
 
 const CreateItemProduct = () => {
@@ -34,11 +34,12 @@ const CreateItemProduct = () => {
             addProduct({
                 variables: {
                 key,
-                is_active: true,
+                is_active: false,
                 value: name,
                 slug: slugify(name.translit()),
                 parentableType: 'category',
                 parentableId: Number(selectedParent),
+                createPrice: [{ key: "1", value: price }]
             },
             });
             setName('');
@@ -99,8 +100,7 @@ const CreateItemProduct = () => {
                             </Dialog.Title>
                             <div className="mt-2">
                             <p className="text-sm text-gray-500">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius aliquam laudantium explicabo
-                                pariatur iste dolorem animi vitae error totam. At sapiente aliquam accusamus facere veritatis.
+                                При добавлении позиции будьте предельно внимательны к орфографии. При допущении ошибок вы можете далее исправить их, нажав на кнопку Обновить.
                             </p>
                             </div>
                         </div>
@@ -123,7 +123,7 @@ const CreateItemProduct = () => {
                                             className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                         >
                                             <option value="DEFAULT" disabled hidden>Выбрать</option>
-                                            {category.map((item, key) => <option key={item.id} value={item.id}>{item.value}}</option>)}
+                                            {category.map((item, key) => <option key={item.id} value={item.id}>{item.value}</option>)}
                                         </select>
                                     </div>
                                 </div>
