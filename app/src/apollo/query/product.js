@@ -62,6 +62,7 @@ export const CREATE_PRODUCT = gql`
         $parentableType: String!
         $parentableId: Int!
         $createPrice: [CreatePriceInput!]
+        $createUnit: [CreateUnitInput!]
     ) {
         createProduct(
             input: {
@@ -72,6 +73,7 @@ export const CREATE_PRODUCT = gql`
                 parentable_type: $parentableType
                 parentable_id: $parentableId
                 price: { create: $createPrice }
+                unit: { create: $createUnit }
             }
         ) {
             value

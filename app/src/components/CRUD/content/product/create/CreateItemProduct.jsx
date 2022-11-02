@@ -16,6 +16,8 @@ const CreateItemProduct = () => {
     const visibleForm = useReactiveVar(is_visible_create_product)
     const { data } = useQuery(ALL_CATEGORY, {variables: { key }})
     const [category, setCategory] = useState([])
+    const [units, setUnits] = useState(["шт", "м/п", "кг"])
+    const [selectedUnit, setSelectedUnit] = useState([])
     useEffect(() => {
         if (data) {
             const sortedCategory = sortBy(data.category, ['value']);
@@ -25,6 +27,7 @@ const CreateItemProduct = () => {
 
     const [selectedParent, setSelectedParent] = useState([]);
     const handleParentChange = (e) => setSelectedParent(e.target.value);
+    const handleUnitChange = (e) => setSelectedUnit(e.target.value);
     const [name, setName] = useState('');
     const [price, setPrice] = useState('');
     const { slugify } = useSlug();
@@ -39,12 +42,14 @@ const CreateItemProduct = () => {
                 slug: slugify(name.translit()),
                 parentableType: 'category',
                 parentableId: Number(selectedParent),
-                createPrice: [{ key: "1", value: price }]
+                createPrice: [{ key: "1", value: price }],
+                createUnit: [{ key: "1", value: selectedUnit }]
             },
             });
             setName('');
             setPrice('');
             setSelectedParent([]);
+            setSelectedUnit([]);
         }
     }
     const [addProduct] = useMutation(CREATE_PRODUCT, {
@@ -158,6 +163,26 @@ const CreateItemProduct = () => {
                                         />
                                     </div>
                                 </div>
+
+                                <div className="sm:col-span-3">
+                                    <label htmlFor="parent" className="block text-sm font-medium text-gray-700">
+                                        Единица измерения
+                                    </label>
+                                    <div className="mt-1">
+                                        <select
+                                            onChange={e => handleUnitChange(e)}
+                                            defaultValue={'DEFAULT'}
+                                            id="parent"
+                                            name="parent"
+                                            autoComplete="parent-name"
+                                            className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                        >
+                                            <option value="DEFAULT" disabled hidden>Выбрать</option>
+                                            {units.map((item, key) => <option key={key} value={item}>{item}</option>)}
+                                        </select>
+                                    </div>
+                                </div>
+
                             </div>
                             </div>
 
