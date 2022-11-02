@@ -32,6 +32,9 @@ export const ONE_CATEGORY = gql`
                 price {
                     value
                 }
+                unit {
+                    value
+                }
                 created_at
                 updated_at
             }

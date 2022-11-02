@@ -20,6 +20,7 @@ export const OneCategoryProducts = ({selectedCategoryId}) => {
         if (data) setCategory(data.category_one)
     }, [data]);
 
+console.log(categoryOne)
     const checkbox = useRef()
     const [checked, setChecked] = useState(false)
     const [indeterminate, setIndeterminate] = useState(false)
