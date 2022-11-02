@@ -16,7 +16,7 @@ const CreateItemProduct = () => {
     const visibleForm = useReactiveVar(is_visible_create_product)
     const { data } = useQuery(ALL_CATEGORY, {variables: { key }})
     const [category, setCategory] = useState([])
-    const [units, setUnits] = useState(["шт", "м/п", "кг"])
+    const [units, setUnits] = useState(["шт.", "м.п.", "кг"])
     const [selectedUnit, setSelectedUnit] = useState([])
     useEffect(() => {
         if (data) {

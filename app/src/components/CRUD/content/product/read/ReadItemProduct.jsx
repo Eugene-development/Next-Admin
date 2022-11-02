@@ -3,12 +3,13 @@ import { Dialog, Transition } from '@headlessui/react'
 import { CheckIcon } from '@heroicons/react/24/outline'
 import { useReactiveVar } from '@apollo/client'
 import { is_visible_read_product } from '@/apollo/stores/visible'
-import { current_value_product, current_value_product_price, current_parent_value_product, current_created_product, current_updated_product } from '@/apollo/stores/current'
+import { current_value_product, current_value_product_price, current_value_product_unit, current_parent_value_product, current_created_product, current_updated_product } from '@/apollo/stores/current'
 
 const ReadItemProduct = () => {
     const visibleForm = useReactiveVar(is_visible_read_product)
     const currentValueProduct = useReactiveVar(current_value_product)
     const currentValueProductPrice = useReactiveVar(current_value_product_price)
+    const currentValueProductUnit = useReactiveVar(current_value_product_unit)
     const currentParentValueProduct = useReactiveVar(current_parent_value_product)
     const currentCreatedProduct = useReactiveVar(current_created_product)
     const currentUpdatedProduct = useReactiveVar(current_updated_product)
@@ -67,7 +68,7 @@ const ReadItemProduct = () => {
 
                                 <div className="">
                                     <span className="block text-sm font-medium text-gray-700">
-                                        <strong>Цена</strong> - {currentValueProductPrice} руб/
+                                        <strong>Цена</strong> - {currentValueProductPrice} руб/{currentValueProductUnit}
                                     </span>
                                 </div>
 
