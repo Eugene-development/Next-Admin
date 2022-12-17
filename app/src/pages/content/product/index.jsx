@@ -75,7 +75,7 @@ export default function Product() {
                             </Head>
 
 
-{ category &&
+                            { category &&
                             <div className=" p-4 sm:p-6 lg:p-8">
                                     <label htmlFor="parent" className="block text-sm font-medium text-gray-700">
                                         Выберите категорию

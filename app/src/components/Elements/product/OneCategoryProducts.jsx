@@ -17,10 +17,9 @@ export const OneCategoryProducts = ({selectedCategoryId}) => {
     const { loading, error, data } = useQuery (ONE_CATEGORY, {variables: {key, id: selectedCategoryId}})
     const [categoryOne, setCategory] = useState()
     useEffect(() => {
-        if (data) setCategory(data.category_one)
+        if (data) setCategory(data.category_one_id)
     }, [data]);
 
-console.log(categoryOne)
     const checkbox = useRef()
     const [checked, setChecked] = useState(false)
     const [indeterminate, setIndeterminate] = useState(false)

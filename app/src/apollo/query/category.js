@@ -20,7 +20,7 @@ export const ALL_CATEGORY = gql`
 
 export const ONE_CATEGORY = gql`
     query category_one($id: ID!, $key: String!) {
-        category_one(id: $id, key: $key) {
+        category_one_id(id: $id, key: $key) {
             id
             value
             created_at

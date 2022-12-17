@@ -14,10 +14,12 @@ const UpdateItemRubric = () => {
     const key = user.key
 
     const visibleForm = useReactiveVar(is_visible_update_rubric)
+
     const currentIdRubric = useReactiveVar(current_id_rubric)
     const currentValueRubric = useReactiveVar(current_value_rubric)
     const currentParentIdRubric = useReactiveVar(current_parent_id_rubric)
     const currentParentValueRubric = useReactiveVar(current_parent_value_rubric)
+
     const { data } = useQuery(ALL_CATALOG, {variables: { key }})
     const [changedText, setText] = useState();
     const [selectedParent, setSelectedParent] = useState();
