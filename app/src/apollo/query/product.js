@@ -107,31 +107,52 @@ export const CREATE_PRODUCT = gql`
 //         }
 //     }
 // `
+
 export const UPDATE_PRODUCT = gql`
-    mutation update_product(
+    mutation updateProduct(
         $id: ID!
         $key: String!
-        $is_active: Boolean
         $value: String!
-        $slug: String
-        $parentableType: String
-        $parentableId: Int
+        $updatePrice: UpdatePriceInput!
     ) {
         updateProduct(
             input: {
                 id: $id
                 key: $key
-                is_active: $is_active
                 value: $value
-                slug: $slug
-                parentable_type: $parentableType
-                parentable_id: $parentableId
+                price: { update: $updatePrice }
             }
         ) {
             value
         }
     }
 `
+// export const UPDATE_PRODUCT = gql`
+//     mutation update_product(
+//         $id: ID!
+//         $key: String!
+//         $is_active: Boolean
+//         $value: String!
+//         $slug: String
+//         $parentableType: String
+//         $parentableId: Int
+//     ) {
+//         updateProduct(
+//             input: {
+//                 id: $id
+//                 key: $key
+//                 is_active: $is_active
+//                 value: $value
+//                 slug: $slug
+//                 parentable_type: $parentableType
+//                 parentable_id: $parentableId
+//             }
+//         ) {
+//             value
+//         }
+//     }
+// `
+
 export const DELETE_PRODUCT = gql`
     mutation delete_product($id: ID!) {
         deleteProduct(id: $id) {
