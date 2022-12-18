@@ -37,13 +37,13 @@ const CreateItemProduct = () => {
             addProduct({
                 variables: {
                 key,
-                is_active: false,
+                // is_active: false,
                 value: name,
                 slug: slugify(name.translit()),
                 parentableType: 'category',
                 parentableId: Number(selectedParent),
-                createPrice: [{ key: "1", value: price }],
-                createUnit: [{ key: "1", value: selectedUnit }]
+                createPrice: { key: "1", value: price },
+                createUnit: { key: "1", value: selectedUnit }
             },
             });
             setName('');
