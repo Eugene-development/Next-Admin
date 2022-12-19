@@ -39,6 +39,7 @@ const UpdateItemProduct = () => {
             slug: slugify(text.translit()),
             parentableType: 'category',
             parentableId: Number(parent),
+            updatePrice: { key: "1", id: currentIdPrice, value: price },
             },
         });
         setText('');

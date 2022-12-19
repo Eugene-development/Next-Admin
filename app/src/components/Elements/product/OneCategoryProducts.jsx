@@ -166,7 +166,7 @@ export const OneCategoryProducts = ({selectedCategoryId}) => {
                                                         onClick={() => {
                                                             is_visible_read_product(true)
                                                             current_value_product(item.value)
-                                                            current_value_product_price(item?.price[0]?.value)
+                                                            current_value_product_price(item?.price?.value)
                                                             current_value_product_unit(item?.unit?.value)
                                                             current_parent_value_product(categoryOne.parent.value)
                                                             current_created_product(item.created_at)
