@@ -23,9 +23,11 @@ const UpdateItemProduct = () => {
 
     const { data } = useQuery(ALL_CATEGORY, {variables: { key }})
     const [changedText, setText] = useState();
+    const [changedPrice, setPrice] = useState();
     const [selectedParent, setSelectedParent] = useState();
     const parent = selectedParent ? selectedParent : currentParentIdProduct;
     const text = changedText ? changedText : currentValueProduct;
+    const price = changedPrice ? changedPrice : currentValuePrice;
     const handleParentChange = (e) => setSelectedParent((e.target.value));
     const { slugify } = useSlug();
     const handleUpdateProduct = (e) => {
@@ -41,7 +43,7 @@ const UpdateItemProduct = () => {
             slug: slugify(text.translit()),
             parentableType: 'category',
             parentableId: Number(parent),
-            updatePrice: { key: "1", id: currentIdPrice, value: currentValuePrice },
+            updatePrice: { key: "1", id: currentIdPrice, value: price },
             },
         });
         setText('');
