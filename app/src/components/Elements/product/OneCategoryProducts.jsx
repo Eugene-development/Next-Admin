@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useQuery,  useReactiveVar } from '@apollo/client'
 import { ONE_CATEGORY } from '@/apollo/query/category'
 import { is_visible_create_product, is_visible_read_product, is_visible_update_product, is_visible_delete_product } from '@/apollo/stores/visible'
-import { current_value_product, current_value_product_price, current_value_product_unit, current_id_product, current_parent_id_product, current_parent_value_product, current_created_product, current_updated_product } from '@/apollo/stores/current'
+import { current_value_product, current_value_product_price, current_id_product_price, current_value_product_unit, current_id_product, current_parent_id_product, current_parent_value_product, current_created_product, current_updated_product } from '@/apollo/stores/current'
 import  Switch  from '@/components/UI/buttons/Switch'
 
 
@@ -186,6 +186,8 @@ export const OneCategoryProducts = ({selectedCategoryId}) => {
                                                             is_visible_update_product(true)
                                                             current_id_product(item.id)
                                                             current_value_product(item.value)
+                                                            current_value_product_price(item?.price?.value)
+                                                            current_id_product_price(item?.price?.id)
                                                             current_parent_value_product(categoryOne.value)
                                                             current_parent_id_product(categoryOne.id)
                                                             }

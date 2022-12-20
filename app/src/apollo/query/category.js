@@ -30,6 +30,7 @@ export const ONE_CATEGORY = gql`
                 value
                 is_active
                 price {
+                    id
                     value
                 }
                 unit {
