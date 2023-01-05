@@ -223,19 +223,8 @@ const CreateItemProduct = () => {
                                     </div>
                                 </div>
                             </div>
-                            </div>
-{/* <Cropper
-      src="https://raw.githubusercontent.com/roadmanfong/react-cropper/master/example/img/child.jpg"
-      style={{ height: 400, width: "100%" }}
-      // Cropper.js options
-      initialAspectRatio={16 / 9}
-      guides={false}
-      crop={onCrop}
-      ref={cropperRef}
-    /> */}
-
-    <div>
-      <div style={{ width: "100%" }}>
+                                 <div>
+      <div className="mt-8" style={{ width: "100%" }}>
         <input type="file" onChange={onChange} />
         <button>Use default img</button>
         <br />
@@ -244,7 +233,6 @@ const CreateItemProduct = () => {
           style={{ height: 400, width: "100%" }}
           zoomTo={0.5}
           initialAspectRatio={1}
-          preview=".img-preview"
           src={image}
           viewMode={1}
           minCropBoxHeight={10}
@@ -259,29 +247,20 @@ const CreateItemProduct = () => {
           guides={true}
         />
       </div>
-      <div>
-        <div className="" style={{ width: "50%", float: "right" }}>
-          <h1>Preview</h1>
-          <div
-            className="overflow-hidden"
-            style={{ width: "100%", float: "left", height: "300px" }}
-          />
-        </div>
+      <div className="flex pt-4">
         <div
-          className=""
-          style={{ width: "50%", float: "right", height: "300px" }}
+          className="p-0"
+          style={{ width: "50%", float: "center", height: "300px" }}
         >
-          <h1>
-            <span>Crop</span>
-            <button style={{ float: "right" }} onClick={getCropData}>
-              Crop Image
-            </button>
-          </h1>
+
           <img style={{ width: "100%" }} src={cropData} alt="cropped" />
         </div>
+        <button className="text-center" onClick={getCropData}>Обрезать</button>
       </div>
       <br style={{ clear: "both" }} />
     </div>
+
+                            </div>
 
                             <div className="mt-8 sm:mt-10 sm:grid sm:grid-flow-row-dense sm:grid-cols-2 sm:gap-3">
                                 <button
