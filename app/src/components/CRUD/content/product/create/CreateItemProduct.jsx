@@ -165,7 +165,7 @@ const CreateItemProduct = () => {
                                             id="parent"
                                             name="parent"
                                             autoComplete="parent-name"
-                                            className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                            className="block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm"
                                         >
                                             <option value="DEFAULT" disabled hidden>Выбрать</option>
                                             {category.map((item, key) => <option key={item.id} value={item.id}>{item.value}</option>)}
@@ -184,7 +184,7 @@ const CreateItemProduct = () => {
                                         name="value"
                                         id="value"
                                         autoComplete="value"
-                                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm"
                                         />
                                     </div>
                                 </div>
@@ -199,7 +199,7 @@ const CreateItemProduct = () => {
                                         name="price"
                                         id="price"
                                         autoComplete="price"
-                                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm"
                                         />
                                     </div>
                                 </div>
@@ -215,7 +215,7 @@ const CreateItemProduct = () => {
                                             id="parent"
                                             name="parent"
                                             autoComplete="parent-name"
-                                            className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                            className="block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm"
                                         >
                                             <option value="DEFAULT" disabled hidden>Выбрать</option>
                                             {units.map((item, key) => <option key={key} value={item}>{item}</option>)}
@@ -226,7 +226,6 @@ const CreateItemProduct = () => {
                                  <div>
       <div className="mt-8" style={{ width: "100%" }}>
         <input type="file" onChange={onChange} />
-        <button>Use default img</button>
         <br />
         <br />
         <Cropper
@@ -248,16 +247,17 @@ const CreateItemProduct = () => {
         />
       </div>
       <div className="flex pt-4">
+        <div className="mx-auto">
+            <button type="button" onClick={getCropData} className=" inline-flex items-center rounded-md border border-transparent bg-green-100 px-6 py-3 text-base font-medium text-green-700 hover:bg-green-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">Обрезать</button>
+        </div>
+
         <div
           className="p-0"
           style={{ width: "50%", float: "center", height: "300px" }}
         >
-
-          <img style={{ width: "100%" }} src={cropData} alt="cropped" />
+          <img style={{ width: "100%" }} src={cropData} />
         </div>
-        <button className="text-center" onClick={getCropData}>Обрезать</button>
       </div>
-      <br style={{ clear: "both" }} />
     </div>
 
                             </div>
