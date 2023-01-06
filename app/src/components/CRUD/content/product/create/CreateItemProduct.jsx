@@ -11,6 +11,7 @@ import { useSlug } from "@/hooks/slug";
 
 import Cropper from "react-cropper";
 import "cropperjs/dist/cropper.css";
+import { useImage } from '@/hooks/image'
 
 
 const defaultSrc =
@@ -81,7 +82,7 @@ const CreateItemProduct = () => {
 //     console.log(cropper.getCroppedCanvas().toDataURL());
 //   };
 
-
+const { sendImage } = useImage();
   const [image, setImage] = useState(defaultSrc);
   const [cropData, setCropData] = useState("#");
   const [cropper, setCropper] = useState();
@@ -103,6 +104,7 @@ const CreateItemProduct = () => {
   const getCropData = () => {
     if (typeof cropper !== "undefined") {
       setCropData(cropper.getCroppedCanvas().toDataURL());
+      sendImage();
     }
   };
 
