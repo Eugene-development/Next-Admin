@@ -41,6 +41,7 @@ const CreateItemProduct = () => {
     const [price, setPrice] = useState('');
     const { slugify } = useSlug();
     const handleAddProduct = (e) => {
+        sendImage(cropData);
         e.preventDefault();
         if (name.trim().length && price.trim().length) {
             addProduct({
@@ -82,7 +83,7 @@ const CreateItemProduct = () => {
 //     console.log(cropper.getCroppedCanvas().toDataURL());
 //   };
 
-const { sendImage } = useImage();
+  const { sendImage } = useImage();
   const [image, setImage] = useState(defaultSrc);
   const [cropData, setCropData] = useState("#");
   const [cropper, setCropper] = useState();
@@ -104,7 +105,7 @@ const { sendImage } = useImage();
   const getCropData = () => {
     if (typeof cropper !== "undefined") {
       setCropData(cropper.getCroppedCanvas().toDataURL());
-      sendImage();
+
     }
   };
 
@@ -152,7 +153,7 @@ const { sendImage } = useImage();
                             </div>
                         </div>
                         </div>
-                        <form onSubmit={handleAddProduct} className="space-y-8 divide-y divide-gray-200">
+                        <form onSubmit={handleAddProduct} className="space-y-8 divide-y divide-gray-200" enctype="multipart/form-data">
 
                             <div className="py-2">
                             <div className="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
