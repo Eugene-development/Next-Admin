@@ -26,27 +26,6 @@ const CreateItemProduct = () => {
     function handleFileChange(event) {
         setSelectedFile(event.target.files[0]);
     }
-    // async function handleSubmit(event) {
-    //     event.preventDefault();
-
-    //     const formData = new FormData();
-    //     formData.append('image', selectedFile);
-
-    //     try {
-    //         const response = await axios.post('http://localhost:8002/upload-image', formData, {
-    //         headers: {
-    //             'Content-Type': 'multipart/form-data'
-    //         }
-    //         });
-    //         console.log(response.data);
-    //     } catch (error) {
-    //         console.error(error);
-    //     }
-    // }
-
-
-
-
 
     const { user } = useAuth({ middleware: 'guest' })
     const key = user.key
@@ -58,7 +37,6 @@ const CreateItemProduct = () => {
     const [selectedUnit, setSelectedUnit] = useState([])
   const { sendImage } = useImage();
   const [image, setImage] = useState(defaultSrc);
-//   console.log(image);
   const [cropData, setCropData] = useState("#");
   const [cropper, setCropper] = useState();
 
@@ -78,8 +56,7 @@ const CreateItemProduct = () => {
     const  handleAddProduct = async (e) => {
         e.preventDefault();
 
-
-// Вариант gpt
+//GPT variant
         const formData = new FormData();
         formData.append('image', selectedFile);
 
@@ -95,27 +72,6 @@ const CreateItemProduct = () => {
         }
 
 
-
-
-        // console.log(e.target.files)
-        // console.log(image)
-        // axios.post('http://localhost:8002/upload-image', image)
-// const formData = new FormData();
-// formData.append('image', image);
-// console.log({formData})
-
-// try {
-//             const response = await axios.post('http://localhost:8002/upload-image', formData, {
-//             headers: {
-//                 'Content-Type': 'multipart/form-data'
-//             }
-//             });
-//             console.log(response.data);
-//         } catch (error) {
-//             console.error(error);
-//         }
-        // sendImage(image);
-        // sendImage(cropData);
         if (name.trim().length && price.trim().length) {
             addProduct({
                 variables: {
@@ -140,26 +96,10 @@ const CreateItemProduct = () => {
             variables: {key, id: selectedParent}}
         ],
     });
-    // const [addProduct] = useMutation(CREATE_PRODUCT, {
-    //     refetchQueries: [
-    //     { query: ALL_PRODUCT,
-    //         variables: { key }}
-    //     ],
-    // });
     const cancelButtonRef = useRef(null)
 
     const cropperRef = useRef(null);
 
-//   const onCrop = () => {
-//     const imageElement = cropperRef?.current;
-//     const cropper = imageElement?.cropper;
-//     console.log(cropper.getCroppedCanvas().toDataURL());
-//   };
-
-//   const { sendImage } = useImage();
-//   const [image, setImage] = useState(defaultSrc);
-//   const [cropData, setCropData] = useState("#");
-//   const [cropper, setCropper] = useState();
   const onChange = (e) => {
     e.preventDefault();
     let files;
@@ -308,7 +248,7 @@ const CreateItemProduct = () => {
                             </div>
                                  <div>
       <div className="mt-8" style={{ width: "100%" }}>
-        <input type="file" name="image" onChange={handleFileChange} />
+        <input type="file" onChange={handleFileChange} />
         <br />
         <br />
         <Cropper
@@ -374,4 +314,4 @@ const CreateItemProduct = () => {
     </>
   )
 }
-export default CreateItemProduct
+export default CreateItemProduct;
