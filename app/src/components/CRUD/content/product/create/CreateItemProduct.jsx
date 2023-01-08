@@ -12,6 +12,8 @@ import { useSlug } from "@/hooks/slug";
 import Cropper from "react-cropper";
 import "cropperjs/dist/cropper.css";
 import { useImage } from '@/hooks/image'
+import axios from '@/lib/axios'
+
 
 
 const defaultSrc =
@@ -19,6 +21,33 @@ const defaultSrc =
 
 
 const CreateItemProduct = () => {
+
+    const [selectedFile, setSelectedFile] = useState();
+    function handleFileChange(event) {
+        setSelectedFile(event.target.files[0]);
+    }
+    // async function handleSubmit(event) {
+    //     event.preventDefault();
+
+    //     const formData = new FormData();
+    //     formData.append('image', selectedFile);
+
+    //     try {
+    //         const response = await axios.post('http://localhost:8002/upload-image', formData, {
+    //         headers: {
+    //             'Content-Type': 'multipart/form-data'
+    //         }
+    //         });
+    //         console.log(response.data);
+    //     } catch (error) {
+    //         console.error(error);
+    //     }
+    // }
+
+
+
+
+
     const { user } = useAuth({ middleware: 'guest' })
     const key = user.key
 
@@ -27,6 +56,12 @@ const CreateItemProduct = () => {
     const [category, setCategory] = useState([])
     const [units, setUnits] = useState(["шт.", "м.п.", "кг"])
     const [selectedUnit, setSelectedUnit] = useState([])
+  const { sendImage } = useImage();
+  const [image, setImage] = useState(defaultSrc);
+//   console.log(image);
+  const [cropData, setCropData] = useState("#");
+  const [cropper, setCropper] = useState();
+
     useEffect(() => {
         if (data) {
             const sortedCategory = sortBy(data.category, ['value']);
@@ -40,9 +75,47 @@ const CreateItemProduct = () => {
     const [name, setName] = useState('');
     const [price, setPrice] = useState('');
     const { slugify } = useSlug();
-    const handleAddProduct = (e) => {
-        sendImage(cropData);
+    const  handleAddProduct = async (e) => {
         e.preventDefault();
+
+
+// Вариант gpt
+        const formData = new FormData();
+        formData.append('image', selectedFile);
+
+        try {
+            const response = await axios.post('http://localhost:8002/upload-image', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+            });
+            console.log(response.data);
+        } catch (error) {
+            console.error(error);
+        }
+
+
+
+
+        // console.log(e.target.files)
+        // console.log(image)
+        // axios.post('http://localhost:8002/upload-image', image)
+// const formData = new FormData();
+// formData.append('image', image);
+// console.log({formData})
+
+// try {
+//             const response = await axios.post('http://localhost:8002/upload-image', formData, {
+//             headers: {
+//                 'Content-Type': 'multipart/form-data'
+//             }
+//             });
+//             console.log(response.data);
+//         } catch (error) {
+//             console.error(error);
+//         }
+        // sendImage(image);
+        // sendImage(cropData);
         if (name.trim().length && price.trim().length) {
             addProduct({
                 variables: {
@@ -83,10 +156,10 @@ const CreateItemProduct = () => {
 //     console.log(cropper.getCroppedCanvas().toDataURL());
 //   };
 
-  const { sendImage } = useImage();
-  const [image, setImage] = useState(defaultSrc);
-  const [cropData, setCropData] = useState("#");
-  const [cropper, setCropper] = useState();
+//   const { sendImage } = useImage();
+//   const [image, setImage] = useState(defaultSrc);
+//   const [cropData, setCropData] = useState("#");
+//   const [cropper, setCropper] = useState();
   const onChange = (e) => {
     e.preventDefault();
     let files;
@@ -100,6 +173,9 @@ const CreateItemProduct = () => {
       setImage(reader.result);
     };
     reader.readAsDataURL(files[0]);
+
+
+
   };
 
   const getCropData = () => {
@@ -111,6 +187,10 @@ const CreateItemProduct = () => {
 
   return (
     <>
+    {/* <form onSubmit={handleSubmit} encType="multipart/form-data">
+        <input type="file" onChange={handleFileChange} />
+        <button type="submit">Загрузить файл</button>
+    </form> */}
         { data &&
             <Transition.Root show={visibleForm} as={Fragment}>
             <Dialog as="div" className="relative z-10" initialFocus={cancelButtonRef} onClose={() => is_visible_create_product(false)}>
@@ -153,7 +233,7 @@ const CreateItemProduct = () => {
                             </div>
                         </div>
                         </div>
-                        <form onSubmit={handleAddProduct} className="space-y-8 divide-y divide-gray-200" enctype="multipart/form-data">
+                        <form onSubmit={handleAddProduct} className="space-y-8 divide-y divide-gray-200" encType="multipart/form-data">
 
                             <div className="py-2">
                             <div className="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
@@ -228,7 +308,7 @@ const CreateItemProduct = () => {
                             </div>
                                  <div>
       <div className="mt-8" style={{ width: "100%" }}>
-        <input type="file" onChange={onChange} />
+        <input type="file" name="image" onChange={handleFileChange} />
         <br />
         <br />
         <Cropper
