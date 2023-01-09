@@ -82,17 +82,16 @@ const CreateItemProduct = () => {
     const  handleAddProduct = async (e) => {
         e.preventDefault();
         try {
-            cropper.getCroppedCanvas().toBlob((cropData) => {
+
+            cropper.getCroppedCanvas().toBlob(async (cropData) => {
                 const formData = new FormData();
                 formData.append('image', cropData);
-                axios.post('http://localhost:8002/upload-image', formData, {
+                const response = await axios.post('http://localhost:8002/upload-image', formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }
-                })
-                .then(res => {
-                    console.log(res)
                 });
+                console.log(response);
             }, 'image/*');
         } catch (error) {
             console.error(error);
