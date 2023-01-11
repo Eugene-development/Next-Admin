@@ -113,6 +113,7 @@ export const UPDATE_PRODUCT = gql`
         $id: ID!
         $key: String!
         $value: String!
+        $parentableId: Int!
         $updatePrice: UpdatePriceInput!
     ) {
         updateProduct(
@@ -120,6 +121,7 @@ export const UPDATE_PRODUCT = gql`
                 id: $id
                 key: $key
                 value: $value
+                parentable_id: $parentableId
                 price: { update: $updatePrice }
             }
         ) {

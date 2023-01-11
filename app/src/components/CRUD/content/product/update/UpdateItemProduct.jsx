@@ -34,6 +34,7 @@ const UpdateItemProduct = () => {
 
         e.preventDefault();
         if (text.trim().length) {
+            console.log(parent)
         updateProduct({
             variables: {
             id: currentIdProduct,
