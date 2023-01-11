@@ -56,24 +56,24 @@ export const ONE_PRODUCT = gql`
 export const CREATE_PRODUCT = gql`
     mutation(
         $key: String!
-        # $active: Boolean
         $value: String!
         $slug: String!
         $parentableType: String!
         $parentableId: Int!
         $createPrice: CreatePriceInput!
         $createUnit: CreateUnitInput!
-    ) {
+    ) # $createImage: CreateImageInput!
+    {
         createProduct(
             input: {
                 key: $key
-                # is_active: $active
                 value: $value
                 slug: $slug
                 parentable_type: $parentableType
                 parentable_id: $parentableId
                 price: { create: $createPrice }
                 unit: { create: $createUnit }
+                # image: { create: $createImage }
             }
         ) {
             value

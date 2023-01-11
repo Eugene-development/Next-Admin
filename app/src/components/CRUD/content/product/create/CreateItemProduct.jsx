@@ -3,6 +3,7 @@ import { useQuery, useReactiveVar, useMutation } from '@apollo/client'
 import { ALL_PRODUCT, CREATE_PRODUCT } from '@/apollo/query/product'
 import { ALL_CATEGORY, ONE_CATEGORY } from '@/apollo/query/category'
 import { is_visible_create_product } from '@/apollo/stores/visible'
+import { hashNameImage } from '@/apollo/stores/files'
 import { Fragment, useRef, useState, useEffect } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { CheckIcon } from '@heroicons/react/24/outline'
@@ -62,6 +63,7 @@ const CreateItemProduct = () => {
     const key = user.key
 
     const visibleForm = useReactiveVar(is_visible_create_product)
+    const currentHashNameImage = useReactiveVar(hashNameImage)
     const { data } = useQuery(ALL_CATEGORY, {variables: { key }})
     const [category, setCategory] = useState([])
     const [units, setUnits] = useState(["шт.", "м.п.", "кг"])
@@ -79,27 +81,23 @@ const CreateItemProduct = () => {
     const [name, setName] = useState('');
     const [price, setPrice] = useState('');
     const { slugify } = useSlug();
+    const { sendImageToBucket } = useImage();
+
+    // const [fileName, setFileName] = useState('ggg');
     const  handleAddProduct = async (e) => {
         e.preventDefault();
         try {
+            await cropper.getCroppedCanvas().toBlob(async (cropData) => {
+                const hashNameImage = await sendImageToBucket(cropData);
 
-            cropper.getCroppedCanvas().toBlob(async (cropData) => {
-                const formData = new FormData();
-                formData.append('image', cropData);
-                const response = await axios.post('http://localhost:8002/upload-image', formData, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data'
-                    }
-                });
-                console.log(response);
-            }, 'image/*');
-        } catch (error) {
-            console.error(error);
-        }
+                // console.log('1-' + response.data);
+                // hashNameImage(response.data)
+                // setFileName(response.data)
 
+                // console.log(response)
 
         if (name.trim().length && price.trim().length) {
-            addProduct({
+            await addProduct({
                 variables: {
                 key,
                 value: name,
@@ -107,7 +105,8 @@ const CreateItemProduct = () => {
                 parentableType: 'category',
                 parentableId: Number(selectedParent),
                 createPrice: { key: "1", value: price },
-                createUnit: { key: "1", value: selectedUnit }
+                createUnit: { key: "1", value: selectedUnit },
+                // createImage: { key: "1", value: hashNameImage }
             },
             });
             setName('');
@@ -115,7 +114,18 @@ const CreateItemProduct = () => {
             setSelectedParent([]);
             setSelectedUnit([]);
         }
+
+
+
+            }, 'image/*');
+        } catch (error) {
+            console.error(error);
+        }
+
+
     }
+
+
     const [addProduct] = useMutation(CREATE_PRODUCT, {
         refetchQueries: [
         { query: ONE_CATEGORY,
