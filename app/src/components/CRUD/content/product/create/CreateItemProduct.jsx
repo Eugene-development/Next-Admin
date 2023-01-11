@@ -84,45 +84,33 @@ const CreateItemProduct = () => {
     const { sendImageToBucket } = useImage();
 
     // const [fileName, setFileName] = useState('ggg');
-    const  handleAddProduct = async (e) => {
+    const  handleAddProduct = (e) => {
         e.preventDefault();
         try {
-            await cropper.getCroppedCanvas().toBlob(async (cropData) => {
-                const hashNameImage = await sendImageToBucket(cropData);
-
-                // console.log('1-' + response.data);
-                // hashNameImage(response.data)
-                // setFileName(response.data)
-
-                // console.log(response)
-
-        if (name.trim().length && price.trim().length) {
-            await addProduct({
-                variables: {
-                key,
-                value: name,
-                slug: slugify(name.translit()),
-                parentableType: 'category',
-                parentableId: Number(selectedParent),
-                createPrice: { key: "1", value: price },
-                createUnit: { key: "1", value: selectedUnit },
-                // createImage: { key: "1", value: hashNameImage }
-            },
-            });
-            setName('');
-            setPrice('');
-            setSelectedParent([]);
-            setSelectedUnit([]);
-        }
-
-
-
-            }, 'image/*');
+            if (name.trim().length && price.trim().length) {
+                cropper.getCroppedCanvas().toBlob(async (cropData) => {
+                    const hashNameImage = await sendImageToBucket(cropData);
+                    await addProduct({
+                        variables: {
+                        key,
+                        value: name,
+                        slug: slugify(name.translit()),
+                        parentableType: 'category',
+                        parentableId: Number(selectedParent),
+                        createPrice: { key: "1", value: price },
+                        createUnit: { key: "1", value: selectedUnit },
+                        createImage: { key: "1", hash: hashNameImage }
+                    },
+                    });
+                    setName('');
+                    setPrice('');
+                    setSelectedParent([]);
+                    setSelectedUnit([]);
+                }, 'image/*');
+            }
         } catch (error) {
             console.error(error);
         }
-
-
     }
 
 

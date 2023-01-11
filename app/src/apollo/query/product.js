@@ -62,8 +62,8 @@ export const CREATE_PRODUCT = gql`
         $parentableId: Int!
         $createPrice: CreatePriceInput!
         $createUnit: CreateUnitInput!
-    ) # $createImage: CreateImageInput!
-    {
+        $createImage: CreateImageInput!
+    ) {
         createProduct(
             input: {
                 key: $key
@@ -73,7 +73,7 @@ export const CREATE_PRODUCT = gql`
                 parentable_id: $parentableId
                 price: { create: $createPrice }
                 unit: { create: $createUnit }
-                # image: { create: $createImage }
+                image: { create: $createImage }
             }
         ) {
             value
