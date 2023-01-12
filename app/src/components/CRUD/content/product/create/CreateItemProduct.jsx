@@ -248,7 +248,13 @@ const CreateItemProduct = () => {
                             </div>
 
       <div className="mt-8" style={{ width: "100%" }}>
-        <input type="file" onChange={handleFileChange} />
+        <input type="file" className="block w-full text-sm text-slate-500
+            file:mr-4 file:py-2 file:px-4
+            file:rounded-full file:border-0
+            file:text-sm file:font-semibold
+            file:bg-green-50 file:text-green-700
+            hover:file:bg-violet-100
+            " onChange={handleFileChange} />
         <br />
         <br />
         {image &&
@@ -278,12 +284,16 @@ const CreateItemProduct = () => {
                         <button type="button" onClick={getCropData} className=" inline-flex items-center rounded-md border border-transparent bg-green-100 px-6 py-3 text-base font-medium text-green-700 hover:bg-green-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">Обрезать</button>
                     </div>
                     {cropData !== "#" &&
-                        <div
-                        className="p-0"
-                        style={{ width: "50%", float: "center", height: "300px" }}
-                        >
-                        <img style={{ width: "100%" }} src={cropData} />
-                        </div>
+                        <>
+
+                            <div
+
+                            style={{ width: "50%", float: "center" }}
+                            >
+                            {/* <span className="mb-2">Результат:</span> */}
+                            <img style={{ width: "100%" }} src={cropData} />
+                            </div>
+                        </>
                     }
                 </div>
             }
