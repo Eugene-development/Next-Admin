@@ -246,45 +246,48 @@ const CreateItemProduct = () => {
                                     </div>
                                 </div>
                             </div>
-                                 <div>
+
       <div className="mt-8" style={{ width: "100%" }}>
         <input type="file" onChange={handleFileChange} />
-        {/* <input type="file" onChange={handleFileChange} /> */}
         <br />
         <br />
-        <Cropper
-          style={{ height: 400, width: "100%" }}
-          zoomTo={0.5}
-          initialAspectRatio={1}
-          src={image}
-          viewMode={1}
-          minCropBoxHeight={10}
-          minCropBoxWidth={10}
-          background={false}
-          responsive={true}
-          autoCropArea={1}
-          checkOrientation={false} // https://github.com/fengyuanchen/cropperjs/issues/671
-          onInitialized={(instance) => {
-            setCropper(instance);
-          }}
-          guides={true}
-        />
-      </div>
-      <div className="flex pt-4">
-        <div className="mx-auto">
-            <button type="button" onClick={getCropData} className=" inline-flex items-center rounded-md border border-transparent bg-green-100 px-6 py-3 text-base font-medium text-green-700 hover:bg-green-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">Обрезать</button>
-        </div>
+        {image &&
+            <Cropper
+            style={{ height: 400, width: "100%" }}
+            zoomTo={0.5}
+            initialAspectRatio={1}
+            src={image}
+            viewMode={1}
+            minCropBoxHeight={10}
+            minCropBoxWidth={10}
+            background={false}
+            responsive={true}
+            autoCropArea={1}
+            checkOrientation={false} // https://github.com/fengyuanchen/cropperjs/issues/671
+            onInitialized={(instance) => {
+                setCropper(instance);
+            }}
+            guides={true}
+            />
+        }
 
-        <div
-          className="p-0"
-          style={{ width: "50%", float: "center", height: "300px" }}
-        >
-          <img style={{ width: "100%" }} src={cropData} />
-        </div>
       </div>
-    </div>
+        {image &&
+            <div className="flex pt-4">
+                <div className="mx-auto">
+                    <button type="button" onClick={getCropData} className=" inline-flex items-center rounded-md border border-transparent bg-green-100 px-6 py-3 text-base font-medium text-green-700 hover:bg-green-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">Обрезать</button>
+                </div>
 
-                            </div>
+                <div
+                className="p-0"
+                style={{ width: "50%", float: "center", height: "300px" }}
+                >
+                <img style={{ width: "100%" }} src={cropData} />
+                </div>
+            </div>
+        }
+
+        </div>
 
                             <div className="mt-8 sm:mt-10 sm:grid sm:grid-flow-row-dense sm:grid-cols-2 sm:gap-3">
                                 <button
@@ -297,7 +300,16 @@ const CreateItemProduct = () => {
                                 <button
                                     type="button"
                                     className="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 sm:col-start-1 sm:mt-0 sm:text-sm"
-                                    onClick={() => is_visible_create_product(false)}
+                                    onClick={() => {
+                                        setName('');
+                                        setPrice('');
+                                        setSelectedParent([]);
+                                        setSelectedUnit([]);
+                                        setCropper();
+                                        setImage();
+                                        setCropData("#");
+                                        is_visible_create_product(false)
+                                    }}
                                     ref={cancelButtonRef}
                                     >
                                     Отменить
