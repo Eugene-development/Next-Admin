@@ -13,15 +13,14 @@ import { useSlug } from "@/hooks/slug";
 import Cropper from "react-cropper";
 import "cropperjs/dist/cropper.css";
 import { useImage } from '@/hooks/image'
-import axios from '@/lib/axios'
-
-
-
 const defaultSrc =
   "https://raw.githubusercontent.com/roadmanfong/react-cropper/master/example/img/child.jpg";
 
 
 const CreateItemProduct = () => {
+    const { slugify } = useSlug();
+    const { sendImageToBucket } = useImage();
+
 
     //Upload GPT
     // const [selectedFile, setSelectedFile] = useState();
@@ -80,10 +79,7 @@ const CreateItemProduct = () => {
     const handleUnitChange = (e) => setSelectedUnit(e.target.value);
     const [name, setName] = useState('');
     const [price, setPrice] = useState('');
-    const { slugify } = useSlug();
-    const { sendImageToBucket } = useImage();
 
-    // const [fileName, setFileName] = useState('ggg');
     const  handleAddProduct = (e) => {
         e.preventDefault();
         try {
@@ -106,6 +102,9 @@ const CreateItemProduct = () => {
                     setPrice('');
                     setSelectedParent([]);
                     setSelectedUnit([]);
+                    setCropper();
+                    setImage();
+                    setCropData("#");
                 }, 'image/*');
             }
         } catch (error) {
