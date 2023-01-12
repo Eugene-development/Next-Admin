@@ -270,22 +270,23 @@ const CreateItemProduct = () => {
             guides={true}
             />
         }
-
       </div>
-        {image &&
-            <div className="flex pt-4">
-                <div className="mx-auto">
-                    <button type="button" onClick={getCropData} className=" inline-flex items-center rounded-md border border-transparent bg-green-100 px-6 py-3 text-base font-medium text-green-700 hover:bg-green-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">Обрезать</button>
-                </div>
 
-                <div
-                className="p-0"
-                style={{ width: "50%", float: "center", height: "300px" }}
-                >
-                <img style={{ width: "100%" }} src={cropData} />
+            {image &&
+                <div className="flex pt-4 justify-between">
+                    <div className="">
+                        <button type="button" onClick={getCropData} className=" inline-flex items-center rounded-md border border-transparent bg-green-100 px-6 py-3 text-base font-medium text-green-700 hover:bg-green-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">Обрезать</button>
+                    </div>
+                    {cropData !== "#" &&
+                        <div
+                        className="p-0"
+                        style={{ width: "50%", float: "center", height: "300px" }}
+                        >
+                        <img style={{ width: "100%" }} src={cropData} />
+                        </div>
+                    }
                 </div>
-            </div>
-        }
+            }
 
         </div>
 
