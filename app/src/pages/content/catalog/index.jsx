@@ -48,7 +48,7 @@ export default function Catalog() {
   return (
             <>
                 {catalog &&
-                                <AppLayout
+                            <AppLayout
                             header={
                                 <h2 className="font-semibold text-xl text-gray-800 leading-tight">
                                     Каталог

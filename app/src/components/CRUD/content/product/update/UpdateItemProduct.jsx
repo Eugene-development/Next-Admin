@@ -1,5 +1,5 @@
 import { useAuth } from '@/hooks/auth'
-import { Fragment, useRef, useState } from 'react'
+import { useEffect, Fragment, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { CheckIcon } from '@heroicons/react/24/outline'
 import { useQuery, useReactiveVar, useMutation } from '@apollo/client'
@@ -8,6 +8,7 @@ import { ALL_CATEGORY, ONE_CATEGORY } from '@/apollo/query/category'
 import { is_visible_update_product } from '@/apollo/stores/visible'
 import { current_id_product, current_value_product, current_parent_id_product, current_parent_value_product, current_id_product_price, current_value_product_price } from '@/apollo/stores/current'
 import { useSlug } from "@/hooks/slug";
+import { sortBy } from "lodash"
 
 const UpdateItemProduct = () => {
     const { user } = useAuth({ middleware: 'guest' })
@@ -22,12 +23,21 @@ const UpdateItemProduct = () => {
     const currentParentValueProduct = useReactiveVar(current_parent_value_product)
 
     const { data } = useQuery(ALL_CATEGORY, {variables: { key }})
+    const [category, setCategory] = useState([])
+    useEffect(() => {
+        if (data) {
+            const sortedCategory = sortBy(data.category, ['value']);
+            setCategory(sortedCategory);
+        }
+    }, [data]);
     const [changedText, setText] = useState();
     const [changedPrice, setPrice] = useState();
     const [selectedParent, setSelectedParent] = useState();
     const parent = selectedParent ? selectedParent : currentParentIdProduct;
     const text = changedText ? changedText : currentValueProduct;
     const price = changedPrice ? changedPrice : currentValuePrice;
+    // TODO: решить костыль (приходит Number, а ожидается строка)
+    const stringPrice = _.toString(price);
     const handleParentChange = (e) => setSelectedParent((e.target.value));
     const { slugify } = useSlug();
     const handleUpdateProduct = (e) => {
@@ -43,7 +53,7 @@ const UpdateItemProduct = () => {
             slug: slugify(text.translit()),
             parentableType: 'category',
             parentableId: Number(parent),
-            updatePrice: { key: "1", id: currentIdPrice, value: price },
+            updatePrice: { key: "1", id: currentIdPrice, value: stringPrice },
             },
         });
         setText('');
@@ -119,7 +129,7 @@ const UpdateItemProduct = () => {
                                             autoComplete="parent-name"
                                             className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                             >
-                                                {data.category.map((item, key) => {
+                                                {category.map((item, key) => {
                                                     return item.id == currentParentIdProduct ?
                                                         <option key={item.id} value={currentParentIdProduct}>{currentParentValueProduct}</option>
                                                         :
