@@ -61,9 +61,15 @@ const UpdateItemProduct = () => {
     }
         const [updateProduct] = useMutation(UPDATE_PRODUCT, {
         refetchQueries: [
-        { query: ONE_CATEGORY,
-            variables: {key, id: parent}}
-        ],
+            { query: ONE_CATEGORY,
+                variables: {key, id: parent}}
+            ],
+            // fetchPolicy: 'network-only'
+        // fetchOptions: {
+        //     headers: {
+        //         'cache-control': 'no-cache'
+        //     }
+        // }
     });
 
     const cancelButtonRef = useRef(null)
