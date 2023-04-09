@@ -100,47 +100,75 @@ const UpdateItemCategory = () => {
                         <form onSubmit={handleUpdateCategory} className="space-y-8 divide-y divide-gray-200">
 
                             <div className="py-2">
-                            <div className="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-                                <div className="sm:col-span-3">
-                                    <label htmlFor="parent" className="block text-sm font-medium text-gray-700">
-                                        Изменить элемент каталога
-                                    </label>
-                                    <div className="mt-1">
-                                        <select
-                                            onChange={e => handleParentChange(e)}
-                                            defaultValue={currentParentIdCategory}
-                                            id="parent"
-                                            name="parent"
-                                            autoComplete="parent-name"
+                                <div className="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+                                    <div className="sm:col-span-3">
+                                        <label htmlFor="parent" className="block text-sm font-medium text-gray-700">
+                                            Изменить элемент каталога
+                                        </label>
+                                        <div className="mt-1">
+                                            <select
+                                                onChange={e => handleParentChange(e)}
+                                                defaultValue={currentParentIdCategory}
+                                                id="parent"
+                                                name="parent"
+                                                autoComplete="parent-name"
+                                                className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                                >
+                                                    {data.rubric.map((item, key) => {
+                                                        return item.id == currentParentIdCategory ?
+                                                            <option key={item.id} value={currentParentIdCategory}>{currentParentValueCategory}</option>
+                                                            :
+                                                            <option key={item.id} value={item.id}>{item.value}</option>
+                                                    }
+                                                        )}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div className="sm:col-span-6">
+                                        <label htmlFor="value" className="block text-sm font-medium text-gray-700">
+                                            Значение
+                                        </label>
+                                        <div className="mt-1">
+                                            <input
+                                            defaultValue={currentValueCategory}
+                                            onChange={(e) => setText(e.target.value)}
+                                            type="text"
+                                            name="value"
+                                            id="value"
+                                            autoComplete="value"
                                             className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                                            >
-                                                {data.rubric.map((item, key) => {
-                                                    return item.id == currentParentIdCategory ?
-                                                        <option key={item.id} value={currentParentIdCategory}>{currentParentValueCategory}</option>
-                                                        :
-                                                        <option key={item.id} value={item.id}>{item.value}</option>
-                                                }
-                                                    )}
-                                        </select>
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="sm:col-span-6">
+                                        <label htmlFor="title" className="block text-sm font-medium text-gray-700">
+                                            Title
+                                        </label>
+                                        <div className="mt-1">
+                                            <input
+                                            type="text"
+                                            name="title"
+                                            id="title"
+                                            autoComplete="title"
+                                            className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="sm:col-span-6">
+                                        <label htmlFor="description" className="block text-sm font-medium text-gray-700">
+                                            Description
+                                        </label>
+                                        <div className="mt-1">
+                                            <input
+                                            type="text"
+                                            name="description"
+                                            id="description"
+                                            autoComplete="description"
+                                            className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                            />
+                                        </div>
                                     </div>
                                 </div>
-                                <div className="sm:col-span-6">
-                                <label htmlFor="value" className="block text-sm font-medium text-gray-700">
-                                    Значение
-                                </label>
-                                <div className="mt-1">
-                                    <input
-                                    defaultValue={currentValueCategory}
-                                    onChange={(e) => setText(e.target.value)}
-                                    type="text"
-                                    name="value"
-                                    id="value"
-                                    autoComplete="value"
-                                    className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                                    />
-                                </div>
-                                </div>
-                            </div>
                             </div>
 
                             <div className="mt-8 sm:mt-10 sm:grid sm:grid-flow-row-dense sm:grid-cols-2 sm:gap-3">
