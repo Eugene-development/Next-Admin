@@ -22,6 +22,8 @@ const UpdateItemCategory = () => {
     const currentParentValueCategory = useReactiveVar(current_parent_value_category)
     const { data } = useQuery(ALL_RUBRIC, {variables: { key }})
     const [changedText, setText] = useState();
+    const [title, setTitle] = useState();
+    const [description, setDescription] = useState();
     const [selectedParent, setSelectedParent] = useState();
     const parent = selectedParent ? selectedParent : currentParentIdCategory;
     const text = changedText ? changedText : currentValueCategory;
@@ -146,6 +148,8 @@ const UpdateItemCategory = () => {
                                         </label>
                                         <div className="mt-1">
                                             <input
+                                            defaultValue='def Title'
+                                            onChange={(e) => setTitle(e.target.value)}
                                             type="text"
                                             name="title"
                                             id="title"
@@ -160,6 +164,8 @@ const UpdateItemCategory = () => {
                                         </label>
                                         <div className="mt-1">
                                             <input
+                                            defaultValue='def Desc'
+                                            onChange={(e) => setDescription(e.target.value)}
                                             type="text"
                                             name="description"
                                             id="description"
