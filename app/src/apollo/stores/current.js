@@ -22,6 +22,7 @@ export const current_created_rubric = makeVar()
 export const current_updated_rubric = makeVar()
 
 export const current_seoTitle_category = makeVar()
+export const current_id_seoTitle_category = makeVar()
 export const current_seoDescription_category = makeVar()
 export const current_value_category = makeVar()
 export const current_parent_id_category = makeVar()

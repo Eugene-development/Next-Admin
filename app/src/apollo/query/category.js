@@ -5,9 +5,11 @@ export const ALL_CATEGORY = gql`
         category(key: $key) {
             id
             seoTitle {
+                id
                 value
             }
             seoDescription {
+                id
                 value
             }
             value
