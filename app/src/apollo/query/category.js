@@ -86,6 +86,7 @@ export const UPDATE_CATEGORY = gql`
         $slug: String
         $parentableType: String
         $parentableId: Int
+        $updateSeoTitle: UpdateSeoTitleInput!
     ) {
         updateCategory(
             input: {
@@ -96,6 +97,7 @@ export const UPDATE_CATEGORY = gql`
                 slug: $slug
                 parentable_type: $parentableType
                 parentable_id: $parentableId
+                seoTitle: { update: $updateSeoTitle }
             }
         ) {
             value

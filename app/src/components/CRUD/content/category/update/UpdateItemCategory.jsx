@@ -25,9 +25,15 @@ const UpdateItemCategory = () => {
     const currentParentValueCategory = useReactiveVar(current_parent_value_category)
 
     const { data } = useQuery(ALL_RUBRIC, {variables: { key }})
+
     const [changedText, setText] = useState();
-    const [title, setTitle] = useState();
-    const [description, setDescription] = useState();
+    const [changedSeoTitle, setSeoTitle] = useState();
+    const [changedSeoDescription, setSeoDescription] = useState();
+    const seoTitle = changedSeoTitle ? changedSeoTitle : currentSeoTitleCategory;
+    const seoDescription = changedSeoDescription ? changedSeoDescription : currentSeoDescriptionCategory;
+
+
+
     const [selectedParent, setSelectedParent] = useState();
     const parent = selectedParent ? selectedParent : currentParentIdCategory;
     const text = changedText ? changedText : currentValueCategory;
@@ -46,6 +52,7 @@ const UpdateItemCategory = () => {
             slug: slugify(text.translit()),
             parentableType: 'rubric',
             parentableId: Number(parent),
+            updateSeoTitle: { key: "1", id: "1", value: seoTitle },
             },
         });
         setText('');
@@ -154,7 +161,7 @@ const UpdateItemCategory = () => {
                                         <div className="mt-1">
                                             <input
                                             defaultValue={currentSeoTitleCategory}
-                                            onChange={(e) => setTitle(e.target.value)}
+                                            onChange={(e) => setSeoTitle(e.target.value)}
                                             type="text"
                                             name="title"
                                             id="title"
@@ -170,7 +177,7 @@ const UpdateItemCategory = () => {
                                         <div className="mt-1">
                                             <input
                                             defaultValue={currentSeoDescriptionCategory}
-                                            onChange={(e) => setDescription(e.target.value)}
+                                            onChange={(e) => setSeoDescription(e.target.value)}
                                             type="text"
                                             name="description"
                                             id="description"
