@@ -8,7 +8,7 @@ import { useQuery, useReactiveVar, useMutation } from '@apollo/client'
 import { ALL_CATEGORY, UPDATE_CATEGORY } from '@/apollo/query/category'
 import { ALL_RUBRIC } from '@/apollo/query/rubric'
 import { is_visible_update_category } from '@/apollo/stores/visible'
-import { current_title_category, current_seoDescription_category, current_id_category, current_value_category, current_parent_id_category, current_parent_value_category } from '@/apollo/stores/current'
+import { current_seoTitle_category, current_seoDescription_category, current_id_category, current_value_category, current_parent_id_category, current_parent_value_category } from '@/apollo/stores/current'
 import { useSlug } from "@/hooks/slug";
 
 const UpdateItemCategory = () => {
@@ -17,7 +17,7 @@ const UpdateItemCategory = () => {
 
     const visibleForm = useReactiveVar(is_visible_update_category)
 
-    const currentTitleCategory = useReactiveVar(current_title_category)
+    const currentSeoTitleCategory = useReactiveVar(current_seoTitle_category)
     const currentSeoDescriptionCategory = useReactiveVar(current_seoDescription_category)
     const currentIdCategory = useReactiveVar(current_id_category)
     const currentValueCategory = useReactiveVar(current_value_category)
@@ -153,7 +153,7 @@ const UpdateItemCategory = () => {
                                         </label>
                                         <div className="mt-1">
                                             <input
-                                            defaultValue={currentTitleCategory}
+                                            defaultValue={currentSeoTitleCategory}
                                             onChange={(e) => setTitle(e.target.value)}
                                             type="text"
                                             name="title"

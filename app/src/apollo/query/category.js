@@ -4,7 +4,7 @@ export const ALL_CATEGORY = gql`
     query all_category($key: String) {
         category(key: $key) {
             id
-            seotitle {
+            seoTitle {
                 value
             }
             seoDescription {
