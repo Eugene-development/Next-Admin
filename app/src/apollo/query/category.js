@@ -7,6 +7,9 @@ export const ALL_CATEGORY = gql`
             seotitle {
                 value
             }
+            seoDescription {
+                value
+            }
             value
             is_active
             created_at
