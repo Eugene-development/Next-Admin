@@ -1,9 +1,12 @@
 import { gql } from '@apollo/client'
 
 export const ALL_CATEGORY = gql`
-    query all_category($key: String!) {
+    query all_category($key: String) {
         category(key: $key) {
             id
+            seotitle {
+                value
+            }
             value
             is_active
             created_at

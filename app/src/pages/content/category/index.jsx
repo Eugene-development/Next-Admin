@@ -5,7 +5,7 @@ import Head from 'next/head'
 import { useQuery,  useReactiveVar } from '@apollo/client'
 import { ALL_CATEGORY } from '@/apollo/query/category'
 import { is_visible_create_category, is_visible_read_category, is_visible_update_category, is_visible_delete_category } from '@/apollo/stores/visible'
-import { current_value_category, current_id_category, current_parent_id_category, current_parent_value_category, current_created_category, current_updated_category } from '@/apollo/stores/current'
+import { current_title_category, current_value_category, current_id_category, current_parent_id_category, current_parent_value_category, current_created_category, current_updated_category } from '@/apollo/stores/current'
 import  Switch  from '@/components/UI/buttons/Switch'
 
 
@@ -23,6 +23,7 @@ export default function Category() {
         if (data) setCategory(data.category)
     }, [data]);
 
+    // console.log(category)
 
     const checkbox = useRef()
     const [checked, setChecked] = useState(false)
@@ -194,6 +195,7 @@ export default function Category() {
                                                             <button
                                                                 onClick={() => {
                                                                     is_visible_update_category(true)
+                                                                    current_title_category(item.seotitle.value)
                                                                     current_id_category(item.id)
                                                                     current_value_category(item.value)
                                                                     current_parent_value_category(item.parent.value)
