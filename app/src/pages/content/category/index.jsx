@@ -4,8 +4,24 @@ import AppLayout from '@/components/Layouts/AppLayout'
 import Head from 'next/head'
 import { useQuery,  useReactiveVar } from '@apollo/client'
 import { ALL_CATEGORY } from '@/apollo/query/category'
-import { is_visible_create_category, is_visible_read_category, is_visible_update_category, is_visible_delete_category } from '@/apollo/stores/visible'
-import { current_seoTitle_category, current_seoDescription_category, current_value_category, current_id_category, current_id_seoTitle_category, current_parent_id_category, current_parent_value_category, current_created_category, current_updated_category } from '@/apollo/stores/current'
+import {
+    is_visible_create_category,
+    is_visible_read_category,
+    is_visible_update_category,
+    is_visible_delete_category,
+} from '@/apollo/stores/visible'
+import {
+    current_id_category,
+    current_value_category,
+    current_seoTitle_category,
+    current_seoDescription_category,
+    current_id_seoTitle_category,
+    current_id_seoDescription_category,
+    current_parent_id_category,
+    current_parent_value_category,
+    current_created_category,
+    current_updated_category,
+} from '@/apollo/stores/current'
 import  Switch  from '@/components/UI/buttons/Switch'
 
 
@@ -197,6 +213,7 @@ export default function Category() {
                                                                     is_visible_update_category(true)
                                                                     current_seoTitle_category(item.seoTitle?.value)
                                                                     current_id_seoTitle_category(item.seoTitle?.id)
+                                                                    current_id_seoDescription_category(item.seoDescription?.id)
                                                                     current_seoDescription_category(item.seoDescription?.value)
                                                                     current_id_category(item.id)
                                                                     current_value_category(item.value)

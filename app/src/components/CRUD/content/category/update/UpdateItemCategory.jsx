@@ -8,7 +8,16 @@ import { useQuery, useReactiveVar, useMutation } from '@apollo/client'
 import { ALL_CATEGORY, UPDATE_CATEGORY } from '@/apollo/query/category'
 import { ALL_RUBRIC } from '@/apollo/query/rubric'
 import { is_visible_update_category } from '@/apollo/stores/visible'
-import { current_seoTitle_category, current_seoDescription_category, current_id_category, current_value_category, current_id_seoTitle_category, current_parent_id_category, current_parent_value_category } from '@/apollo/stores/current'
+import {
+    current_id_category,
+    current_value_category,
+    current_seoTitle_category,
+    current_seoDescription_category,
+    current_id_seoTitle_category,
+    current_id_seoDescription_category,
+    current_parent_id_category,
+    current_parent_value_category
+} from '@/apollo/stores/current'
 import { useSlug } from "@/hooks/slug";
 
 const UpdateItemCategory = () => {
@@ -20,6 +29,7 @@ const UpdateItemCategory = () => {
     const currentSeoTitleCategory = useReactiveVar(current_seoTitle_category)
     const currentIdSeoTitleCategory = useReactiveVar(current_id_seoTitle_category)
     const currentSeoDescriptionCategory = useReactiveVar(current_seoDescription_category)
+    const currentIdSeoDescriptionCategory = useReactiveVar(current_id_seoTitle_category)
     const currentIdCategory = useReactiveVar(current_id_category)
     const currentValueCategory = useReactiveVar(current_value_category)
     const currentParentIdCategory = useReactiveVar(current_parent_id_category)
@@ -32,7 +42,6 @@ const UpdateItemCategory = () => {
     const [changedSeoDescription, setSeoDescription] = useState();
     const seoTitle = changedSeoTitle ? changedSeoTitle : currentSeoTitleCategory;
     const seoDescription = changedSeoDescription ? changedSeoDescription : currentSeoDescriptionCategory;
-
 
 
     const [selectedParent, setSelectedParent] = useState();
@@ -54,9 +63,12 @@ const UpdateItemCategory = () => {
             parentableType: 'rubric',
             parentableId: Number(parent),
             updateSeoTitle: { key: "1", id: currentIdSeoTitleCategory, value: seoTitle },
+            updateSeoDescription: { key: "1", id: currentIdSeoDescriptionCategory, value: seoDescription },
             },
         });
         setText('');
+        setSeoTitle('');
+        setSeoDescription('');
         }
     }
         const [updateCategory] = useMutation(UPDATE_CATEGORY, {
