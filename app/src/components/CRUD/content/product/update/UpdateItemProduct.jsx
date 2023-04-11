@@ -34,7 +34,9 @@ const UpdateItemProduct = () => {
     const [changedPrice, setPrice] = useState();
     const [selectedParent, setSelectedParent] = useState();
     const parent = selectedParent ? selectedParent : currentParentIdProduct;
-    const text = changedText ? changedText : currentValueProduct;
+    // const text = changedText ? changedText : currentValueProduct;
+    const text = changedText || currentValueProduct;
+
     const price = changedPrice ? changedPrice : currentValuePrice;
     // TODO: решить костыль (приходит Number, а ожидается строка)
     const stringPrice = _.toString(price);

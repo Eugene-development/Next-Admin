@@ -40,8 +40,8 @@ const UpdateItemCategory = () => {
     const [changedText, setText] = useState();
     const [changedSeoTitle, setSeoTitle] = useState();
     const [changedSeoDescription, setSeoDescription] = useState();
-    const seoTitle = changedSeoTitle ? changedSeoTitle : currentSeoTitleCategory;
-    const seoDescription = changedSeoDescription ? changedSeoDescription : currentSeoDescriptionCategory;
+    const seoTitle = changedSeoTitle || currentSeoTitleCategory;
+    const seoDescription = changedSeoDescription || currentSeoDescriptionCategory;
 
 
     const [selectedParent, setSelectedParent] = useState();
