@@ -273,20 +273,15 @@ const AppLayout = ({ header, children }) => {
                                                                     <Disclosure.Panel className="space-y-1">
                                                                         {item.children.map(
                                                                             subItem => (
-                                                                                <Disclosure.Button
-                                                                                    key={
-                                                                                        subItem.name
-                                                                                    }
-                                                                                    className="my-2 group flex w-full items-center rounded-md py-1 pl-14 pr-2 text-sm font-medium text-gray-100 hover:bg-gray-50 hover:text-gray-900">
-                                                                                    <Link
-                                                                                        href={
-                                                                                            subItem.href
-                                                                                        }>
-                                                                                        {
+                                                                                <Link href={ subItem.href }>
+                                                                                    <Disclosure.Button
+                                                                                        key={
                                                                                             subItem.name
                                                                                         }
-                                                                                    </Link>
-                                                                                </Disclosure.Button>
+                                                                                        className="my-2 group flex w-full items-center rounded-md py-1 pl-14 pr-2 text-sm font-medium text-gray-100 hover:bg-gray-50 hover:text-gray-900">
+                                                                                        { subItem.name }
+                                                                                    </Disclosure.Button>
+                                                                                </Link>
                                                                                 // <Link
                                                                                 //     className="group flex w-full items-center rounded-md py-2 pl-11 pr-2 text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900"
                                                                                 //     key={
