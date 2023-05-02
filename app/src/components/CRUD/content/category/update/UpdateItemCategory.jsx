@@ -28,8 +28,11 @@ const UpdateItemCategory = () => {
 
     const currentSeoTitleCategory = useReactiveVar(current_seoTitle_category)
     const currentIdSeoTitleCategory = useReactiveVar(current_id_seoTitle_category)
+    console.log(currentIdSeoTitleCategory);
     const currentSeoDescriptionCategory = useReactiveVar(current_seoDescription_category)
-    const currentIdSeoDescriptionCategory = useReactiveVar(current_id_seoTitle_category)
+    const currentIdSeoDescriptionCategory = useReactiveVar(current_id_seoDescription_category)
+        console.log(currentIdSeoDescriptionCategory);
+
     const currentIdCategory = useReactiveVar(current_id_category)
     const currentValueCategory = useReactiveVar(current_value_category)
     const currentParentIdCategory = useReactiveVar(current_parent_id_category)
