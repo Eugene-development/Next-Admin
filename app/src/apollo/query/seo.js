@@ -1,22 +1,34 @@
 import { gql } from '@apollo/client'
 
 export const QUERIES = gql`
-    query seo {
-        project {
+    query seoQuery {
+        seoQuery {
             value
-            seoquery {
+            position {
                 id
+                created_at
                 value
-                resource {
-                    value
-                    position {
-                        value
-                    }
-                }
             }
         }
     }
 `
+// export const QUERIES = gql`
+//     query seo {
+//         project {
+//             value
+//             seoquery {
+//                 id
+//                 value
+//                 resource {
+//                     value
+//                     position {
+//                         value
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// `
 // export const QUERIES = gql`
 //     query seo {
 //         seoquery {

@@ -20,7 +20,6 @@ function classNames(...classes) {
 
 export const Queries = () => {
     const { loading, error, data } = useQuery(QUERIES)
-    console.log(data)
 
     if (loading) {
         return <h2>Loading...</h2>
@@ -30,6 +29,9 @@ export const Queries = () => {
         return <h2>Error...</h2>
     }
 
+    if (data) {
+        const { project } = data || {}
+        // console.log(project)
 
       return (
             <AppLayout
@@ -48,11 +50,8 @@ export const Queries = () => {
                             <h1 className="text-xl font-semibold text-gray-900">
                                 SEO
                             </h1>
-                            {/* <p className="mt-2 text-sm text-gray-700">
-                                Сайт {project[0].value}
-                            </p> */}
                             <p className="mt-2 text-sm text-gray-700">
-                                Сайт "орбита-строй.рф"
+                                Сайт {project[0].value}
                             </p>
                         </div>
 
@@ -60,7 +59,7 @@ export const Queries = () => {
                             <button
                                 type="button"
                                 className="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
-                                Обновить позиции
+                                Добавить запрос
                             </button>
                         </div>
                     </div>
@@ -89,7 +88,7 @@ export const Queries = () => {
                                                     className="sticky top-0 z-10 hidden border-b border-gray-300 bg-gray-50 bg-opacity-75 px-3 py-3.5 text-left text-sm font-bold text-gray-900 backdrop-blur backdrop-filter lg:table-cell">
                                                     Yandex
                                                 </th>
-                                                {/* <th
+                                                <th
                                                     scope="col"
                                                     className="sticky top-0 z-10 hidden border-b border-gray-300 bg-gray-50 bg-opacity-75 px-3 py-3.5 text-left text-sm font-bold text-gray-900 backdrop-blur backdrop-filter lg:table-cell">
                                                     Google
@@ -98,7 +97,7 @@ export const Queries = () => {
                                                     scope="col"
                                                     className="sticky top-0 z-10 border-b border-gray-300 bg-gray-50 bg-opacity-75 px-3 py-3.5 text-left text-sm font-bold text-gray-900 backdrop-blur backdrop-filter">
                                                     Частотность
-                                                </th> */}
+                                                </th>
                                                 <th
                                                     scope="col"
                                                     className="sticky top-0 z-10 border-b border-gray-300 bg-gray-50 bg-opacity-75 py-3.5 pr-4 pl-3 backdrop-blur backdrop-filter sm:pr-6 lg:pr-8">
@@ -110,7 +109,7 @@ export const Queries = () => {
                                         </thead>
 
                                         <tbody className="bg-white">
-                                            {data.seoQuery?.map(
+                                            {project[0].seoquery?.map(
                                                 (query, i) => (
                                                     <tr key={i}>
                                                         <td
@@ -125,17 +124,27 @@ export const Queries = () => {
                                                             {i+1}
                                                         </td>
 
-                                                        <td key={i}
-                                                            className={classNames(
-                                                                i !== query.length - 1
-                                                                    ? 'border-b border-gray-200'
-                                                                    : '',
-                                                                'whitespace-nowrap px-3 py-4 text-sm text-gray-500 hidden lg:table-cell',
-                                                            )}>
-                                                                {query?.value}
-                                                        </td>
 
-                                                        <td key={i+100}
+
+
+                                                            <td key={i}
+                                                                className={classNames(
+                                                                    i !== query.length - 1
+                                                                        ? 'border-b border-gray-200'
+                                                                        : '',
+                                                                    'whitespace-nowrap px-3 py-4 text-sm text-gray-500 hidden lg:table-cell',
+                                                                )}>
+                                                                    {query?.value}
+                                                            </td>
+
+
+
+                                                        {/* TODO: для гугла через цикл td с условием если яндекс или гугл */}
+
+                                                        {query.resource.map(
+                                                            (item, j) => (
+
+                                                        <td key={j}
                                                             className={classNames(
                                                                 i !==
                                                                     query.length -
@@ -144,9 +153,14 @@ export const Queries = () => {
                                                                     : '',
                                                                 'whitespace-nowrap px-3 py-4 text-sm text-gray-500 hidden sm:table-cell',
                                                             )}>
-                                                                { query.position.at(-1).value == 0 ? "-" : query.position.at(-1).value }<sup>{query.position.at(-2).value == 0 ? "-" : query.position.at(-2).value}</sup>
+
+                                                                {item.position.at(-1).value == 0 ? "-" : item.position.at(-1).value }
+                                                               {/* ({item.position.at(0).value == 0 || 'undefined' ?  "-" : item.position.at(0).value }) */}
                                                         </td>
 
+
+                                                            )
+                                                        )}
 
 
 
@@ -169,6 +183,16 @@ export const Queries = () => {
 
 
 
+                                                        <td
+                                                            className={classNames(
+                                                                i !==
+                                                                    query.length -
+                                                                        1
+                                                                    ? 'border-b border-gray-200'
+                                                                    : '',
+                                                                'whitespace-nowrap px-3 py-4 text-sm text-gray-500',
+                                                            )}> -
+                                                        </td>
 
                                                         <td
                                                             className={classNames(
@@ -277,5 +301,6 @@ export const Queries = () => {
             </AppLayout>
         )
     }
+}
 
 export default Queries;
