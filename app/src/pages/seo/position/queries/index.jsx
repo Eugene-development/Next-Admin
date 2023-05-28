@@ -1,3 +1,4 @@
+import axios from 'axios';
 import AppLayout from '@/components/Layouts/AppLayout'
 import Head from 'next/head'
 import { useQuery } from '@apollo/client'
@@ -20,7 +21,6 @@ function classNames(...classes) {
 
 export const Queries = () => {
     const { loading, error, data } = useQuery(QUERIES)
-    console.log(data)
 
     if (loading) {
         return <h2>Loading...</h2>
@@ -29,6 +29,18 @@ export const Queries = () => {
     if (error) {
         return <h2>Error...</h2>
     }
+
+    const handleUpdatePositions = async () => {
+        const url = 'http://127.0.0.1:7900/get-positions'
+        const response = await axios(url);
+            // updatePositions();
+        }
+    // const [updatePositions] = useMutation(UPDATE_POSITIONS, {
+    //     refetchQueries: [
+    //         { query: QUERIES,
+    //             variables: {key: "1"}}
+    //         ],
+    // });
 
 
       return (
@@ -58,6 +70,7 @@ export const Queries = () => {
 
                         <div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
                             <button
+                                onClick={handleUpdatePositions}
                                 type="button"
                                 className="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
                                 Обновить позиции
@@ -144,7 +157,7 @@ export const Queries = () => {
                                                                     : '',
                                                                 'whitespace-nowrap px-3 py-4 text-sm text-gray-500 hidden sm:table-cell',
                                                             )}>
-                                                                { query.position.at(-1).value == 0 ? "-" : query.position.at(-1).value }<sup>{query.position.at(-2).value == 0 ? "-" : query.position.at(-2).value}</sup>
+                                                                { !query.position.at(-1) ? "-" : query.position.at(-1).value } <sup>{!query.position.at(-2) ? "-" : query.position.at(-2).value}</sup>
                                                         </td>
 
 
