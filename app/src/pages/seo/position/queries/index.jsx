@@ -31,8 +31,8 @@ export const Queries = () => {
     }
 
     const handleUpdatePositions = async () => {
-        const url = 'http://127.0.0.1:7900/get-positions'
-        const response = await axios(url);
+        const url = process.env.NEXT_PUBLIC_POSITIONS
+        await axios(url);
             // updatePositions();
         }
     // const [updatePositions] = useMutation(UPDATE_POSITIONS, {
