@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { useRouter } from 'next/router';
 import AppLayout from '@/components/Layouts/AppLayout'
 import Head from 'next/head'
 import { useQuery } from '@apollo/client'
@@ -20,6 +21,15 @@ function classNames(...classes) {
 // }
 
 export const Queries = () => {
+    const router = useRouter();
+
+    const handleUpdatePositions = async () => {
+        const url = process.env.NEXT_PUBLIC_POSITIONS
+        await axios(url);
+        router.reload();
+        }
+
+
     const { loading, error, data } = useQuery(QUERIES)
 
     if (loading) {
@@ -30,11 +40,6 @@ export const Queries = () => {
         return <h2>Error...</h2>
     }
 
-    const handleUpdatePositions = async () => {
-        const url = process.env.NEXT_PUBLIC_POSITIONS
-        await axios(url);
-            // updatePositions();
-        }
     // const [updatePositions] = useMutation(UPDATE_POSITIONS, {
     //     refetchQueries: [
     //         { query: QUERIES,
@@ -148,7 +153,7 @@ export const Queries = () => {
                                                                 {query?.value}
                                                         </td>
 
-                                                        <td key={i+100}
+                                                        <td key={i+1000}
                                                             className={classNames(
                                                                 i !==
                                                                     query.length -
