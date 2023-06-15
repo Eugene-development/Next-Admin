@@ -25,7 +25,7 @@ export const Queries = () => {
 
     const handleUpdatePositions = async () => {
         const url = process.env.NEXT_PUBLIC_POSITIONS
-        await axios(url);
+        await axios.post(url);
         router.reload();
         }
 
@@ -162,7 +162,7 @@ export const Queries = () => {
                                                                     : '',
                                                                 'whitespace-nowrap px-3 py-4 text-sm text-gray-500 hidden sm:table-cell',
                                                             )}>
-                                                                { !query.position.at(-1) ? "-" : query.position.at(-1).value } <sup>{!query.position.at(-2) ? "-" : query.position.at(-2).value}</sup>
+                                                                { !query.position.at(-1) || query.position.at(-1).value > 150 ? "-" : query.position.at(-1).value } <sup>( {!query.position.at(-2) || query.position.at(-2).value > 150 ? "-" : query.position.at(-2).value} )</sup>
                                                         </td>
 
 

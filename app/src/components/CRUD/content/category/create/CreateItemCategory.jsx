@@ -14,7 +14,7 @@ import { useSlug } from "@/hooks/slug";
 const CreateItemCategory = () => {
     const { user } = useAuth({ middleware: 'guest' })
     const key = user.key
-    
+
     const visibleForm = useReactiveVar(is_visible_create_category)
     const { data } = useQuery(ALL_RUBRIC, {variables: { key }})
     const rubric = map(data?.rubric, v => v.id)
@@ -27,12 +27,12 @@ const CreateItemCategory = () => {
         if (text.trim().length) {
         addCategory({
             variables: {
-            key,
-            is_active: true,
-            value: text,
-            slug: slugify(text.translit()),
-            parentableType: 'rubric',
-            parentableId: Number(selectedParent),
+                key,
+                is_active: true,
+                value: text,
+                slug: slugify(text.translit()),
+                parentableType: 'rubric',
+                parentableId: Number(selectedParent),
             },
         });
         setText('');
