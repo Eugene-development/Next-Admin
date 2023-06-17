@@ -23,9 +23,9 @@ function classNames(...classes) {
 export const Queries = () => {
     const router = useRouter();
 
-    const handleUpdatePositions = async () => {
+    const handleUpdatePositions = () => {
         const url = process.env.NEXT_PUBLIC_POSITIONS
-        await axios.post(url);
+        axios.post(url);
         router.reload();
         }
 
