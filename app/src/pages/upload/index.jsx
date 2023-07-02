@@ -13,6 +13,7 @@ const Upload = () => {
         const formData = new FormData();
         formData.append('image', selectedFile);
 
+
         try {
             const response = await axios.post('http://localhost:8002/upload-image', formData, {
             headers: {
