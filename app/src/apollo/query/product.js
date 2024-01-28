@@ -129,6 +129,13 @@ export const UPDATE_PRODUCT = gql`
         }
     }
 `
+export const UPDATE_STATUS_PRODUCT = gql`
+    mutation updateStatusProduct($id: ID!, $is_active: Boolean) {
+        updateStatusProduct(input: { id: $id, is_active: $is_active }) {
+            is_active
+        }
+    }
+`
 // export const UPDATE_PRODUCT = gql`
 //     mutation update_product(
 //         $id: ID!

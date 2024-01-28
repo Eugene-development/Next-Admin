@@ -145,7 +145,7 @@ const AppLayout = ({ header, children }) => {
                 <DeleteItemProduct/>
 
 
-                            <div>
+            <div>
                 <Transition.Root show={sidebarOpen} as={Fragment}>
                     <Dialog
                         as="div"

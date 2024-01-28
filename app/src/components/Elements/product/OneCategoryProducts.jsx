@@ -16,6 +16,7 @@ export const OneCategoryProducts = ({selectedCategoryId}) => {
     const key = user?.key
     const { loading, error, data } = useQuery (ONE_CATEGORY, {variables: {key, id: selectedCategoryId}})
     const [categoryOne, setCategory] = useState()
+    console.log(categoryOne)
     useEffect(() => {
         if (data) setCategory(data.category_one_id)
     }, [data]);
@@ -157,7 +158,7 @@ export const OneCategoryProducts = ({selectedCategoryId}) => {
                                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.value}</td>
                                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
 
-                                            <Switch is_active={item.is_active}/>
+                                            <Switch is_active={item.is_active} id={item.id}/>
 
                                             </td>
                                                 <td className="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">

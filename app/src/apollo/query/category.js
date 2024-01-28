@@ -35,8 +35,8 @@ export const ONE_CATEGORY = gql`
             updated_at
             product {
                 id
-                value
                 is_active
+                value
                 price {
                     id
                     value
